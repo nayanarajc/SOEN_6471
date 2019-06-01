@@ -1,10 +1,13 @@
 package AirlinesApp;
 
+import AirlinesApp.AirlinesDAOLayer.admin.AdminLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import AirlinesApp.AirlinesServiceLayer.AdminLoginService;
+import AirlinesApp.AirlinesServiceLayer.admin.AdminLoginService;
+
+import java.util.List;
 
 @RestController
 public class AirlinesAppLoginController {
@@ -13,8 +16,7 @@ public class AirlinesAppLoginController {
     private AdminLoginService adminLoginService;
 
     @RequestMapping("/hello")
-    public String sayHi(){
-        return "Say hi";
-//        return "admin_login.html";
+    public List<AdminLogin> sayHi(){
+        return adminLoginService.getAllAdminLogins();
     }
 }
