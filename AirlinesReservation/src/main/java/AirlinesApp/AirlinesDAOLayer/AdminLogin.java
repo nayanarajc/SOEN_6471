@@ -1,4 +1,4 @@
-package AirlinesApp;
+package AirlinesApp.AirlinesDAOLayer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import AirlinesApp.AirlinesServiceLayer.AdminLoginService;
+
 @RestController
 public class AirlinesAppLoginController {
 
@@ -12,7 +14,7 @@ public class AirlinesAppLoginController {
 
     @RequestMapping("/hello")
     public String sayHi(){
-        return adminLoginService.getAllAdminLogins().toString();
+        return "Say hi";
 //        return "admin_login.html";
     }
 }
