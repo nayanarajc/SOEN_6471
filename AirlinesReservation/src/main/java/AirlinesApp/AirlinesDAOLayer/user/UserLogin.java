@@ -17,6 +17,9 @@ public class UserLogin {
 
     private String userPassword;
 
+    public UserLogin(){
+    }
+
     public UserLogin(String userId, String userEmail, String userPassword) {
         this.userId = userId;
         this.userEmail = userEmail;
