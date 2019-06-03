@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Order Confirmation</title>
+  <base href="/">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+  
+    
+ <style>
+  .blue {
+  color: black;
+}
+
+.bg{
+background-image: url("img/background.jpg" );
+}      
+
+.wh{
+background-color:white;
+width:60%;
+height:50%;
+margin:0 auto;
+
+}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <div class="bg">
+      <h3><br/>&emsp;&emsp;&emsp;&emsp;
+          &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;Booking Confirmation</h3><br/>
+<div class="container wh" method="post" >
+  
+    <form id="form1">
+      <div class="form-group">
+          <br/>
+        <label><b>Full Name</b></label>
+        <input id="name" type="text" class="form-control" formControlName="name" >
+		<div  class="error1 alert alert-danger" >Please enter the name</div>
+      </div>
+      <div class="form-group">
+          <label><b>Email</b></label>
+          <input id="email" type="text"  class="form-control" formControlName="email" >
+		  <div  class="error2 alert alert-danger" >Please enter a valid email</div>
+        </div>
+        
+            <div class="form-group">
+                <label><b>Contact number</b></label>
+                <input id="contact" type="text" class="form-control" formControlName="city" >
+				<div  class="error3 alert alert-danger" >Please enter the contact number</div>
+              </div>
+              <div class="form-group">
+                  <label><b>Billing Address</b></label>
+                  <input id="addr" type="text" class="form-control" formControlName="state">
+				  <div  class="error4 alert alert-danger" >Please enter the address</div>
+                </div>
+                <div class="form-group">
+                    <label><b>Postal Code</b></label>
+                    <input id="post" type="text"  class="form-control" formControlName="post" >
+                   <div  class="error5 alert alert-danger" >Please enter the postal code</div>
+                  </div>
+                
+              <button type="submit"  class="btn btn-primary">Submit</button><br/><br/>
+    </form>
+</div>
+      <br/><br/>
+<div>
+<section id="card_details" class="wh">
+
+
+</section>
+</div>
+</div>
+</html>
