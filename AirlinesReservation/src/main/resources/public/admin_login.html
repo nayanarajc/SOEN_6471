@@ -40,44 +40,56 @@
                   Admin Login
                   </span>
                   <div class="wrap-input100 validate-input" data-validate = "Enter AdminID">
-                     <input class="input100" form="login100-form validate-form" type="text" name="email" placeholder="AdminID">
+                     <input class="input100" form="login100-form validate-form" type="text" id="email" name="email" placeholder="AdminID">
                      <span class="focus-input100" data-placeholder="&#xf207;"></span>
                   </div>
                   <div class="wrap-input100 validate-input" data-validate="Enter password">
-                     <input class="input100" form="login100-form validate-form" type="password" name="pass" placeholder="Password">
+                     <input class="input100" form="login100-form validate-form" type="password" id="pass" name="pass" placeholder="Password">
                      <span class="focus-input100" data-placeholder="&#xf191;"></span>
                   </div>
+				   <div id="magic" style="visibility: hidden;">
+					 <center>
+					 <span class="section-heading-lower"><b><font color="Red"><h5><b>Incorrect AdminID or Password !</b></h5></font></b></span>
+					 </center>
+				</div>
                   <div class="contact100-form-checkbox">
-                     <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                     <label class="label-checkbox100" for="ckb1">
-                     Remember me
-                     </label>
-                  </div>
+				   <div class="row">
+					<div class="col-md-6">
+					 <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                     <label class="label-checkbox100" for="ckb1">Remember me</label>
+					</div>
+					<div class="col-md-6">
+                  	<a class="txt1" href="#">Forgot Password?</a>
+					</div>
+					</div>
+					<br>
                   <div class="container-login100-form-btn">
-                     <button class="login100-form-btn">
-                     Login
-                     </button>
-                  </div>
-                  <div class="text-center p-t-90">
-                     <a class="txt1" href="#">
-                     Forgot Password?
-                     </a>
-                  </div>
-               </form>
+					<button id="SubmitM" name="SubmitM" class="login100-form-btn">Login</button>
+					</div>
+				</form>
             </div>
          </div>
-         <script>
-            jQuery(document).ready(function(){
-            jQuery('#sign').on('click', function(event) {        
-                  jQuery('#create').toggle('show');
-            });
-            jQuery('#sign').on('click', function(event) {        
-                  jQuery('#login').toggle('hide');
-            });
-            });
-         </script>
-      </div>
-      
+       </div>
+       <script>
+		  $('#SubmitM').on('click', function(){
+			var email = $('#email').val();
+   			var pass = $('#pass').val();
+			
+		$.post("/login-admin", {adminId:email,userPassword:pass}).done(function(data) { 
+			   if(data){	
+		       window.location.href = 'main.html';	
+			   }else{
+			     var page=document.getElementById('magic');
+				 alert(page.style);
+				 page.style.visibility='visible';
+					}
+			   });
+				return false;	
+			});
+	                
+         
+		 </script>
+        
 	  <script src="vendor/animsition/js/animsition.min.js"></script>
       <script src="vendor/bootstrap/js/popper.js"></script>
       <script src="vendor/bootstrap/js/bootstrap.min.js"></script>

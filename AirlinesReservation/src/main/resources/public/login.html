@@ -48,6 +48,11 @@
                      <input class="input100" form="login100-form validate-form" type="password" id="pass" name="pass" placeholder="Password">
                      <span class="focus-input100" data-placeholder="&#xf191;"></span>
                   </div>
+				   <div id="magic" style="visibility: hidden;">
+					 <center>
+					 <span class="section-heading-lower"><b><font color="Red"><h5><b>Incorrect User Email or Password !</b></h5></font></b></span>
+					 </center>
+				</div>
                   <div class="contact100-form-checkbox">
                      <a class="txt1" href="#">
                      Forgot Password !?
@@ -69,11 +74,19 @@
 			var email = $('#email').val();
    			var pass = $('#pass').val();
 			
-							  });
-	                    
-         
+		$.post("/login-admin", {userEmail:email,userPassword:pass}).done(function(data) { 
+			   if(data){	
+		       window.location.href = 'main.html';	
+			   }else{
+			     var page=document.getElementById('magic');
+				 alert(page.style);
+				 page.style.visibility='visible';
+					}
+			   });
+				return false;	
+			});
 		 </script>
-         <script>
+		 <script>
             jQuery(document).ready(function(){
             jQuery('#sign').on('click', function(event) {        
                   jQuery('#create').toggle('show');

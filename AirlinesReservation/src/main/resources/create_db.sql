@@ -5,8 +5,9 @@ CREATE TABLE public.admin_logins
     admin_password character varying(50)
 );
 
-insert into admin_logins
-values ('admin01', 'admin1111');
+insert into admin_logins values ('admin01', 'admin1111');
+insert into admin_logins values ('test@gmail.com', 'test');
+
 
 ----------------ADMIN LOGIN --------------------------
 
