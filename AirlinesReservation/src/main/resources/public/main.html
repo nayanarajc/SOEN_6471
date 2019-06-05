@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <title>Airline Reservation</title>
+      <!-- Google font -->
+      <link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
+      <!-- Bootstrap -->
+      <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+      <!-- Custom stlylesheet -->
+      <link type="text/css" rel="stylesheet" href="css/style.css" />
+       </head>
+   <body>
+   <!-- Navigation -->
+    <div id="booking" class="section">
+	<div class="section-center">
+            <div class="container">
+               <div class="row">
+                  <div class="booking-form">
+                     <form>
+                        <datalist id="languages">
+                           <option value="Calgary-YYC">
+							<option value="Edmonton-YEG">
+							<option value="Gander-YQX">
+							<option value="Moncton-YQM">
+							<option value="Halifax-YHZ">
+							<option value="Hamilton-YHM">
+							<option value="London-YXU">
+							<option value="Montreal-YUL">
+							<option value="Ottawa-YOW">
+							<option value="Quebec City-YQB">
+							<option value="Regina-YQR">
+							<option value="Saskatoon-YXE">
+							<option value="St. John's-YYT">
+							<option value="Toronto-YYZ">
+							<option value="Vancouver-YVR">
+							<option value="Victoria-YYJ">
+							<option value="Winnipeg-YWG">
+                        </datalist>
+                        <div class="form-group">
+                        <div class="form-checkbox">
+                        <label for="roundtrip">
+                        <input type="radio" id="roundtrip" name="flight-type" value="roundtrip" onclick="myFunction_show()">
+                        <span></span>Roundtrip
+                        </label>
+                        <label for="one-way">
+                        <input type="radio" id="one-way" name="flight-type" value="oneway" onclick="myFunction_hide()">
+                        <span></span>One way
+                        </label>
+                        <!--<label for="multi-city">
+                           <input type="radio" id="multi-city" name="flight-type">
+                           <span></span>Multi-City
+                           </label> -->
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <span class="form-label">Flying from</span>
+                        <input list="languages" class="form-control" type="text" placeholder="City or airport">
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <span class="form-label" id="fly_to">Flyning to</span>
+                        <input list="languages" class="form-control" type="text" placeholder="City or airport" id="return_id">
+                        </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-3">
+                        <div class="form-group">
+                        <span id="dept_label" class="form-label">Departing</span>
+                        <input id="dept_date" class="form-control" type="date" required>
+                        </div>
+                        </div>
+                        <div class="col-md-3">
+                        <div class="form-group">
+                        <span id="ret_label" class="form-label">Returning</span>
+                        <input id="ret_date" class="form-control" type="date" required>
+                        </div>
+                        </div>
+                        <div class="col-md-2">
+                        <div class="form-group">
+                        <span class="form-label">Adults (18+)</span>
+                        <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                        </div>
+                        </div>
+                        <div class="col-md-2">
+                        <div class="form-group">
+                        <span class="form-label">Children (0-17)</span>
+                        <select class="form-control">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-3">
+                              <div class="form-group">
+                                 <span class="form-label">Travel class</span>
+                                 <select class="form-control">
+                                    <option>Economy class</option>
+                                    <option>Business class</option>
+                                    <option>First class</option>
+                                 </select>
+                                 <span class="select-arrow"></span>
+                              </div>
+                           </div>
+                           <div class="col-md-3">
+                              <div class="form-btn">
+                                 <button id="SubmitM" name="SubmitM" class="submit-btn">Show flights</button>
+                              </div>
+                           </div>
+                           <script>
+                              function myFunction_hide() {
+                                var x = document.getElementById("ret_date");
+                                var y = document.getElementById("ret_label");
+                                x.disabled="disabled";
+                                y.disabled="disabled";
+                              }
+                           </script>
+                           <script>
+                              function myFunction_show() {
+                                var x = document.getElementById("ret_date");
+                                var y = document.getElementById("ret_label");
+                                 x.removeAttribute("disabled");
+                                 y.removeAttribute("disabled");
+                              }
+                           </script>	
+                          <script>
+                          $('#SubmitM').on('click', function(){
+                         	  var trip;
+							  if (document.getElementById('roundtrip').checked) {
+							  trip = document.getElementById('roundtrip').value;
+							  }
+							  
+						    if(document.getElementById('one-way').checked){
+								  trip = document.getElementById('one-way').value;
+								  }
+						    
+							
+						    
+						    if(trip=="roundtrip")
+						    	{
+						    	
+						    	//generate data tables realted to round trip
+						    	}
+						    else
+						    	{
+						    	
+						    	//generate data table realted to one-way trip
+						    	}
+						    
+							  });
+	                       </script>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+   <!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
