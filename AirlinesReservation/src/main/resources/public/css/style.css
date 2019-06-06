@@ -227,3 +227,39 @@
     float: none;
   }
 }
+
+.table-user{
+	border-radius:7px;
+	height:70%;
+}
+
+.booking-details{
+    width: 73%;
+ 
+    margin: 32px auto;
+   
+}
+.booking-form-container{
+    margin: auto 0;
+    display: inline-block;	
+}
+
+#tbDetails{
+	display:none;
+}
+
+#tbRound{
+	display:none;
+}
+
+.wh{
+background-color:white;
+width:60%;
+height:50%;
+}
+
+.last{
+	background-image: url('../img/last.jpg');
+	background-size: cover;
+	background-position: center;
+}

@@ -175,11 +175,13 @@
                               }
                            </script>	
                           <script>
-
+							function bookTicket(){
+							$('html, body').animate({
+                    scrollTop: $("#booking").offset().top
+                }, 1000);
+							}
                           function AddData(){
-						  $("#tbDetails").show();
-						  //$("#tbDetails").css("display","block");
-						  $("#tbDetails td").remove();
+						  
                          	  var trip;
 							  var from=document.getElementById('from_id').value;
 							  var to=document.getElementById('return_id').value;
@@ -192,18 +194,38 @@
 								  trip = document.getElementById('one-way').value;
 								  }
 						    
-							var row1="<td>British Airways</td><td>22h 13m</td><td>950</td><td>2</td>";
-							var row2="<td>Air Canada</td><td>19h 45m</td><td>1070</td><td>3</td>";
-							var row3="<td>Lufthansa</td><td>27h 39m</td><td>1850</td><td>1</td>"
+							var row1="<td>British Airways</td><td>22h 13m</td><td>957</td><td>2</td>";
+							var row2="<td>Air Canada</td><td>19h 45m</td><td>1076</td><td>3</td>";
+							var row3="<td>Lufthansa</td><td>27h 39m</td><td>1854</td><td>1</td>"
+							var row4="<td>British Airways</td><td>23h 30m</td><td>851</td><td>1</td>"
+							var row5="<td>Air Canada</td><td>21h 22m</td><td>1230</td><td>1</td>"
+							var row6="<td>Lufthansa</td><td>25h 55m</td><td>1009</td><td>1</td>"
 							
-							var button="<td><div><button type='submit' class='btn btn-primary'>Book</button></div></td>";
+							var button="<td><div><button type='submit' onclick='bookTicket()' class='btn btn-primary'>Book</button></div></td>";
+							var buttonRound="<td rowspan='2'><div><button type='submit' onclick='bookTicket()' class='btn btn-primary'>Book</button></div></td>";
 						    
 						    if(trip=="roundtrip")
 						    	{
 						    	//generate data tables realted to round trip
+								$("#tbRound").show();
+								$("#tbDetails").hide();
+						  //$("#tbDetails").css("display","block");
+						  $("#tbRound td").remove();
+								rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row1 + button +"</tr> ";
+								rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row4 + "</tr> ";
+								rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button +"</tr> ";
+								rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row5 + "</tr> ";
+								rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button +" </tr> ";
+								rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row6 + "</tr> ";
+								
+								$(rows).appendTo("#tbRound tbody");
 						    	}
 						    else
 						    	{
+								$("#tbDetails").show();
+								$("#tbRound").hide();
+						  //$("#tbDetails").css("display","block");
+						  $("#tbDetails td").remove();
 						    	rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row1 + button +"</tr> ";
 								rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button +"</tr> ";
 								rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button +" </tr> ";
@@ -241,8 +263,8 @@
     var email = $('#email').val();
     var addr = $('#addr').val();
 	var postal = $('#post').val();
-      var city = $('#city').val();
-      var country = $('#country').val();
+    var city = $('#city').val();
+    var country = $('#country').val();
     
  
     if (first_name.length < 1) {
@@ -303,7 +325,9 @@
     }
 	else
 	{
-	
+	$('html, body').animate({
+                    scrollTop: $("#payment").offset().top
+                }, 1000);
 		$(".error6").hide();
 		}
   });
@@ -409,11 +433,27 @@ if (name_card.length < 1) {
   <tbody>
   </tbody>
 </table>
+<table id="tbRound" class="table table-striped table-dark table-user">
+  <thead>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Airline operator</th>
+                <th>Travel time</th>
+                <th>Cost</th>
+                <th>Number of Baggage</th>
+				<th>Action</th>
+            </tr>
+        </thead>
+  <tbody>
+  </tbody>
+</table>
 </div>
 </div>
   </section>
 <section id="booking">
 <div class="bg">
+<br/><br/>
 <div class="container wh">
 <h3>Booking confirmation</h3>
     <form id="form1">
