@@ -15,17 +15,24 @@
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+    type="text/css">
 
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
   <!-- Custom styles for this template -->
   <link href="css/landing-page.min.css" rel="stylesheet">
   <!-- Bootstrap -->
   <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
   <!-- Custom stlylesheet -->
   <link type="text/css" rel="stylesheet" href="css/style.css" />
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 </head>
@@ -43,8 +50,8 @@
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <form>
-		    <a class="btn btn-primary" href="login.html">Sign IN to Book Your Flights</a>
-		  </form>
+            <a class="btn btn-primary" href="login.html">Sign IN to Book Your Flights</a>
+          </form>
         </div>
       </div>
     </div>
@@ -53,492 +60,525 @@
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
     <div class="container">
-               <div class="row booking-form-container">
-                  <div class="booking-form">
-                     <form onsubmit="return AddData()">
-                        <datalist id="languages">
-                           <option value="Calgary-YYC">
-							<option value="Edmonton-YEG">
-							<option value="Gander-YQX">
-							<option value="Moncton-YQM">
-							<option value="Halifax-YHZ">
-							<option value="Hamilton-YHM">
-							<option value="London-YXU">
-							<option value="Montreal-YUL">
-							<option value="Ottawa-YOW">
-							<option value="Quebec City-YQB">
-							<option value="Regina-YQR">
-							<option value="Saskatoon-YXE">
-							<option value="St. John's-YYT">
-							<option value="Toronto-YYZ">
-							<option value="Vancouver-YVR">
-							<option value="Victoria-YYJ">
-							<option value="Winnipeg-YWG">
-                        </datalist>
-                        <div class="form-group">
-                        <div class="form-checkbox">
-                        <label for="roundtrip">
-                        <input type="radio" id="roundtrip" name="flight-type" value="roundtrip" onclick="myFunction_show()">
-                        <span></span>Roundtrip
-                        </label>
-                        <label for="one-way">
-                        <input type="radio" id="one-way" name="flight-type" value="oneway" onclick="myFunction_hide()">
-                        <span></span>One way
-                        </label>
-                        <!--<label for="multi-city">
+
+      <div class="row booking-form-container">
+        <div class="booking-form">
+          <form id="searchFlight" onsubmit="return AddData()">
+            <datalist id="languages">
+              <option value="Calgary-YYC">
+              <option value="Edmonton-YEG">
+              <option value="Gander-YQX">
+              <option value="Moncton-YQM">
+              <option value="Halifax-YHZ">
+              <option value="Hamilton-YHM">
+              <option value="London-YXU">
+              <option value="Montreal-YUL">
+              <option value="Ottawa-YOW">
+              <option value="Quebec City-YQB">
+              <option value="Regina-YQR">
+              <option value="Saskatoon-YXE">
+              <option value="St. John's-YYT">
+              <option value="Toronto-YYZ">
+              <option value="Vancouver-YVR">
+              <option value="Victoria-YYJ">
+              <option value="Winnipeg-YWG">
+            </datalist>
+            <div class="form-group">
+              <div class="form-checkbox">
+                <label for="roundtrip">
+                  <input type="radio" id="roundtrip" name="flight-type" value="roundtrip" onclick="myFunction_show()">
+                  <span></span>Roundtrip
+                </label>
+                <label for="one-way">
+                  <input type="radio" id="one-way" name="flight-type" value="oneway" onclick="myFunction_hide()">
+                  <span></span>One way
+                </label>
+                <!--<label for="multi-city">
                            <input type="radio" id="multi-city" name="flight-type">
                            <span></span>Multi-City
                            </label> -->
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-md-6">
-                        <div class="form-group">
-                        <span class="form-label">Flying from</span>
-                        <input id="from_id" list="languages" class="form-control" type="text" placeholder="City or airport">
-                        </div>
-                        </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                        <span class="form-label" id="fly_to">Flyning to</span>
-                        <input list="languages" class="form-control" type="text" placeholder="City or airport" id="return_id">
-                        </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-md-3">
-                        <div class="form-group">
-                        <span id="dept_label" class="form-label">Departing</span>
-                        <input id="dept_date" class="form-control" type="date" required>
-                        </div>
-                        </div>
-                        <div class="col-md-3">
-                        <div class="form-group">
-                        <span id="ret_label" class="form-label">Returning</span>
-                        <input id="ret_date" class="form-control" type="date" required>
-                        </div>
-                        </div>
-                        <div class="col-md-2">
-                        <div class="form-group">
-                        <span class="form-label">Adults (18+)</span>
-                        <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        </select>
-                        <span class="select-arrow"></span>
-                        </div>
-                        </div>
-                        <div class="col-md-2">
-                        <div class="form-group">
-                        <span class="form-label">Children (0-17)</span>
-                        <select class="form-control">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        </select>
-                        <span class="select-arrow"></span>
-                        </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-3">
-                              <div class="form-group">
-                                 <span class="form-label">Travel class</span>
-                                 <select class="form-control">
-                                    <option>Economy class</option>
-                                    <option>Business class</option>
-                                    <option>First class</option>
-                                 </select>
-                                 <span class="select-arrow"></span>
-                              </div>
-                           </div>
-                           <div class="col-md-3">
-                              <div class="form-btn">
-                                 <button id="SubmitM" name="SubmitM" class="submit-btn">Show flights</button>
-                              </div>
-                           </div>
-                           <script>
-                              function myFunction_hide() {
-                                var x = document.getElementById("ret_date");
-                                var y = document.getElementById("ret_label");
-                                x.disabled="disabled";
-                                y.disabled="disabled";
-                              }
-                           </script>
-                           <script>
-                              function myFunction_show() {
-                                var x = document.getElementById("ret_date");
-                                var y = document.getElementById("ret_label");
-                                 x.removeAttribute("disabled");
-                                 y.removeAttribute("disabled");
-                              }
-                           </script>	
-                          <script>
-							function bookTicket(){
-							$('html, body').animate({
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Flying from</span>
+                  <input id="from_id" list="languages" class="form-control" type="text" placeholder="City or airport">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label" id="fly_to">Flying to</span>
+                  <input list="languages" class="form-control" type="text" placeholder="City or airport" id="return_id">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span id="dept_label" class="form-label">Departing</span>
+                  <input id="dept_date" class="form-control" type="date" required>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span id="ret_label" class="form-label">Returning</span>
+                  <input id="ret_date" class="form-control" type="date" required>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">Adults (18+)</span>
+                  <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">Children (0-17)</span>
+                  <select class="form-control">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">Travel class</span>
+                  <select class="form-control">
+                    <option>Economy class</option>
+                    <option>Business class</option>
+                    <option>First class</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <button id="SubmitM" name="SubmitM" class="submit-btn">Show flights</button>
+                  <div id="dialog1" title="Dialog Title" hidden="hidden">I'm a dialog</div>
+                </div>
+              </div>
+              <script>
+                function myFunction_hide() {
+                  var x = document.getElementById("ret_date");
+                  var y = document.getElementById("ret_label");
+                  x.disabled = "disabled";
+                  y.disabled = "disabled";
+                }
+              </script>
+              <script>
+                function myFunction_show() {
+                  var x = document.getElementById("ret_date");
+                  var y = document.getElementById("ret_label");
+                  x.removeAttribute("disabled");
+                  y.removeAttribute("disabled");
+                }
+              </script>
+              <script>
+                function bookTicket() {
+                  $('html, body').animate({
                     scrollTop: $("#booking").offset().top
-                }, 1000);
-							}
-                          function AddData(){
-						  
-                         	  var trip;
-							  var from=document.getElementById('from_id').value;
-							  var to=document.getElementById('return_id').value;
-							  var rows="";
-							  if (document.getElementById('roundtrip').checked) {
-							  trip = document.getElementById('roundtrip').value;
-							  }
-							  
-						    if(document.getElementById('one-way').checked){
-								  trip = document.getElementById('one-way').value;
-								  }
-						    
-							var row1="<td>British Airways</td><td>22h 13m</td><td>957</td><td>2</td>";
-							var row2="<td>Air Canada</td><td>19h 45m</td><td>1076</td><td>3</td>";
-							var row3="<td>Lufthansa</td><td>27h 39m</td><td>1854</td><td>1</td>"
-							var row4="<td>British Airways</td><td>23h 30m</td><td>851</td><td>1</td>"
-							var row5="<td>Air Canada</td><td>21h 22m</td><td>1230</td><td>1</td>"
-							var row6="<td>Lufthansa</td><td>25h 55m</td><td>1009</td><td>1</td>"
-							
-							var button="<td><div><button type='submit' onclick='bookTicket()' class='btn btn-primary'>Book</button></div></td>";
-							var buttonRound="<td rowspan='2'><div><button type='submit' onclick='bookTicket()' class='btn btn-primary'>Book</button></div></td>";
-						    
-						    if(trip=="roundtrip")
-						    	{
-						    	//generate data tables realted to round trip
-								$("#tbRound").show();
-								$("#tbDetails").hide();
-						  //$("#tbDetails").css("display","block");
-						  $("#tbRound td").remove();
-								rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row1 + button +"</tr> ";
-								rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row4 + "</tr> ";
-								rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button +"</tr> ";
-								rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row5 + "</tr> ";
-								rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button +" </tr> ";
-								rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row6 + "</tr> ";
-								
-								$(rows).appendTo("#tbRound tbody");
-						    	}
-						    else
-						    	{
-								$("#tbDetails").show();
-								$("#tbRound").hide();
-						  //$("#tbDetails").css("display","block");
-						  $("#tbDetails td").remove();
-						    	rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row1 + button +"</tr> ";
-								rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button +"</tr> ";
-								rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button +" </tr> ";
-								
-								$(rows).appendTo("#tbDetails tbody");
-						    	//generate data table realted to one-way trip
-						    	}
-						    return false;
-							  }
-	                       </script>
-						   
-						   <script>
-  
-  $(document).ready(function(){
-  $(".error1").hide();
-  $(".error2").hide();
-  $(".error3").hide();
-  $(".error4").hide();
-  $(".error5").hide();
-  $(".error6").hide();
-  $(".error7").hide();
-  $(".error8").hide();
-  $(".error9").hide();
-  $(".error10").hide();
-  $(".error11").hide();
-  $(".error12").hide();
-  
-  $("h2").addClass("blue");
+                  }, 1000);
+                }
+                function AddData() {
 
- 
-  $('#form1').submit(function(e) {
-    e.preventDefault();
-    var first_name = $('#name').val();
-    var contact = $('#contact').val();
-    var email = $('#email').val();
-    var addr = $('#addr').val();
-	var postal = $('#post').val();
-    var city = $('#city').val();
-    var country = $('#country').val();
-    
- 
-    if (first_name.length < 1) {
-      $(".error1").show();
-    }
-	else
-	{
-		$(".error1").hide();
-	}
+                  var trip;
+                  var from = document.getElementById('from_id').value;
+                  var to = document.getElementById('return_id').value;
+                  var rows = "";
+                  if (document.getElementById('roundtrip').checked) {
+                    trip = document.getElementById('roundtrip').value;
+                  }
 
-    if (email.length < 1) {
-      $('.error2').show();
-    } else if(email.length>=1) {
-      var regEx = /^[a-zA-Z0-9][a-zA-Z0-9._%+-]{0,63}@(?:[a-zA-Z0-9-]{1,63}\.){1,125}[a-zA-Z]{2,63}$/;
-      var validEmail = regEx.test(email);
-      if (!validEmail) {
-        $('.error2').show();
-      }
-	  else{
-	$(".error2").hide();
-	}
-    }
-	
-	 if (contact.length < 1) {
-      $(".error3").show();
-    }
-	else
-	{
-		$(".error3").hide();
-	}
-	
-	if (addr.length < 1) {
-      $(".error4").show();
-    }
-	else
-	{
-		$(".error4").hide();
-	}
-	
-	if (postal.length < 1) {
-      $(".error7").show();
-    }
-	else
-	{
-		$(".error7").hide();
-	}
-	
-	if (city.length < 1) {
-      $(".error5").show();
-    }
-	else
-	{
-		$(".error5").hide();
-	}
-	
-	if (country.length < 1) {
-      $(".error6").show();
-    }
-	else
-	{
-	$('html, body').animate({
-                    scrollTop: $("#payment").offset().top
-                }, 1000);
-		$(".error6").hide();
-		}
-  });
-   $('#form_payment').submit(function(e) {
-    e.preventDefault();
-    var name_card = $('#name_c').val();
-    var card_num = $('#card').val();
-    var e_month = $('#month').val();
-    var e_year = $('#year').val();
-	var cvv = $('#cvv').val();
-if (name_card.length < 1) {
-      $('.error8').show();
-    } 
-	
-	  else{
-	$(".error8").hide();
-	}
-    
-	
-	 if (card_num.length < 1) {
-      $(".error9").show();
-    }
-	
-	else if(card_num.length>=1) {
-      var regEx = /^[0-9]{16}$/;
-      var validCard = regEx.test(card_num);
-      if (!validCard) {
-        $('.error9').show();
-      }
-	else
-	{
-		$(".error9").hide();
-	}
-	}
-	
-	if (e_month.length < 1||(e_month<1|| e_month>12)) {
-      $(".error10").show();
-    }
-	else if(e_month.length>=1) {
-      var regEx = /^[0-9]{2}$/;
-      var validMonth = regEx.test(e_month);
-      if (!validMonth) {
-        $('.error10').show();
-      }
-	else
-	{
-		$(".error10").hide();
-	}
-	}
-	if (e_year.length < 1||(e_year<2019||e_year>2100)) {
-      $(".error11").show();
-    }
-	else if(e_year.length>=1) {
-      var regEx = /^[0-9]{4}$/;
-      var validYear = regEx.test(e_year);
-      if (!validYear) {
-        $('.error11').show();
-      }
-	else
-	{
-		$(".error11").hide();
-	}
-	}
-	
-	if (cvv.length < 1) {
-      $(".error12").show();
-    }
-	else if(cvv.length>=1) {
-      var regEx = /^[0-9]{3}$/;
-      var validCVV = regEx.test(cvv);
-      if (!validCVV) {
-        $('.error12').show();
-      }
-	else
-	{
-		$(".error12").hide();
-	}
-	}
-	});
- 
- });
-  </script>
-						   
-                        </div>
-						
-                     </form>
-                  </div>
-               </div>
-			   <br/>
-			   <div class="row booking-details">
-<table id="tbDetails" class="table table-striped table-dark table-user">
-  <thead>
+                  if (document.getElementById('one-way').checked) {
+                    trip = document.getElementById('one-way').value;
+                  }
+
+                  var row1 = "<td>British Airways</td><td>22h 13m</td><td>957</td><td>2</td>";
+                  var row2 = "<td>Air Canada</td><td>19h 45m</td><td>1076</td><td>3</td>";
+                  var row3 = "<td>Lufthansa</td><td>27h 39m</td><td>1854</td><td>1</td>"
+                  var row4 = "<td>British Airways</td><td>23h 30m</td><td>851</td><td>1</td>"
+                  var row5 = "<td>Air Canada</td><td>21h 22m</td><td>1230</td><td>1</td>"
+                  var row6 = "<td>Lufthansa</td><td>25h 55m</td><td>1009</td><td>1</td>"
+
+                  var button = "<td><div><button type='submit' onclick='bookTicket()' class='btn btn-primary'>Book</button></div></td>";
+                  var buttonRound = "<td rowspan='2'><div><button type='submit' onclick='bookTicket()' class='btn btn-primary'>Book</button></div></td>";
+
+                  if (trip == "roundtrip") {
+                    //generate data tables realted to round trip
+                    $("#tbRound").show();
+                    $("#tbDetails").hide();
+                    //$("#tbDetails").css("display","block");
+                    $("#tbRound td").remove();
+                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row1 + button + "</tr> ";
+                    rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row4 + "</tr> ";
+                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button + "</tr> ";
+                    rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row5 + "</tr> ";
+                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button + " </tr> ";
+                    rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row6 + "</tr> ";
+
+                    $(rows).appendTo("#tbRound tbody");
+                  }
+                  else {
+                    $("#tbDetails").show();
+                    $("#tbRound").hide();
+                    //$("#tbDetails").css("display","block");
+                    $("#tbDetails td").remove();
+                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row1 + button + "</tr> ";
+                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button + "</tr> ";
+                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button + " </tr> ";
+
+                    $(rows).appendTo("#tbDetails tbody");
+                    //generate data table realted to one-way trip
+                  }
+                  return false;
+                }
+              </script>
+
+              <script>
+
+                $(document).ready(function () {
+                  $(".error1").hide();
+                  $(".error2").hide();
+                  $(".error3").hide();
+                  $(".error4").hide();
+                  $(".error5").hide();
+                  $(".error6").hide();
+                  $(".error7").hide();
+                  $(".error8").hide();
+                  $(".error9").hide();
+                  $(".error10").hide();
+                  $(".error11").hide();
+                  $(".error12").hide();
+
+                  $("h2").addClass("blue");
+
+                  $('#searchFlight').submit(function (e) {
+                    e.preventDefault();
+                    var from = $('#from_id').val();
+                    var to = $('#return_id').val();
+                    var dept_date = $('#dept_date').val();
+                    var return_date = $('#ret_date').val();
+
+                    if (!$('#roundtrip').is(':checked') && !$('#one-way').is(':checked')) {
+                      //$("<div>Test message</div>").dialog();
+                      alert('Please select one(round trip or one way)');
+                      $("#tbRound").hide();
+                      $("#tbDetails").hide();
+                    }
+
+                    else if (from == "") {
+                      alert('Please fill flying from field');
+                      $("#tbRound").hide();
+                      $("#tbDetails").hide();
+                    }
+
+                    else if (to == "") {
+                      alert('Please fill flying to field');
+                      $("#tbRound").hide();
+                      $("#tbDetails").hide();
+                    }
+
+                    else if (from == to) {
+                      alert('Source and destination cannot be same');
+                      $("#tbRound").hide();
+                      $("#tbDetails").hide();
+                    }
+
+                    else if (new Date(dept_date) > new Date(return_date)) {
+                      alert('Departure date cannot be later than return date');
+                      $("#tbRound").hide();
+                      $("#tbDetails").hide();
+                    }
+                    // else {
+                    //   $("#tbRound").show();
+                    //   $("#tbDetails").show();
+                    // }
+
+                  });
+
+                  $('#form1').submit(function (e) {
+                    e.preventDefault();
+                    var first_name = $('#name').val();
+                    var contact = $('#contact').val();
+                    var email = $('#email').val();
+                    var addr = $('#addr').val();
+                    var postal = $('#post').val();
+                    var city = $('#city').val();
+                    var country = $('#country').val();
+
+
+                    if (first_name.length < 1) {
+                      $(".error1").show();
+                    }
+                    else {
+                      $(".error1").hide();
+                    }
+
+                    if (email.length < 1) {
+                      $('.error2').show();
+                    } else if (email.length >= 1) {
+                      var regEx = /^[a-zA-Z0-9][a-zA-Z0-9._%+-]{0,63}@(?:[a-zA-Z0-9-]{1,63}\.){1,125}[a-zA-Z]{2,63}$/;
+                      var validEmail = regEx.test(email);
+                      if (!validEmail) {
+                        $('.error2').show();
+                      }
+                      else {
+                        $(".error2").hide();
+                      }
+                    }
+
+                    if (contact.length < 1) {
+                      $(".error3").show();
+                    }
+                    else {
+                      $(".error3").hide();
+                    }
+
+                    if (addr.length < 1) {
+                      $(".error4").show();
+                    }
+                    else {
+                      $(".error4").hide();
+                    }
+
+                    if (postal.length < 1) {
+                      $(".error7").show();
+                    }
+                    else {
+                      $(".error7").hide();
+                    }
+
+                    if (city.length < 1) {
+                      $(".error5").show();
+                    }
+                    else {
+                      $(".error5").hide();
+                    }
+
+                    if (country.length < 1) {
+                      $(".error6").show();
+                    }
+                    else {
+                      $('html, body').animate({
+                        scrollTop: $("#payment").offset().top
+                      }, 1000);
+                      $(".error6").hide();
+                    }
+                  });
+                  $('#form_payment').submit(function (e) {
+                    e.preventDefault();
+                    var name_card = $('#name_c').val();
+                    var card_num = $('#card').val();
+                    var e_month = $('#month').val();
+                    var e_year = $('#year').val();
+                    var cvv = $('#cvv').val();
+                    if (name_card.length < 1) {
+                      $('.error8').show();
+                    }
+
+                    else {
+                      $(".error8").hide();
+                    }
+
+
+                    if (card_num.length < 1) {
+                      $(".error9").show();
+                    }
+
+                    else if (card_num.length >= 1) {
+                      var regEx = /^[0-9]{16}$/;
+                      var validCard = regEx.test(card_num);
+                      if (!validCard) {
+                        $('.error9').show();
+                      }
+                      else {
+                        $(".error9").hide();
+                      }
+                    }
+
+                    if (e_month.length < 1 || (e_month < 1 || e_month > 12)) {
+                      $(".error10").show();
+                    }
+                    else if (e_month.length >= 1) {
+                      var regEx = /^[0-9]{2}$/;
+                      var validMonth = regEx.test(e_month);
+                      if (!validMonth) {
+                        $('.error10').show();
+                      }
+                      else {
+                        $(".error10").hide();
+                      }
+                    }
+                    if (e_year.length < 1 || (e_year < 2019 || e_year > 2100)) {
+                      $(".error11").show();
+                    }
+                    else if (e_year.length >= 1) {
+                      var regEx = /^[0-9]{4}$/;
+                      var validYear = regEx.test(e_year);
+                      if (!validYear) {
+                        $('.error11').show();
+                      }
+                      else {
+                        $(".error11").hide();
+                      }
+                    }
+
+                    if (cvv.length < 1) {
+                      $(".error12").show();
+                    }
+                    else if (cvv.length >= 1) {
+                      var regEx = /^[0-9]{3}$/;
+                      var validCVV = regEx.test(cvv);
+                      if (!validCVV) {
+                        $('.error12').show();
+                      }
+                      else {
+                        $(".error12").hide();
+                      }
+                    }
+                  });
+
+                });
+              </script>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <br />
+      <div class="row booking-details">
+        <table id="tbDetails" class="table table-striped table-dark table-user">
+          <thead>
             <tr>
-                <th>From</th>
-                <th>To</th>
-                <th>Airline operator</th>
-                <th>Travel time</th>
-                <th>Cost</th>
-                <th>Number of Baggage</th>
-				<th>Action</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Airline operator</th>
+              <th>Travel time</th>
+              <th>Cost</th>
+              <th>Number of Baggage</th>
+              <th>Action</th>
             </tr>
-        </thead>
-  <tbody>
-  </tbody>
-</table>
-<table id="tbRound" class="table table-striped table-dark table-user">
-  <thead>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <table id="tbRound" class="table table-striped table-dark table-user">
+          <thead>
             <tr>
-                <th>From</th>
-                <th>To</th>
-                <th>Airline operator</th>
-                <th>Travel time</th>
-                <th>Cost</th>
-                <th>Number of Baggage</th>
-				<th>Action</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Airline operator</th>
+              <th>Travel time</th>
+              <th>Cost</th>
+              <th>Number of Baggage</th>
+              <th>Action</th>
             </tr>
-        </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-</div>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </section>
-<section id="booking">
-<div class="bg">
-<br/><br/>
-<div class="container wh">
-<h3>Booking confirmation</h3>
-    <form id="form1">
-      <div class="form-group">
-          <br/>
-        <label><b>Full Name</b></label>
-        <input id="name" type="text" class="form-control" formControlName="name" >
-		<div  class="error1 alert alert-danger" >Please enter the name</div>
+  <section id="booking">
+    <div class="bg">
+      <br /><br />
+      <div class="container wh">
+        <h3>Booking confirmation</h3>
+        <form id="form1">
+          <div class="form-group">
+            <br />
+            <label><b>Full Name</b></label>
+            <input id="name" type="text" class="form-control" formControlName="name">
+            <div class="error1 alert alert-danger">Please enter the name</div>
+          </div>
+          <div class="form-group">
+            <label><b>Email</b></label>
+            <input id="email" type="text" class="form-control" formControlName="email">
+            <div class="error2 alert alert-danger">Please enter a valid email</div>
+          </div>
+          <div class="form-group">
+            <label><b>Contact number</b></label>
+            <input id="contact" type="text" class="form-control" formControlName="contact">
+            <div class="error3 alert alert-danger">Please enter the contact number</div>
+          </div>
+          <div class="form-group">
+            <label><b>Billing Address</b></label>
+            <input id="addr" type="text" class="form-control" formControlName="addr">
+            <div class="error4 alert alert-danger">Please enter the address</div>
+          </div>
+          <div class="form-group">
+            <label><b>City</b></label>
+            <input id="city" type="text" class="form-control" formControlName="city">
+            <div class="error5 alert alert-danger">Please enter the city</div>
+          </div>
+          <div class="form-group">
+            <label><b>Country</b></label>
+            <input id="country" type="text" class="form-control" formControlName="country">
+            <div class="error6 alert alert-danger">Please enter the country</div>
+          </div>
+          <div class="form-group">
+            <label><b>Postal Code</b></label>
+            <input id="post" type="text" class="form-control" formControlName="post">
+            <div class="error7 alert alert-danger">Please enter the postal code</div>
+          </div>
+          <button type="submit" id="btnNext" class="btn btn-primary">Continue</button><br /><br />
+        </form>
       </div>
-      <div class="form-group">
-          <label><b>Email</b></label>
-          <input id="email" type="text"  class="form-control" formControlName="email" >
-		  <div  class="error2 alert alert-danger" >Please enter a valid email</div>
-        </div>
-            <div class="form-group">
-                <label><b>Contact number</b></label>
-                <input id="contact" type="text" class="form-control" formControlName="contact" >
-				<div  class="error3 alert alert-danger" >Please enter the contact number</div>
-              </div>
-              <div class="form-group">
-                  <label><b>Billing Address</b></label>
-                  <input id="addr" type="text" class="form-control" formControlName="addr">
-				  <div  class="error4 alert alert-danger" >Please enter the address</div>
-                </div>
-                <div class="form-group">
-                    <label><b>City</b></label>
-                    <input id="city" type="text"  class="form-control" formControlName="city" >
-                   <div  class="error5 alert alert-danger" >Please enter the city</div>
-                  </div>
-                <div class="form-group">
-                    <label><b>Country</b></label>
-                    <input id="country" type="text"  class="form-control" formControlName="country" >
-                   <div  class="error6 alert alert-danger" >Please enter the country</div>
-                  </div>
-                <div class="form-group">
-                    <label><b>Postal Code</b></label>
-                    <input id="post" type="text"  class="form-control" formControlName="post" >
-                   <div  class="error7 alert alert-danger" >Please enter the postal code</div>
-                  </div>
-              <button type="submit" id="btnNext" class="btn btn-primary">Continue</button><br/><br/>
-    </form>
-</div>
-<br/><br/>
-</div>
-</section>
+      <br /><br />
+    </div>
+  </section>
 
-<section id="payment">
-<div class="last">
-     <br/><br/>
-<div class="container wh">
-<h3>Payment</h3>
-    <form id="form_payment" onsubmit="payment">
-      <div class="form-group">
-          <br/>
-        <label><b>Name on card</b></label>
-        <input id="name_c" type="text" class="form-control" formControlName="name_c" >
-		<div  class="error8 alert alert-danger" >Please enter the name</div>
+  <section id="payment">
+    <div class="last">
+      <br /><br />
+      <div class="container wh">
+        <h3>Payment</h3>
+        <form id="form_payment" onsubmit="payment">
+          <div class="form-group">
+            <br />
+            <label><b>Name on card</b></label>
+            <input id="name_c" type="text" class="form-control" formControlName="name_c">
+            <div class="error8 alert alert-danger">Please enter the name</div>
+          </div>
+          <div class="form-group">
+            <label><b>Credit card number</b></label>
+            <input id="card" type="text" class="form-control" formControlName="card_num">
+            <div class="error9 alert alert-danger">Please enter a valid credit card number</div>
+          </div>
+          <div class="form-group">
+            <label><b>Expiry Month(MM)</b></label>
+            <input id="month" type="text" class="form-control" formControlName="month">
+            <div class="error10 alert alert-danger">Please enter a valid month</div>
+          </div>
+          <div class="form-group">
+            <label><b>Expiry year(YYYY)</b></label>
+            <input id="year" type="text" class="form-control" formControlName="year">
+            <div class="error11 alert alert-danger">Please enter a valid year</div>
+          </div>
+          <div class="form-group">
+            <label><b>CVV</b></label>
+            <input id="cvv" type="text" class="form-control" formControlName="cvv">
+            <div class="error12 alert alert-danger">Please enter a valid CVV</div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Confirm Booking</button><br /><br />
+        </form>
       </div>
-      <div class="form-group">
-          <label><b>Credit card number</b></label>
-          <input id="card" type="text"  class="form-control" formControlName="card_num" >
-		  <div  class="error9 alert alert-danger" >Please enter a valid credit card number</div>
-        </div>
-            <div class="form-group">
-                <label><b>Expiry Month(MM)</b></label>
-                <input id="month" type="text" class="form-control" formControlName="month" >
-				<div  class="error10 alert alert-danger" >Please enter a valid month</div>
-              </div>
-              <div class="form-group">
-                  <label><b>Expiry year(YYYY)</b></label>	
-                  <input id="year" type="text" class="form-control" formControlName="year">
-				  <div  class="error11 alert alert-danger" >Please enter a valid  year</div>
-                </div>
-                <div class="form-group">
-                    <label><b>CVV</b></label>
-                    <input id="cvv" type="text"  class="form-control" formControlName="cvv" >
-                   <div  class="error12 alert alert-danger" >Please enter a valid CVV</div>
-                  </div>
-                
-              <button type="submit" class="btn btn-primary">Confirm Booking</button><br/><br/>
-    </form>
-</div>
-<br/><br/>
-</div>
-</section>
+      <br /><br />
+    </div>
+  </section>
   <!-- Image Showcases 
   <section class="showcase">
     <div class="container-fluid p-0">
