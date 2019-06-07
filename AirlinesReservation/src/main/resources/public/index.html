@@ -117,7 +117,7 @@
                   </div>
 				   <div id="magic" style="visibility: hidden;">
 					 <center>
-					 <span class="section-heading-lower"><b><font color="Red"><h5><b>Incorrect User Email or Password !</b></h5></font></b></span>
+					 <span class="section-heading-lower"><b><font color="white"><h5><b>Incorrect User Email or Password !</b></h5></font></b></span>
 					 </center>
 				</div>
                   <div class="contact100-form-checkbox">
@@ -146,7 +146,6 @@
 		       window.location.href = 'booking.html';	
 			   }else{
 			     var page=document.getElementById('magic');
-				 alert(page.style);
 				 page.style.visibility='visible';
 					}
 			   });
@@ -175,7 +174,7 @@
                   Sign-Up
                   </span>
                   <div class="wrap-input100 validate-input" data-validate = "FirstName">
-                     <input class="input1000" type="text" name="username" placeholder="First Name">
+                     <input class="input1000" type="text" id="username" name="username" placeholder="First Name">
                      <span class="focus-input100" data-placeholder="&#xf207;"></span>
                   </div>
                   <div class="wrap-input100 validate-input" data-validate = "LastName">
@@ -183,19 +182,25 @@
                      <span class="focus-input100" data-placeholder="&#xf207;"></span>
                   </div>
                   <div class="wrap-input100 validate-input" data-validate = "Email">
-                     <input class="input1000" type="text" name="email" placeholder="Email">
+                     <input class="input1000" type="text" id="cemail" name="cemail" placeholder="Email">
                      <span class="focus-input100" data-placeholder="&#xf207;"></span>
                   </div>
                   <div class="wrap-input100 validate-input" data-validate="Password">
-                     <input class="input1000" type="password" name="pass" placeholder="Password">
+                     <input class="input1000" type="password" id="cpass" name="cpass" placeholder="Password">
                      <span class="focus-input100" data-placeholder="&#xf190;"></span>
                   </div>
                   <div class="wrap-input100 validate-input" data-validate="DOB">
-                     <input class="input1000" type="date" name="pass" placeholder="dob">
+                     <input class="input1000" type="date" id="dob" name="dob" placeholder="dob">
                      <span class="focus-input100" data-placeholder="&#xf200;"></span>
                   </div>
+				   <div id="magic1" style="visibility: hidden;">
+					 <center>
+					 <span class="section-heading-lower"><b><font color="Red"><h5><b>Error !</b></h5></font></b></span>
+					 </center>
+				</div>
+
                   <div class="container-login100-form-btn">
-                     <button class="login100-form-btn">
+                     <button id="SubmitC" name="SubmitC" class="login100-form-btn"">
                      Create Account
                      </button>
                      <button id="cancel" type="button" class="login100-form-btn" formnovalidate="formnovalidate">
@@ -220,6 +225,28 @@
                   jQuery('#login').toggle('show');
             });
             });
+			
+			
+			$('#SubmitC').on('click', function(){
+			var email = $('#cemail').val();
+   			var pass = $('#cpass').val();
+			var username= $('#username').val();
+			var dob = $('#dob').val();
+			
+	
+			
+		$.post("/create-user", {userEmail:email,userPassword:pass,firstname:username,dob:dob}).done(function(data) { 
+			   if(data){	
+		       window.location.href = 'index.html';	
+			   }else{
+			     var page=document.getElementById('magic1');
+				 page.style.visibility='visible';
+					}
+			   });
+				return false;	
+			});
+		 
+			
 		</script>
       </div>
     
