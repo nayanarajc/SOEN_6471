@@ -5,7 +5,6 @@ CREATE TABLE public.admin_logins
     admin_password character varying(50)
 );
 
-insert into admin_logins values ('admin01', 'admin1111');
 insert into admin_logins values ('test@gmail.com', 'test');
 
 
@@ -18,3 +17,5 @@ CREATE TABLE public.user_logins
     user_email varchar(50) PRIMARY KEY NOT NULL,
     user_password varchar(50) NOT NULL
 );
+
+insert into user_logins values ('person@gmail.com', 'person@gmail.com','person');
