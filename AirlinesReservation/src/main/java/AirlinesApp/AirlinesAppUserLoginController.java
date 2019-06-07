@@ -17,6 +17,8 @@ public class AirlinesAppUserLoginController {
     @ResponseBody
     @RequestMapping(value="/login-user",method = RequestMethod.POST)
     public boolean loginUserAccount(@RequestParam String userEmail, @RequestParam String userPassword) {
+    	System.out.println(userEmail);
+    	System.out.println(userPassword);
         return validateUserAccountService.doesUserAccountExist(userEmail, userPassword);
     }
 

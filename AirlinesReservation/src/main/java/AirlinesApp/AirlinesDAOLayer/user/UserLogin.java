@@ -11,8 +11,10 @@ import javax.persistence.Table;
 public class UserLogin {
 
     private String userId;
+    
+    private String dob;
 
-    @Id
+  	@Id
     private String userEmail;
 
     private String userPassword;
@@ -20,10 +22,11 @@ public class UserLogin {
     public UserLogin(){
     }
 
-    public UserLogin(String userId, String userEmail, String userPassword) {
+    public UserLogin(String userId, String userEmail, String userPassword,String dob) {
         this.userId = userId;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
+        this.dob=dob;
     }
 
 
@@ -34,6 +37,15 @@ public class UserLogin {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    
+    public String getDob() {
+  		return dob;
+  	}
+
+  	public void setDob(String dob) {
+  		this.dob = dob;
+  	}
+
 
     public String getUserEmail() {
         return userEmail;

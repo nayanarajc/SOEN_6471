@@ -18,8 +18,6 @@ public class AirlinesAppAdminLoginController {
     @ResponseBody
     @RequestMapping(value="/login-admin",method = RequestMethod.POST)
     public boolean loginAdminAccount(@RequestParam String adminId, @RequestParam String userPassword) {
-    	//adminId = "admin01";
-    	//userPassword="admin1111";
     	System.out.println(adminId);
     	System.out.println(userPassword);
         return validateAdminAccountService.doesAdminAccountExist(adminId, userPassword);

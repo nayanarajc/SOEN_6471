@@ -4,6 +4,7 @@ import AirlinesApp.AirlinesServiceLayer.user.CreateUserAccountService;
 import AirlinesApp.AirlinesServiceLayer.user.ValidateUserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,11 +19,12 @@ public class AirlinesAppCreateUserAccountController {
 
     @ResponseBody
     @RequestMapping("/create-user")
-    public boolean loginUserAccount(String userEmail, String userPassword) {
+    public boolean loginUserAccount(@RequestParam String userEmail,@RequestParam String userPassword,@RequestParam String firstname,@RequestParam String dob) {
         if(validateUserAccountService.doesUserAccountExist(userEmail, userPassword)){
             return false;
         }
-        createUserAccountService.createUserAccount(userEmail, userPassword);
+        
+        createUserAccountService.createUserAccount(userEmail,userPassword,firstname,dob);
         return true;
     }
 }
