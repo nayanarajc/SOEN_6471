@@ -46,12 +46,10 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5">Airline Reservation System</h1>
+          
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <a class="btn btn-primary" href="login.html">Sign IN to Book Your Flights</a>
-          </form>
+          
         </div>
       </div>
     </div>
@@ -59,6 +57,7 @@
 
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center" >
+  <h1 class="mb-5">Student Flights</h1>
     <div class="container">
 
       <div class="row booking-form-container">
@@ -185,12 +184,13 @@
               </script>
               <script>
                 function bookTicket() {
+				$("#booking").show();
                   $('html, body').animate({
                     scrollTop: $("#booking").offset().top
                   }, 1000);
                 }
                 function AddData() {
-
+				  
                   var trip;
                   var from = document.getElementById('from_id').value;
                   var to = document.getElementById('return_id').value;
@@ -247,6 +247,8 @@
               <script>
 
                 $(document).ready(function () {
+				$("#booking").hide();
+				$("#payment").hide();
                   $(".error1").hide();
                   $(".error2").hide();
                   $(".error3").hide();
@@ -307,6 +309,7 @@
                   });
 
                   $('#form1').submit(function (e) {
+				  $("#payment").show();
                     e.preventDefault();
                     var first_name = $('#name').val();
                     var contact = $('#contact').val();
@@ -457,7 +460,7 @@
         </div>
       </div>
       <br />
-      <div class="row booking-details">
+      <div class="row booking-details" class="bg-light">
         <table id="tbDetails" class="table table-striped table-dark table-user">
           <thead>
             <tr>
@@ -490,11 +493,8 @@
         </table>
       </div>
     </div>
-	
-	<!----->
-	
-	
-  <section id="booking">
+	</section>
+  <section id="booking" class="bg-light">
     <div class="bg">
       <br /><br />
       <div class="container wh">
@@ -543,7 +543,7 @@
     </div>
   </section>
 
-  <section id="payment">
+  <section id="payment" class="bg-light">
     <div class="last">
       <br /><br />
       <div class="container wh">
@@ -585,7 +585,7 @@
 	
 	<!----->
 	
-  </section>
+  
 
   <!-- Footer -->
   <footer class="footer bg-light">
