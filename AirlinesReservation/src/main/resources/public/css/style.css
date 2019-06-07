@@ -253,9 +253,11 @@
 }
 
 .wh{
-background-color:white;
+background-color: #000000c2;
+color:white;
 width:60%;
 height:50%;
+border-radius: 7px;
 }
 
 .last{
