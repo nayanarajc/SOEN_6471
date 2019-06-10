@@ -1,177 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title>Airline Reservation</title>
-      <!-- Google font -->
-      <link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
-      <!-- Bootstrap -->
-      <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-      <!-- Custom stlylesheet -->
-      <link type="text/css" rel="stylesheet" href="css/style.css" />
-       </head>
-   <body>
-   <!-- Navigation -->
-    <div id="booking" class="section">
-	<div class="section-center">
-            <div class="container">
-               <div class="row">
-                  <div class="booking-form">
-                     <form>
-                        <datalist id="languages">
-                           <option value="Calgary-YYC">
-							<option value="Edmonton-YEG">
-							<option value="Gander-YQX">
-							<option value="Moncton-YQM">
-							<option value="Halifax-YHZ">
-							<option value="Hamilton-YHM">
-							<option value="London-YXU">
-							<option value="Montreal-YUL">
-							<option value="Ottawa-YOW">
-							<option value="Quebec City-YQB">
-							<option value="Regina-YQR">
-							<option value="Saskatoon-YXE">
-							<option value="St. John's-YYT">
-							<option value="Toronto-YYZ">
-							<option value="Vancouver-YVR">
-							<option value="Victoria-YYJ">
-							<option value="Winnipeg-YWG">
-                        </datalist>
-                        <div class="form-group">
-                        <div class="form-checkbox">
-                        <label for="roundtrip">
-                        <input type="radio" id="roundtrip" name="flight-type" value="roundtrip" onclick="myFunction_show()">
-                        <span></span>Roundtrip
-                        </label>
-                        <label for="one-way">
-                        <input type="radio" id="one-way" name="flight-type" value="oneway" onclick="myFunction_hide()">
-                        <span></span>One way
-                        </label>
-                        <!--<label for="multi-city">
-                           <input type="radio" id="multi-city" name="flight-type">
-                           <span></span>Multi-City
-                           </label> -->
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-md-6">
-                        <div class="form-group">
-                        <span class="form-label">Flying from</span>
-                        <input list="languages" class="form-control" type="text" placeholder="City or airport">
-                        </div>
-                        </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                        <span class="form-label" id="fly_to">Flyning to</span>
-                        <input list="languages" class="form-control" type="text" placeholder="City or airport" id="return_id">
-                        </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-md-3">
-                        <div class="form-group">
-                        <span id="dept_label" class="form-label">Departing</span>
-                        <input id="dept_date" class="form-control" type="date" required>
-                        </div>
-                        </div>
-                        <div class="col-md-3">
-                        <div class="form-group">
-                        <span id="ret_label" class="form-label">Returning</span>
-                        <input id="ret_date" class="form-control" type="date" required>
-                        </div>
-                        </div>
-                        <div class="col-md-2">
-                        <div class="form-group">
-                        <span class="form-label">Adults (18+)</span>
-                        <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        </select>
-                        <span class="select-arrow"></span>
-                        </div>
-                        </div>
-                        <div class="col-md-2">
-                        <div class="form-group">
-                        <span class="form-label">Children (0-17)</span>
-                        <select class="form-control">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        </select>
-                        <span class="select-arrow"></span>
-                        </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-3">
-                              <div class="form-group">
-                                 <span class="form-label">Travel class</span>
-                                 <select class="form-control">
-                                    <option>Economy class</option>
-                                    <option>Business class</option>
-                                    <option>First class</option>
-                                 </select>
-                                 <span class="select-arrow"></span>
-                              </div>
-                           </div>
-                           <div class="col-md-3">
-                              <div class="form-btn">
-                                 <button id="SubmitM" name="SubmitM" class="submit-btn">Show flights</button>
-                              </div>
-                           </div>
-                           <script>
-                              function myFunction_hide() {
-                                var x = document.getElementById("ret_date");
-                                var y = document.getElementById("ret_label");
-                                x.disabled="disabled";
-                                y.disabled="disabled";
-                              }
-                           </script>
-                           <script>
-                              function myFunction_show() {
-                                var x = document.getElementById("ret_date");
-                                var y = document.getElementById("ret_label");
-                                 x.removeAttribute("disabled");
-                                 y.removeAttribute("disabled");
-                              }
-                           </script>	
-                          <script>
-                          $('#SubmitM').on('click', function(){
-                         	  var trip;
-							  if (document.getElementById('roundtrip').checked) {
-							  trip = document.getElementById('roundtrip').value;
-							  }
-							  
-						    if(document.getElementById('one-way').checked){
-								  trip = document.getElementById('one-way').value;
-								  }
-						    
-							
-						    
-						    if(trip=="roundtrip")
-						    	{
-						    	
-						    	//generate data tables realted to round trip
-						    	}
-						    else
-						    	{
-						    	
-						    	//generate data table realted to one-way trip
-						    	}
-						    
-							  });
-	                       </script>
-                        </div>
-                     </form>
-                  </div>
-               </div>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Admin Module</title>
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://kit.fontawesome.com/3a05d8f4e4.js"></script>
+  <link href="css/landing-page.min.css" rel="stylesheet">
+  <!-- Bootstrap -->
+
+  <!-- Custom stlylesheet -->
+  <link type="text/css" rel="stylesheet" href="css/style.css" />
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+  <script>
+$(document).ready(function () {
+  $("#flightTable").hide();
+});
+var _row = null;
+      var cols = null;
+      var _nextId = 1;
+      // ID of flight currently editing
+      var _activeId = 0;
+    function flightAddToTable() {
+      
+      // First check if a <tbody> tag exists, add one if not
+      if ($("#flightTable tbody").length == 0) {
+        $("#flightTable").append("<tbody></tbody>");
+      }
+      $("#flightTable tbody").append(
+        flightBuildTableRow(_nextId));
+      // Increment next ID to use
+      _nextId += 1;
+
+      // Append flight to the table
+
+    }
+
+    function flightBuildTableRow(id) {
+  var ret =
+  "<tr>" +
+    "<td>" +
+      "<button type='button' " +
+              "onclick='flightDisplay(this);' " +
+              "class='btn btn-default' " +
+              "data-id='" + id + "'>" +
+              "<span class='glyphicon glyphicon-edit' />" +
+      "</button>" +
+    "</td>" +
+    "<td>" + $("#flightname").val() + "</td>" +
+    "<td>" + $("#introdate").val() + "</td>" +
+    "<td>" + $("#url").val() + "</td>" +
+    "<td>" +
+      "<button type='button' " +
+              "onclick='flightDelete(this);' " +
+              "class='btn btn-default' " +
+              "data-id='" + id + "'>" +
+              "<span class='glyphicon glyphicon-remove' />" +
+      "</button>" +
+    "</td>" +
+  "</tr>"
+      
+  return ret;
+}
+
+    function flightBuildTableRow() {
+      var ret =
+        "<tr>" +
+        "<td>" + $("#flightID").val() + "</td>" +
+        "<td>" + $("#flightName").val() + "</td>" +
+        "<td>" + $("#seats").val() + "</td>" +
+        "<td>" +
+        "<button type='button' " +
+        "onclick='flightDisplay(this);' " +
+        "class='btn btn-default'>" +
+        "<span class='glyphicon glyphicon-edit' />" +
+        "</button>" +
+        "</td>" +
+        "<td>" +
+        "<button type='button' " +
+        "onclick='flightDelete(this);' " +
+        "class='btn btn-default'>" +
+        "<span class='glyphicon glyphicon-remove' />" +
+        "</button>" +
+        "</td>" +
+
+        "</tr>"
+
+      return ret;
+    }
+
+    function formClear() {
+      $("#flightID").val("");
+      $("#flightName").val("");
+      $("#seats").val("");
+    }
+
+    function flightUpdate() {
+      $("#flightTable").show();
+      if ($("#bt").text() == "Update") {
+        flightUpdateInTable();
+      }
+      else {
+        flightAddToTable();
+      }
+      // Clear form fields
+      formClear();
+      // Focus to flight name field
+      $("#flightID").focus();
+    }
+
+    function flightUpdateInTable() {
+  // Add changed flight to table
+  $(_row).after(flightBuildTableRow());
+  // Remove old flight row
+  $(_row).remove();
+  // Clear form fields
+  formClear();
+  // Change Update Button Text
+  $("#bt").text("Add");
+}
+
+    function flightDelete(event) {
+      console.log(event);
+      $(event).parents("tr").remove();
+    }
+
+    function flightDisplay(ctl) {
+  _row = $(ctl).parents("tr");
+  cols = _row.children("td");
+  _activeId = $($(cols[3]).children("button")[0]).data("id");
+  $("#flightID").val($(cols[0]).text());
+  $("#flightName").val($(cols[1]).text());
+  $("#seats").val($(cols[2]).text());
+  // Change Update Button Text
+  $("#bt").text("Update");
+}
+
+  </script>
+</head>
+<body>
+    <header class="masthead text-white text-center">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-9 mx-auto">
+              
             </div>
-         </div>
-      </div>
-   </body>
-   <!-- This templates was made by Colorlib (https://colorlib.com) -->
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+              
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="bg-light" style="padding-top:15px" >
+  <!-- Navigation -->
+  
+  <div id="booking" class="sectionAdmin">
+    <div class="section-center">
+      <div class="container">
+          
+        <div class="row">
+            <h2>Admin page</h2>
+            <h3>Add/ Modify Flights</h3>
+          <div class="form-group size">
+            <label id="flight">Flight ID</label>
+            <input class="form-control" type="text" id="flightID">
+          </div>
+          <div class="form-group size">
+            <label id="flight">Flight Name</label>
+            <input class="form-control" type="text" id="flightName">
+          </div>
+          <div class="form-group size">
+            <label id="flight">Total Seats</label>
+            <input class="form-control" type="text" id="seats" />
+          </div>
+          <button id="bt" class="btn btn-primary" onclick="flightUpdate()">Add</button>
+        </div>
+          <div class="row">
+            <h3>List of flights</h3><br/>
+          <div class="col-md-6">
+            <table id="flightTable" class="table table-bordered
+                     table-condensed table-striped">
+              <thead>
+                <tr>
+                  
+                  <th>Flight ID</th>
+                  <th>Flight Name</th>
+                  <th>Total Seats</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      
+    </div>
+    </div>
+    </div>
+    </section>
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+
 </html>
