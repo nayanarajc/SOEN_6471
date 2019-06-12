@@ -264,3 +264,11 @@ border-radius: 7px;
 	background-size: cover;
 	background-position: center;
 }
+
+.size{
+	width:28%;
+}
+
+.sectionAdmin{
+	height: 65 vph;
+}
