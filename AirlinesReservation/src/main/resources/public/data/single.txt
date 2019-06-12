@@ -1,0 +1,18 @@
+[
+{
+"Operator":"British Airways",
+"d-dtime":"11:30 AM",
+"a-dtime":"9:30 PM",
+"Cost":"$430",
+"Seats":120,
+"Baggage":2
+},
+{
+"Operator":"Lufthansa",
+"d-dtime":"9:30 AM",
+"a-dtime":"5:20 PM",
+"Cost":"$477",
+"Seats":150,
+"Baggage":3
+}
+]

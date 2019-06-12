@@ -32,7 +32,7 @@
   <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
   <!-- Custom stlylesheet -->
   <link type="text/css" rel="stylesheet" href="css/style.css" />
-	
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 </head>
@@ -43,12 +43,12 @@
   <!-- Masthead -->
   <header class="masthead text-white text-center">
     <div class="overlay"></div>
-    </div>
+
   </header>
 
   <!-- Icons Grid -->
-  <section class="features-icons bg-light text-center" >
-  <h1 class="mb-5">Student Flights</h1>
+  <section class="features-icons bg-light text-center">
+    <h1 class="mb-5">Student Flights</h1>
     <div class="container">
 
       <div class="row booking-form-container">
@@ -175,16 +175,22 @@
               </script>
               <script>
                 function bookTicket() {
-				$("#booking").show();
+                  $("#booking").show();
                   $('html, body').animate({
                     scrollTop: $("#booking").offset().top
                   }, 1000);
                 }
                 function AddData() {
-				  
+
                   var trip;
                   var from = document.getElementById('from_id').value;
                   var to = document.getElementById('return_id').value;
+                  var d_date = document.getElementById('dept_date').value;
+                  var ad_date = new Date(d_date);
+                  ad_date.setDate(ad_date.getDate() + 2);
+                  ad_date.setMonth(ad_date.getMonth() + 1);
+                  //int ad_day=ad_date.getDate()+1;
+                  var fad_date = ad_date.getFullYear() + "-" + ad_date.getMonth() + "-" + parseInt(ad_date.getDate());
                   var rows = "";
                   if (document.getElementById('roundtrip').checked) {
                     trip = document.getElementById('roundtrip').value;
@@ -194,52 +200,141 @@
                     trip = document.getElementById('one-way').value;
                   }
 
-                  var row1 = "<td>British Airways</td><td>22h 13m</td><td>957</td><td>2</td>";
-                  var row2 = "<td>Air Canada</td><td>19h 45m</td><td>1076</td><td>3</td>";
-                  var row3 = "<td>Lufthansa</td><td>27h 39m</td><td>1854</td><td>1</td>"
-                  var row4 = "<td>British Airways</td><td>23h 30m</td><td>851</td><td>1</td>"
-                  var row5 = "<td>Air Canada</td><td>21h 22m</td><td>1230</td><td>1</td>"
-                  var row6 = "<td>Lufthansa</td><td>25h 55m</td><td>1009</td><td>1</td>"
+                  //                  var row1 = "<td>British Airways</td><td>22h 13m</td><td>957</td><td>2</td>";
+                  //                  var row2 = "<td>Air Canada</td><td>19h 45m</td><td>1076</td><td>3</td>";
+                  //                  var row3 = "<td>Lufthansa</td><td>27h 39m</td><td>1854</td><td>1</td>"
+                  //                  var row4 = "<td>British Airways</td><td>23h 30m</td><td>851</td><td>1</td>"
+                  //                  var row5 = "<td>Air Canada</td><td>21h 22m</td><td>1230</td><td>1</td>"
+                  //                  var row6 = "<td>Lufthansa</td><td>25h 55m</td><td>1009</td><td>1</td>"
+
+
 
                   var button = "<td><div><button type='submit' onclick='bookTicket()' class='btn btn-primary'>Book</button></div></td>";
                   var buttonRound = "<td rowspan='2'><div><button type='submit' onclick='bookTicket()' class='btn btn-primary'>Book</button></div></td>";
 
                   if (trip == "roundtrip") {
                     //generate data tables realted to round trip
+                    var a_date = document.getElementById('ret_date').value;
+                    var ra_date = new Date(a_date);
+                    ra_date.setDate(ra_date.getDate() + 2);
+                    ra_date.setMonth(ra_date.getMonth() + 1);
+
+                    ra_date = ra_date.getFullYear() + "-" + ra_date.getMonth() + "-" + parseInt(ra_date.getDate());
                     $("#tbRound").show();
                     $("#tbDetails").hide();
                     //$("#tbDetails").css("display","block");
                     $("#tbRound td").remove();
-                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row1 + button + "</tr> ";
-                    rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row4 + "</tr> ";
-                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button + "</tr> ";
-                    rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row5 + "</tr> ";
-                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button + " </tr> ";
-                    rows += "<tr><td>" + to + "</td><td>" + from + "</td>" + row6 + "</tr> ";
 
-                    $(rows).appendTo("#tbRound tbody");
+                    $.ajax({
+                      url: 'data/round.txt',
+                      type: 'get',
+                      dataType: 'json',
+                      error: function (data) {
+                      },
+                      success: function (data) {
+                        var row$;
+                        var j = 0,k=0;
+                        var columns = addAllColumnHeaders(data);
+                        for (var i = 0; i < data.length; i++) {
+                          j++;k++;
+                          row$ = $('<tr/>');
+                          if (j % 2 != 0)
+                            row$.append("<td>" + k + "</td>"+"<td>" + from + "</td><td>" + to + "</td>" + "<td>" + d_date + "</td><td>" + fad_date + "</td>");
+                          else{
+                            row$.append("<td>" + "" + "</td>"+"<td>" + to + "</td><td>" + from + "</td>" + "<td>" + a_date + "</td><td>" + ra_date + "</td>");
+                            k=j-1;
+                          }
+                          for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+                            var cellValue = data[i][columns[colIndex]];
+                            if (cellValue == null) { cellValue = ""; }
+                            row$.append($('<td/>').html(cellValue));
+                          }
+
+                          //rows$= $('<tr/>'); 
+                          if (j % 2 != 0) {
+                            row$.append(buttonRound);
+                          }
+                          $("#tbRound").append(row$);
+                        }
+
+
+
+
+                      }
+                    });
+
+                    //                    $(rows).appendTo("#tbRound tbody");
                   }
                   else {
                     $("#tbDetails").show();
                     $("#tbRound").hide();
                     //$("#tbDetails").css("display","block");
                     $("#tbDetails td").remove();
-                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row1 + button + "</tr> ";
-                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button + "</tr> ";
-                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button + " </tr> ";
+                    //                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row1 + button + "</tr> ";
+                    //                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button + "</tr> ";
+                    //                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button + " </tr> ";
 
-                    $(rows).appendTo("#tbDetails tbody");
+
+                    $.ajax({
+                      url: 'data/single.txt',
+                      type: 'get',
+                      dataType: 'json',
+                      error: function (data) {
+                      },
+                      success: function (data) {
+                        var row$;
+                        var columns = addAllColumnHeaders(data);
+                        for (var i = 0; i < data.length; i++) {
+                          row$ = $('<tr/>');
+                          row$.append("<td>" + (i+1) + "</td>"+"<td>" + from + "</td><td>" + to + "</td>" + "<td>" + d_date + "</td><td>" + fad_date + "</td>");
+                          for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+                            var cellValue = data[i][columns[colIndex]];
+
+                            if (cellValue == null) { cellValue = ""; }
+
+                            row$.append($('<td/>').html(cellValue));
+
+                          }
+                          row$.append(button);
+                          $("#tbDetails").append(row$);
+                        }
+                      }
+                    });
+
+                    //$(rows).appendTo("#tbDetails tbody");
                     //generate data table realted to one-way trip
                   }
                   return false;
                 }
+
+
+                function addAllColumnHeaders(myList) {
+                  var columnSet = [];
+                  var headerTr$ = $('<tr/>');
+                  for (var i = 0; i < myList.length; i++) {
+                    var rowHash = myList[i];
+                    for (var key in rowHash) {
+                      if ($.inArray(key, columnSet) == -1) {
+
+                        columnSet.push(key);
+                        headerTr$.append($('<th/>').html(key));
+
+                      }
+                    }
+                  }
+                  //headerTr$.append($('<th>Action</th>'));
+                  $("#av").append(headerTr$);
+
+                  return columnSet;
+                }
+
               </script>
 
               <script>
 
                 $(document).ready(function () {
-				$("#booking").hide();
-				$("#payment").hide();
+                  $("#booking").hide();
+                  $("#payment").hide();
                   $(".error1").hide();
                   $(".error2").hide();
                   $(".error3").hide();
@@ -300,7 +395,7 @@
                   });
 
                   $('#form1').submit(function (e) {
-				  $("#payment").show();
+                    $("#payment").show();
                     e.preventDefault();
                     var first_name = $('#name').val();
                     var contact = $('#contact').val();
@@ -455,12 +550,18 @@
         <table id="tbDetails" class="table table-striped table-dark table-user">
           <thead>
             <tr>
+                <th>#</th>
               <th>From</th>
               <th>To</th>
+              <th>Departure Date</th>
+              <th>Arrival Date</th>
               <th>Airline operator</th>
-              <th>Travel time</th>
+              <th>Departure time</th>
+              <th>Arrival time</th>
               <th>Cost</th>
-              <th>Number of Baggage</th>
+              <th>Total Seats</th>
+              <th>Baggage</th>
+
               <th>Action</th>
             </tr>
           </thead>
@@ -470,13 +571,18 @@
         <table id="tbRound" class="table table-striped table-dark table-user">
           <thead>
             <tr>
-			<th>FlightId</th>
+                           <th>#</th>
               <th>From</th>
               <th>To</th>
-              <th>Airline operator</th>
-              <th>Travel time</th>
+              <th>Departure Date</th>
+              <th>Arrival Date</th>
+              <th>Operator</th>
+              <th>Departure time</th>
+              <th>Arrival time</th>
               <th>Cost</th>
-              <th>Number of Baggage</th>
+              <th>Total Seats</th>
+              <th>Baggage</th>
+
               <th>Action</th>
             </tr>
           </thead>
@@ -485,7 +591,7 @@
         </table>
       </div>
     </div>
-	</section>
+  </section>
   <section id="booking" class="bg-light" style="background-image: url('images/bg-03.jpg');">
     <div class="bg">
       <br /><br />
@@ -574,10 +680,10 @@
       <br /><br />
     </div>
   </section>
-	
-	<!----->
-	
-  
+
+  <!----->
+
+
 
   <!-- Footer -->
   <footer class="footer bg-light">
