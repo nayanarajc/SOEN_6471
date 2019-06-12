@@ -2,25 +2,18 @@ package AirlinesApp.AirlinesServiceLayer.reservation;
 
 import AirlinesApp.AirlinesDAOLayer.flight.FlightDetails;
 import AirlinesApp.AirlinesDAOLayer.flight.FlightDetailsDAO;
-import AirlinesApp.AirlinesDAOLayer.passenger.Passenger;
-import AirlinesApp.AirlinesDAOLayer.passenger.Passenger.PassengerGender;
-import AirlinesApp.AirlinesDAOLayer.passenger.PassengerDAO;
 import AirlinesApp.AirlinesDAOLayer.reservation.Reservation;
+import AirlinesApp.AirlinesDAOLayer.reservation.Reservation.Gender;
 import AirlinesApp.AirlinesDAOLayer.reservation.ReservationDAO;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CreateReservationService {
-
-    @Autowired
-    private PassengerDAO passengerDAO;
 
     @Autowired
     private FlightDetailsDAO flightDetailsDAO;
@@ -29,39 +22,24 @@ public class CreateReservationService {
     private ReservationDAO reservationDAO;
 
     public String createReservation(ReservationDetails reservationDetails) {
-        List<Passenger> passengerList = new ArrayList<>();
-        passengerDAO.findAll().forEach(passengerList::add);
-        Optional<Passenger> optionalPassenger = passengerList.stream()
-                .filter(p -> p.getPassengerName().equalsIgnoreCase(reservationDetails.getPassengerName()))
-                .filter(p -> p.getPassengerDOB().equals(reservationDetails.getPassengerDOB()))
-                .filter(p -> p.getPassengerGender().equals(reservationDetails.getPassengerGender()))
-                .findFirst();
         Optional<FlightDetails> optionalFlightDetails = flightDetailsDAO.findById(reservationDetails.getFlightId());
         if(!optionalFlightDetails.isPresent()){
             return null;
         }
         String reservationId = RandomString.make(10);
-        if(optionalPassenger.isPresent()){
-            Reservation reservation = new Reservation(reservationId, optionalFlightDetails.get(), optionalPassenger.get());
-            reservationDAO.save(reservation);
-            return reservationId;
-        }
-        String passengerId = RandomString.make(7);
-        Passenger passenger = new Passenger(passengerId, reservationDetails.getPassengerName(), reservationDetails.getPassengerDOB(), reservationDetails.getPassengerGender());
-        passengerDAO.save(passenger);
-        Reservation reservation = new Reservation(reservationId, optionalFlightDetails.get(), passenger);
+        Reservation reservation = new Reservation(reservationId, optionalFlightDetails.get(), reservationDetails.getPassengerName(), reservationDetails.getPassengerDOB(), reservationDetails.getPassengerGender());
         reservationDAO.save(reservation);
         return reservationId;
 
     }
 
-    public class ReservationDetails {
+    public static class ReservationDetails {
         private String passengerName;
         private LocalDate passengerDOB;
-        private PassengerGender passengerGender;
+        private Gender passengerGender;
         private String flightId;
 
-        public ReservationDetails(String passengerName, LocalDate passengerDOB, PassengerGender passengerGender, String flightId) {
+        public ReservationDetails(String passengerName, LocalDate passengerDOB, Gender passengerGender, String flightId) {
             this.passengerName = passengerName;
             this.passengerDOB = passengerDOB;
             this.passengerGender = passengerGender;
@@ -76,11 +54,11 @@ public class CreateReservationService {
             this.flightId = flightId;
         }
 
-        public PassengerGender getPassengerGender() {
+        public Gender getPassengerGender() {
             return passengerGender;
         }
 
-        public void setPassengerGender(PassengerGender passengerGender) {
+        public void setPassengerGender(Gender passengerGender) {
             this.passengerGender = passengerGender;
         }
 
