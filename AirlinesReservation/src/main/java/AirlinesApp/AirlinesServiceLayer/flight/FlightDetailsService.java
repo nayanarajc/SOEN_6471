@@ -25,4 +25,12 @@ public class FlightDetailsService {
                 .filter(flight -> preferredAirlines.contains(flight.getAirlines()))
                 .collect(Collectors.toList());
     }
+    
+    public List<FlightDetails> getAllFlights() {
+        List<FlightDetails> flightDetails = new ArrayList<>();
+        flightDetailsDAO.findAll().forEach(flightDetails::add);
+        return flightDetails.stream().collect(Collectors.toList());
+    }
+    
+    
 }

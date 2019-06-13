@@ -19,3 +19,6 @@ CREATE TABLE public.user_logins
 );
 
 insert into user_logins values ('person@gmail.com', 'person@gmail.com','person');
+
+insert into flight_details values('001','Air Canada','2019-06-28','11:30 AM','2019-06-25','1:30 PM','Victoria-YYJ','2','430','Vancouver-YVR','120'); 
+
