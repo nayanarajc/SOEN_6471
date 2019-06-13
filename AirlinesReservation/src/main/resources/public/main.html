@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Admin Module</title>
   <!-- Google font -->
@@ -20,16 +20,25 @@
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
   <script>
-$(document).ready(function () {
-  $("#flightTable").hide();
-});
-var _row = null;
-      var cols = null;
-      var _nextId = 1;
-      // ID of flight currently editing
-      var _activeId = 0;
+    $(document).ready(function () {
+      $("#flightTable").hide();
+      var rowCount=$('#flightTable tbody tr').length;
+      if(rowCount<1){
+        //$('#btnSave').attr('disabled','disabled');
+        $('#btnSave').hide();
+      }
+      else{
+        $('#btnSave').show();
+        //$('#btnSave').removeAttr('disabled');
+      }
+    });
+    var _row = null;
+    var cols = null;
+    var _nextId = 1;
+    // ID of flight currently editing
+    var _activeId = 0;
     function flightAddToTable() {
-      
+
       // First check if a <tbody> tag exists, add one if not
       if ($("#flightTable tbody").length == 0) {
         $("#flightTable").append("<tbody></tbody>");
@@ -38,44 +47,69 @@ var _row = null;
         flightBuildTableRow(_nextId));
       // Increment next ID to use
       _nextId += 1;
+      var rowCount=$('#flightTable tbody tr').length;
+      if(rowCount<1){
+        //$('#btnSave').attr('disabled','disabled');
+        $('#btnSave').hide();
+      }
+      else{
+        $('#btnSave').show();
+        //$('#btnSave').removeAttr('disabled');
+      }
 
       // Append flight to the table
 
     }
 
     function flightBuildTableRow(id) {
-  var ret =
-  "<tr>" +
-    "<td>" +
-      "<button type='button' " +
-              "onclick='flightDisplay(this);' " +
-              "class='btn btn-default' " +
-              "data-id='" + id + "'>" +
-              "<span class='glyphicon glyphicon-edit' />" +
-      "</button>" +
-    "</td>" +
-    "<td>" + $("#flightname").val() + "</td>" +
-    "<td>" + $("#introdate").val() + "</td>" +
-    "<td>" + $("#url").val() + "</td>" +
-    "<td>" +
-      "<button type='button' " +
-              "onclick='flightDelete(this);' " +
-              "class='btn btn-default' " +
-              "data-id='" + id + "'>" +
-              "<span class='glyphicon glyphicon-remove' />" +
-      "</button>" +
-    "</td>" +
-  "</tr>"
-      
-  return ret;
-}
+      var ret =
+        "<tr>" +
+        "<td>" +
+        "<button type='button' " +
+        "onclick='flightDisplay(this);' " +
+        "class='btn btn-default' " +
+        "data-id='" + id + "'>" +
+        "<span class='glyphicon glyphicon-edit' />" +
+        "</button>" +
+        "</td>" +
+        "<td>" + $("#flightID").val() + "</td>" +
+        "<td>" + $("#flightName").val() + "</td>" +
+        "<td>" + $("#sourceT").val() + "</td>" +
+        "<td>" + $("#destT").val() + "</td>" +
+        "<td>" + $("#depDate").val() + "</td>" +
+        "<td>" + $("#arrDate").val() + "</td>" +
+        "<td>" + $("#depTime").val() + "</td>" +
+        "<td>" + $("#arrTime").val() + "</td>" +
+        "<td>" + $("#seatsT").val() + "</td>" +
+        "<td>" + $("#priceT").val() + "</td>" +
+        "<td>" + $("#bagT").val() + "</td>" +
+        "<td>" +
+        "<button type='button' " +
+        "onclick='flightDelete(this);' " +
+        "class='btn btn-default' " +
+        "data-id='" + id + "'>" +
+        "<span class='glyphicon glyphicon-remove' />" +
+        "</button>" +
+        "</td>" +
+        "</tr>"
+
+      return ret;
+    }
 
     function flightBuildTableRow() {
       var ret =
         "<tr>" +
         "<td>" + $("#flightID").val() + "</td>" +
         "<td>" + $("#flightName").val() + "</td>" +
-        "<td>" + $("#seats").val() + "</td>" +
+        "<td>" + $("#sourceT").val() + "</td>" +
+        "<td>" + $("#destT").val() + "</td>" +
+        "<td>" + $("#depDate").val() + "</td>" +
+        "<td>" + $("#arrDate").val() + "</td>" +
+        "<td>" + $("#depTime").val() + "</td>" +
+        "<td>" + $("#arrTime").val() + "</td>" +
+        "<td>" + $("#seatsT").val() + "</td>" +
+        "<td>" + $("#priceT").val() + "</td>" +
+        "<td>" + $("#bagT").val() + "</td>" +
         "<td>" +
         "<button type='button' " +
         "onclick='flightDisplay(this);' " +
@@ -99,7 +133,15 @@ var _row = null;
     function formClear() {
       $("#flightID").val("");
       $("#flightName").val("");
-      $("#seats").val("");
+      $("#depDate").val("");
+      $("#arrDate").val("");
+      $("#sourceT").val("");
+      $("#destT").val("");
+      $("#depTime").val("");
+      $("#arrTime").val("");
+      $("#priceT").val("");
+      $("#bagT").val("");
+      $("#seatsT").val("");
     }
 
     function flightUpdate() {
@@ -117,121 +159,143 @@ var _row = null;
     }
 
     function flightUpdateInTable() {
-  // Add changed flight to table
-  $(_row).after(flightBuildTableRow());
-  // Remove old flight row
-  $(_row).remove();
-  // Clear form fields
-  formClear();
-  // Change Update Button Text
-  $("#bt").text("Add");
-}
+      // Add changed flight to table
+      $(_row).after(flightBuildTableRow());
+      // Remove old flight row
+      $(_row).remove();
+      // Clear form fields
+      formClear();
+      // Change Update Button Text
+      $("#bt").text("Add");
+    }
 
     function flightDelete(event) {
       console.log(event);
       $(event).parents("tr").remove();
+      var rowCount=$('#flightTable tbody tr').length;
+      if(rowCount<1){
+        //$('#btnSave').attr('disabled','disabled');
+        $('#btnSave').hide();
+      }
+      else{
+        $('#btnSave').show();
+        //$('#btnSave').removeAttr('disabled');
+      }
     }
 
     function flightDisplay(ctl) {
-  _row = $(ctl).parents("tr");
-  cols = _row.children("td");
-  _activeId = $($(cols[3]).children("button")[0]).data("id");
-  $("#flightID").val($(cols[0]).text());
-  $("#flightName").val($(cols[1]).text());
-  $("#seats").val($(cols[2]).text());
-  // Change Update Button Text
-  $("#bt").text("Update");
-}
+      _row = $(ctl).parents("tr");
+      cols = _row.children("td");
+      _activeId = $($(cols[11]).children("button")[0]).data("id");
+      $("#flightID").val($(cols[0]).text());
+      $("#flightName").val($(cols[1]).text());
+      $("#sourceT").val($(cols[2]).text());
+      $("#destT").val($(cols[3]).text());
+      $("#depDate").val($(cols[4]).text());
+      $("#arrDate").val($(cols[5]).text());
+      $("#depTime").val($(cols[6]).text());
+      $("#arrTime").val($(cols[7]).text());
+      $("#seatsT").val($(cols[8]).text());
+      $("#priceT").val($(cols[9]).text());
+      $("#bagT").val($(cols[10]).text());
+      // Change Update Button Text
+      $("#bt").text("Update");
+    }
 
   </script>
 </head>
+
 <body>
-    <header class="masthead text-white text-center">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-9 mx-auto">
-              
-            </div>
-            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-              
-            </div>
-          </div>
+  <header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+
         </div>
-      </header>
-      <section class="bg-light" style="padding-top:15px" >
-  <!-- Navigation -->
-  
-  <div id="booking" class="sectionAdmin">
-    <div class="section-center">
-      <div class="container">
-          
-        <div class="row">
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="bg-light" style="padding-top:15px">
+    <!-- Navigation -->
+
+    <div id="booking" class="sectionAdmin">
+      <div class="section-center">
+        <div class="container">
+
+          <div class="row">
             <h2>Admin page</h2>
             <h3>Add/ Modify Flights</h3>
-          <div class="form-group size">
-            <label id="flight">Flight ID</label>
-            <input class="form-control" type="text" id="flightID">
+            <div class="form-group col-4 size pull-left">
+              <label id="flight">Flight ID</label>
+              <input class="form-control" type="text" id="flightID">
+              <label id="dep">Departure Date</label>
+              <input class="form-control" type="text" id="depDate">
+              <label id="price">Cost</label>
+              <input class="form-control" type="text" id="priceT">
+            </div>
+            <div class="form-group col-4 size  pull-left">
+              <label id="flight">Flight Name</label>
+              <input class="form-control" type="text" id="flightName">
+              <label id="arr">Arrival Date</label>
+              <input class="form-control" type="text" id="arrDate">
+              <label id="seat">Total Seats</label>
+              <input class="form-control" type="text" id="seatsT">
+            </div>
+            <div class="form-group col-4 size pull-left">
+              <label id="source">Source</label>
+              <input class="form-control" type="text" id="sourceT">
+              <label id="depT">Departure time</label>
+              <input class="form-control" type="text" id="depTime" />
+              <label id="bag">Baggage</label>
+              <input class="form-control" type="text" id="bagT">
+            </div>
+            <div class="form-group col-4 size pull-left">
+              <label id="dest">Destination</label>
+              <input class="form-control" type="text" id="destT">
+              <label id="arrT">Arrival Time</label>
+              <input class="form-control" type="text" id="arrTime" />
+            </div>
           </div>
-          <div class="form-group size">
-            <label id="flight">Flight Name</label>
-            <input class="form-control" type="text" id="flightName">
-          </div>
-		   <div class="form-group size">
-            <label id="flight">Source Location</label>
-            <input class="form-control" type="text" id="sourceLocation">
-          </div>
-          <div class="form-group size">
-            <label id="flight">Destination Location</label>
-            <input class="form-control" type="text" id="destinationLocation">
-          </div>
-          <div class="form-group size">
-            <label id="flight">Departure Date</label>
-            <input class="form-control" type="text" id="departureDateAtSource">
-          </div>
-          <div class="form-group size">
-            <label id="flight">Departure Time</label>
-            <input class="form-control" type="text" id="departureTimeAtSource">
-          </div>
-          <div class="form-group size">
-            <label id="flight">Arrival Date</label>
-            <input class="form-control" type="text" id="arrivalDateAtDestination">
-          </div>
-          <div class="form-group size">
-            <label id="flight">Arrival Time</label>
-            <input class="form-control" type="text" id="arrivalTimeAtDestination">
-          </div>
-		    <div class="form-group size">
-            <label id="flight">PricePerTicket</label>
-            <input class="form-control" type="text" id="pricePerTicket" />
-          </div>
-          <div class="form-group size">
-            <label id="flight">Total Seats</label>
-            <input class="form-control" type="text" id="seats" />
-          </div>
-          <button id="bt" class="btn btn-primary" onclick="flightUpdate()">Add</button>
-        </div>
+
+          <button id="bt" class="btn btn-primary" style="margin-left:4px;width: 70px"
+            onclick="flightUpdate()">Add</button>
+
           <div class="row">
-            <h3>List of flights</h3><br/>
-          <div class="col-md-6">
-            <table id="flightTable" class="table table-bordered
-                     table-condensed table-striped">
-              <thead>
-                <tr>
-                  <th>Flight ID</th>
-                  <th>Flight Name</th>
-                  <th>Total Seats</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-            </table>
+            <h3>List of flights</h3><br />
+            <div class="col-md-12">
+              <table id="flightTable" class="table table-bordered table-condensed
+                     table-striped">
+                <thead>
+                  <tr>
+                    <th>Flight ID</th>
+                    <th>Flight Name</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Departure date</th>
+                    <th>Arrival date</th>
+                    <th>Departure time</th>
+                    <th>Arrival time</th>
+                    <th>Total Seats</th>
+                    <th>Cost</th>
+                    <th>Baggage</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            
           </div>
+          <button id="btnSave" class="btn btn-primary" style="margin-left:473px;width: 70px">Save</button>
         </div>
-      
+      </div>
     </div>
-    </div>
-    </div>
-    </section>
+  </section>
 </body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+
 </html>
