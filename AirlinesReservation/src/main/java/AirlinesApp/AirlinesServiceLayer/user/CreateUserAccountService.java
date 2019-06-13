@@ -2,7 +2,6 @@ package AirlinesApp.AirlinesServiceLayer.user;
 
 import AirlinesApp.AirlinesDAOLayer.user.UserLogin;
 import AirlinesApp.AirlinesDAOLayer.user.UserLoginDAO;
-import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
