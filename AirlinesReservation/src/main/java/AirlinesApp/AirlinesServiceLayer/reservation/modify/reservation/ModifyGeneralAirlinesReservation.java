@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component(value = "general")
+@Component(value = "modifyGeneral")
 public class ModifyGeneralAirlinesReservation implements ModifyAirlinesReservation, ManageReservation {
 
     @Autowired
