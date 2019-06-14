@@ -27,10 +27,15 @@ public class CreateAirwaysReservationServiceServiceImpl implements CreateAirline
             return null;
         }
         String reservationId = RandomString.make(10);
-        Reservation reservation = new Reservation(reservationId, optionalFlightDetails.get(), reservationDetails.getPassengerName(), reservationDetails.getPassengerDOB(), reservationDetails.getPassengerGender());
+        FlightDetails flightDetails = optionalFlightDetails.get();
+        Reservation reservation = new Reservation(reservationId, flightDetails, reservationDetails.getPassengerName(), reservationDetails.getPassengerDOB(), reservationDetails.getPassengerGender());
         reservationDAO.save(reservation);
+        int availableSeats = flightDetails.getTotalSeats();
+        flightDetails.setTotalSeats(availableSeats - 1);
+        flightDetailsDAO.save(flightDetails);
         return reservationId;
     }
+
 
 }
 
