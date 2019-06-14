@@ -224,40 +224,60 @@
 
     <div id="booking" class="sectionAdmin">
       <div class="section-center">
+          <datalist id="List">
+              <option value="Calgary-YYC">
+              <option value="Edmonton-YEG">
+              <option value="Gander-YQX">
+              <option value="Moncton-YQM">
+              <option value="Halifax-YHZ">
+              <option value="Hamilton-YHM">
+              <option value="London-YXU">
+              <option value="Montreal-YUL">
+              <option value="Ottawa-YOW">
+              <option value="Quebec City-YQB">
+              <option value="Regina-YQR">
+              <option value="Saskatoon-YXE">
+              <option value="St. John's-YYT">
+              <option value="Toronto-YYZ">
+              <option value="Vancouver-YVR">
+              <option value="Victoria-YYJ">
+              <option value="Winnipeg-YWG">
+            </datalist>
         <div class="container">
 
           <div class="row">
             <h2>Admin page</h2>
-            <h3>Add/ Modify Flights</h3>
+            <h3>Add/ Modify Flights</h3><br/>
             <div class="form-group col-4 size pull-left">
               <label id="flight">Flight ID</label>
               <input class="form-control" type="text" id="flightID">
               <label id="dep">Departure Date</label>
-              <input class="form-control" type="text" id="depDate">
+              <input class="form-control" type="date" id="depDate">
               <label id="price">Cost</label>
-              <input class="form-control" type="text" id="priceT">
+              ($)<input class="form-control" type="number" id="priceT">
             </div>
+            
             <div class="form-group col-4 size  pull-left">
               <label id="flight">Flight Name</label>
               <input class="form-control" type="text" id="flightName">
               <label id="arr">Arrival Date</label>
-              <input class="form-control" type="text" id="arrDate">
+              <input class="form-control" type="date" id="arrDate">
               <label id="seat">Total Seats</label>
-              <input class="form-control" type="text" id="seatsT">
+              <input class="form-control" type="number" id="seatsT">
             </div>
             <div class="form-group col-4 size pull-left">
               <label id="source">Source</label>
-              <input class="form-control" type="text" id="sourceT">
+              <input class="form-control" list="List" type="text" id="sourceT">
               <label id="depT">Departure time</label>
-              <input class="form-control" type="text" id="depTime" />
+              <input class="form-control" type="time" id="depTime" />
               <label id="bag">Baggage</label>
-              <input class="form-control" type="text" id="bagT">
+              <input class="form-control" type="number" id="bagT">
             </div>
             <div class="form-group col-4 size pull-left">
               <label id="dest">Destination</label>
-              <input class="form-control" type="text" id="destT">
+              <input class="form-control" list="List" type="text" id="destT">
               <label id="arrT">Arrival Time</label>
-              <input class="form-control" type="text" id="arrTime" />
+              <input class="form-control" type="time" id="arrTime" />
             </div>
           </div>
 
@@ -288,7 +308,6 @@
                 </thead>
               </table>
             </div>
-            
           </div>
           <button id="btnSave" class="btn btn-primary" style="margin-left:473px;width: 70px">Save</button>
         </div>
