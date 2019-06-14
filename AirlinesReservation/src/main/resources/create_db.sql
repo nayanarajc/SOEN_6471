@@ -48,6 +48,18 @@ insert into flight_details values('021','Air Tindi','2019-06-25','11:00','2019-0
 insert into flight_details values('022','Air Tindi','2019-06-26','14:00','2019-06-26','10:00','Regina-YQR','4.00','350','Calgary-YYC','90');
 insert into flight_details values('023','Air Tindi','2019-06-22','15:00','2019-06-22','10:00','Calgary-YYC','5.00','350','Saskatoon-YXE','110');
 insert into flight_details values('024','Air Tindi','2019-06-26','17:00','2019-06-26','12:00','Saskatoon-YXE','5.00','350','Calgary-YYC','110');
+insert into flight_details values('025','Air Transat','2019-06-23','16:00','2019-06-23','13:00','Calgary-YYC','3.00','280','St. John's-YYT','90');
+insert into flight_details values('026','Air Transat','2019-06-27','18:00','2019-06-27','15:00','St. John's-YYT','3.00','280','Calgary-YYC','90');
+insert into flight_details values('027','WestJet','2019-06-22','14:30','2019-06-22','11:00','Calgary-YYC','3.30','230','Toronto-YYZ','70');
+insert into flight_details values('028','WestJet','2019-06-24','18:30','2019-06-24','15:00','Toronto-YYZ','3.30','230','Calgary-YYC','70');
+insert into flight_details values('029','WestJet','2019-06-22','17:30','2019-06-22','12:00','Calgary-YYC','5.30','450','Vancouver-YVR','96');
+insert into flight_details values('030','WestJet','2019-06-24','1:30','2019-06-23','18:00','Vancouver-YVR','5.30','450','Calgary-YYC','96');
+insert into flight_details values('031','Air Canada','2019-06-22','16:00','2019-06-22','13:00','Calgary-YYC','3.00','260','Victoria-YYJ','96');
+insert into flight_details values('032','WestJet','2019-06-24','18:00','2019-06-23','15:00','Victoria-YYJ','3.00','260','Calgary-YYC','96');
+insert into flight_details values('033','WestJet','2019-06-22','16:00','2019-06-22','13:00','Calgary-YYC','3.00','260','Victoria-YYJ','96');
+insert into flight_details values('034','Air Canada','2019-06-24','18:00','2019-06-23','15:00','Victoria-YYJ','3.00','260','Calgary-YYC','96');
+insert into flight_details values('035','Air Canada','2019-06-22','14:00','2019-06-22','11:00','Calgary-YYC','3.00','290','Winnipeg-YWG','96');
+insert into flight_details values('036','WestJet','2019-06-24','18:00','2019-06-23','15:00','Winnipeg-YWG','3.00','290','Calgary-YYC','96');
 
 
 
