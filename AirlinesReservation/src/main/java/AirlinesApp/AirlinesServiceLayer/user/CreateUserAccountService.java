@@ -11,10 +11,10 @@ public class CreateUserAccountService {
     @Autowired
     private UserLoginDAO userLoginDAO;
 
-    public void createUserAccount(String userEmail, String userPassword,String name,String dob) {
+    public void createUserAccount(String userEmail, String userPassword, String name, String dob) {
         String userId = name;
-        UserLogin newUser = new UserLogin(userId, userEmail, userPassword,dob);
-        System.out.println(userId+" "+userEmail+" "+userPassword+" "+dob);
+        UserLogin newUser = new UserLogin(userId, userEmail, userPassword, dob, false);
+        System.out.println(userId + " " + userEmail + " " + userPassword + " " + dob);
         userLoginDAO.save(newUser);
     }
 }

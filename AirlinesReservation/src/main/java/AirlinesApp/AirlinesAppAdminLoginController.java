@@ -1,5 +1,13 @@
 package AirlinesApp;
 
+import AirlinesApp.AirlinesDAOLayer.flight.FlightDetails;
+import AirlinesApp.AirlinesServiceLayer.admin.AddFlightDetailsService;
+import AirlinesApp.AirlinesServiceLayer.admin.ValidateAdminAccountService;
+import AirlinesApp.AirlinesServiceLayer.flight.FlightDetailsService;
+import AirlinesApp.AirlinesServiceLayer.user.SetUserLoginStatusService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
@@ -7,25 +15,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import AirlinesApp.AirlinesDAOLayer.flight.FlightDetails;
-import AirlinesApp.AirlinesServiceLayer.admin.AddFlightDetailsService;
-import AirlinesApp.AirlinesServiceLayer.admin.ValidateAdminAccountService;
-import AirlinesApp.AirlinesServiceLayer.flight.FlightDetailsService;
-
-
-
 @RestController 
 public class AirlinesAppAdminLoginController {
 
     @Autowired
     private ValidateAdminAccountService validateAdminAccountService;
+
+    @Autowired
+    private SetUserLoginStatusService setUserLoginStatusService;
     
     @Autowired
     private FlightDetailsService flightDetailsService;
@@ -38,7 +35,11 @@ public class AirlinesAppAdminLoginController {
     public boolean loginAdminAccount(@RequestParam String adminId, @RequestParam String userPassword) {
     	System.out.println(adminId);
     	System.out.println(userPassword);
-        return validateAdminAccountService.doesAdminAccountExist(adminId, userPassword);
+        boolean doesAdminExist = validateAdminAccountService.doesAdminAccountExist(adminId, userPassword);
+        if(!doesAdminExist){
+            return false;
+        }
+        return setUserLoginStatusService.setAdminLoginStatusTrue(adminId);
     }
    
     @ResponseBody
@@ -84,10 +85,10 @@ public class AirlinesAppAdminLoginController {
     //	return addFlightDetailsService.addNewFlight("AC450", "Air Canada", "Regina-YQR", "Saskatoon-YXE", 2019-06-19, LocalTime.00:00, 2019-06-11, 01:00, 0, 2.0, 2, 2);
     	return addFlightDetailsService.addNewFlight(flightId,airlines, sourceLocation, destinationLocation, departureDate, departureTime, arrivalDate, arrivalTime, flightDuration, price, seat,Bags);
     }
-   
-  
-    
-    
-    
-	    
+
+
+
+
+
+
 }

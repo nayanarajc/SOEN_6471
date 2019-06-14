@@ -15,12 +15,15 @@ public class AdminLogin {
 
     private String adminPassword;
 
+    private boolean isLoggedIn;
+
     public AdminLogin() {
     }
 
-    public AdminLogin(String adminId, String adminPassword) {
+    public AdminLogin(String adminId, String adminPassword, boolean isLoggedIn) {
         this.adminId = adminId;
         this.adminPassword = adminPassword;
+        this.isLoggedIn = isLoggedIn;
     }
 
     public String getAdminId() {
@@ -39,4 +42,11 @@ public class AdminLogin {
         this.adminPassword = adminPassword;
     }
 
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
 }

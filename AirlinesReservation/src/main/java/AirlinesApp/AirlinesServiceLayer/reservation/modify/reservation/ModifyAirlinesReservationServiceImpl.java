@@ -6,15 +6,15 @@ import AirlinesApp.AirlinesDAOLayer.reservation.Reservation;
 import AirlinesApp.AirlinesDAOLayer.reservation.ReservationDAO;
 import AirlinesApp.AirlinesServiceLayer.reservation.ManageReservation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component(value = "modifyGeneral")
-public class ModifyGeneralAirlinesReservation implements ModifyAirlinesReservation, ManageReservation {
+@Service
+public class ModifyAirlinesReservationServiceImpl implements ModifyAirlinesReservationService, ManageReservation {
 
     @Autowired
     private FlightDetailsDAO flightDetailsDAO;
@@ -48,6 +48,14 @@ public class ModifyGeneralAirlinesReservation implements ModifyAirlinesReservati
 
     @Override
     public boolean modifyPassengerNames(String reservationId, String firstName, String lastName) {
-        return false;
+
+        Optional<Reservation> optionalReservation = reservationDAO.findById(reservationId);
+        if (!optionalReservation.isPresent()) {
+            return false;
+        }
+        Reservation reservation = optionalReservation.get();
+        reservation.setPassengerName(firstName + " " + lastName);
+        reservationDAO.save(reservation);
+        return true;
     }
 }

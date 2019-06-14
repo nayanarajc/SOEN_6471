@@ -21,13 +21,46 @@
   <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
   <script>
     $(document).ready(function () {
-      $("#flightTable").hide();
-      var rowCount=$('#flightTable tbody tr').length;
-      if(rowCount<1){
+      $.getJSON("/all-Flights", function (data) {
+        var flight_data = '';
+        $.each(data, function (key, value) {
+          flight_data += '<tr>';
+          flight_data += '<td>' + value.flightId + '</td>';
+          flight_data += '<td>' + value.airlines + '</td>';
+          flight_data += '<td>' + value.sourceLocation + '</td>';
+          flight_data += '<td>' + value.destinationLocation + '</td>';
+          flight_data += '<td>' + value.departureDateAtSource + '</td>';
+          flight_data += '<td>' + value.arrivalDateAtDestination + '</td>';
+          flight_data += '<td>' + value.departureTimeAtSource + '</td>';
+          flight_data += '<td>' + value.arrivalTimeAtDestination + '</td>';
+          flight_data += '<td>' + value.totalSeats + '</td>';
+          flight_data += '<td>' + value.pricePerTicket + '</td>';
+          flight_data += '<td>' + value.totalBags + '</td>';
+          flight_data+="<td>" +
+          "<button type='button' " +
+          "onclick='flightDisplay(this);' " +
+          "class='btn btn-default'>" +
+          "<span class='glyphicon glyphicon-edit' />" +
+          "</button>" +
+          "</td>" +
+          "<td>" +
+          "<button type='button' " +
+          "onclick='flightDelete(this);' " +
+          "class='btn btn-default'>" +
+          "<span class='glyphicon glyphicon-remove' />" +
+          "</button>" +
+          "</td>";
+          flight_data += '</tr>';
+        });
+        $('#flightTable').append(flight_data);
+      });
+      //$("#flightTable").hide();
+      var rowCount = $('#flightTable tbody tr').length;
+      if (rowCount < 1) {
         //$('#btnSave').attr('disabled','disabled');
         $('#btnSave').hide();
       }
-      else{
+      else {
         $('#btnSave').show();
         //$('#btnSave').removeAttr('disabled');
       }
@@ -47,12 +80,12 @@
         flightBuildTableRow(_nextId));
       // Increment next ID to use
       _nextId += 1;
-      var rowCount=$('#flightTable tbody tr').length;
-      if(rowCount<1){
+      var rowCount = $('#flightTable tbody tr').length;
+      if (rowCount < 1) {
         //$('#btnSave').attr('disabled','disabled');
         $('#btnSave').hide();
       }
-      else{
+      else {
         $('#btnSave').show();
         //$('#btnSave').removeAttr('disabled');
       }
@@ -72,7 +105,7 @@
         "<span class='glyphicon glyphicon-edit' />" +
         "</button>" +
         "</td>" +
-        "<td>" + $("#flightID").val() + "</td>" +
+        "<td>" + $("#flight_id").val() + "</td>" +
         "<td>" + $("#flightName").val() + "</td>" +
         "<td>" + $("#sourceT").val() + "</td>" +
         "<td>" + $("#destT").val() + "</td>" +
@@ -99,7 +132,7 @@
     function flightBuildTableRow() {
       var ret =
         "<tr>" +
-        "<td>" + $("#flightID").val() + "</td>" +
+        "<td>" + $("#flight_id").val() + "</td>" +
         "<td>" + $("#flightName").val() + "</td>" +
         "<td>" + $("#sourceT").val() + "</td>" +
         "<td>" + $("#destT").val() + "</td>" +
@@ -131,7 +164,7 @@
     }
 
     function formClear() {
-      $("#flightID").val("");
+      $("#flight_id").val("");
       $("#flightName").val("");
       $("#depDate").val("");
       $("#arrDate").val("");
@@ -155,7 +188,7 @@
       // Clear form fields
       formClear();
       // Focus to flight name field
-      $("#flightID").focus();
+      $("#flight_id").focus();
     }
 
     function flightUpdateInTable() {
@@ -172,12 +205,12 @@
     function flightDelete(event) {
       console.log(event);
       $(event).parents("tr").remove();
-      var rowCount=$('#flightTable tbody tr').length;
-      if(rowCount<1){
+      var rowCount = $('#flightTable tbody tr').length;
+      if (rowCount < 1) {
         //$('#btnSave').attr('disabled','disabled');
         $('#btnSave').hide();
       }
-      else{
+      else {
         $('#btnSave').show();
         //$('#btnSave').removeAttr('disabled');
       }
@@ -187,7 +220,7 @@
       _row = $(ctl).parents("tr");
       cols = _row.children("td");
       _activeId = $($(cols[11]).children("button")[0]).data("id");
-      $("#flightID").val($(cols[0]).text());
+      $("#flight_id").val($(cols[0]).text());
       $("#flightName").val($(cols[1]).text());
       $("#sourceT").val($(cols[2]).text());
       $("#destT").val($(cols[3]).text());
@@ -224,39 +257,39 @@
 
     <div id="booking" class="sectionAdmin">
       <div class="section-center">
-          <datalist id="List">
-              <option value="Calgary-YYC">
-              <option value="Edmonton-YEG">
-              <option value="Gander-YQX">
-              <option value="Moncton-YQM">
-              <option value="Halifax-YHZ">
-              <option value="Hamilton-YHM">
-              <option value="London-YXU">
-              <option value="Montreal-YUL">
-              <option value="Ottawa-YOW">
-              <option value="Quebec City-YQB">
-              <option value="Regina-YQR">
-              <option value="Saskatoon-YXE">
-              <option value="St. John's-YYT">
-              <option value="Toronto-YYZ">
-              <option value="Vancouver-YVR">
-              <option value="Victoria-YYJ">
-              <option value="Winnipeg-YWG">
-            </datalist>
+        <datalist id="List">
+          <option value="Calgary-YYC">
+          <option value="Edmonton-YEG">
+          <option value="Gander-YQX">
+          <option value="Moncton-YQM">
+          <option value="Halifax-YHZ">
+          <option value="Hamilton-YHM">
+          <option value="London-YXU">
+          <option value="Montreal-YUL">
+          <option value="Ottawa-YOW">
+          <option value="Quebec City-YQB">
+          <option value="Regina-YQR">
+          <option value="Saskatoon-YXE">
+          <option value="St. John's-YYT">
+          <option value="Toronto-YYZ">
+          <option value="Vancouver-YVR">
+          <option value="Victoria-YYJ">
+          <option value="Winnipeg-YWG">
+        </datalist>
         <div class="container">
 
           <div class="row">
             <h2>Admin page</h2>
-            <h3>Add/ Modify Flights</h3><br/>
+            <h3>Add/ Modify Flights</h3><br />
             <div class="form-group col-4 size pull-left">
               <label id="flight">Flight ID</label>
-              <input class="form-control" type="text" id="flightID">
+              <input class="form-control" type="text" id="flight_id">
               <label id="dep">Departure Date</label>
               <input class="form-control" type="date" id="depDate">
               <label id="price">Cost</label>
               ($)<input class="form-control" type="number" id="priceT">
             </div>
-            
+
             <div class="form-group col-4 size  pull-left">
               <label id="flight">Flight Name</label>
               <input class="form-control" type="text" id="flightName">
@@ -311,9 +344,11 @@
           </div>
           <button id="btnSave" class="btn btn-primary" style="margin-left:473px;width: 70px">Save</button>
         </div>
+        
       </div>
     </div>
   </section>
+ 
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
 

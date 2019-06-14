@@ -2,7 +2,7 @@ package AirlinesApp.AirlinesServiceLayer.reservation.modify.reservation;
 
 import java.time.LocalDate;
 
-public interface ModifyAirlinesReservation {
+public interface ModifyAirlinesReservationService {
 
     boolean modifyReservationDates(String reservationId, LocalDate from);
 
