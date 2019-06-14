@@ -4,6 +4,7 @@ import AirlinesApp.AirlinesDAOLayer.flight.FlightDetails;
 import AirlinesApp.AirlinesDAOLayer.flight.FlightDetailsDAO;
 import AirlinesApp.AirlinesDAOLayer.reservation.Reservation;
 import AirlinesApp.AirlinesDAOLayer.reservation.ReservationDAO;
+import AirlinesApp.AirlinesServiceLayer.reservation.ManageReservation;
 import AirlinesApp.AirlinesServiceLayer.reservation.ReservationDetails;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component(value = "british")
-public class CreateBritishAirwaysReservationService implements CreateAirlinesReservation {
+public class CreateBritishAirwaysReservationService implements CreateAirlinesReservation, ManageReservation {
 
     @Autowired
     private FlightDetailsDAO flightDetailsDAO;
