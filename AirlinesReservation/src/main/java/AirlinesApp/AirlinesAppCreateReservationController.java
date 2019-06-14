@@ -2,7 +2,7 @@ package AirlinesApp;
 
 import AirlinesApp.AirlinesDAOLayer.reservation.Reservation.Gender;
 import AirlinesApp.AirlinesServiceLayer.reservation.ReservationDetails;
-import AirlinesApp.AirlinesServiceLayer.reservation.create.reservation.CreateAirlinesReservation;
+import AirlinesApp.AirlinesServiceLayer.reservation.create.reservation.CreateAirlinesReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,15 +16,15 @@ public class AirlinesAppCreateReservationController {
 
     @Autowired
     @Qualifier("british")
-    private CreateAirlinesReservation createBritishAirlinesReservation;
+    private CreateAirlinesReservationService createBritishAirlinesReservation;
 
   /*  @Autowired
     @Qualifier("lufthansa")
-    private CreateAirlinesReservation createLufthanzaAirlinesReservation;
+    private CreateAirlinesReservationService createLufthanzaAirlinesReservation;
 
     @Autowired
     @Qualifier("general")
-    private CreateAirlinesReservation createGeneralAirlinesReservation;*/
+    private CreateAirlinesReservationService createGeneralAirlinesReservation;*/
 
     @ResponseBody
     @RequestMapping("/create-reservation")

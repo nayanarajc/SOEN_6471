@@ -8,12 +8,12 @@ import AirlinesApp.AirlinesServiceLayer.reservation.ManageReservation;
 import AirlinesApp.AirlinesServiceLayer.reservation.ReservationDetails;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Component(value = "british")
-public class CreateBritishAirwaysReservationService implements CreateAirlinesReservation, ManageReservation {
+@Service
+public class CreateAirwaysReservationServiceServiceImpl implements CreateAirlinesReservationService, ManageReservation {
 
     @Autowired
     private FlightDetailsDAO flightDetailsDAO;
@@ -26,7 +26,6 @@ public class CreateBritishAirwaysReservationService implements CreateAirlinesRes
         if (!optionalFlightDetails.isPresent()) {
             return null;
         }
-//        String reservationId = "British" + RandomString.make(10);
         String reservationId = RandomString.make(10);
         Reservation reservation = new Reservation(reservationId, optionalFlightDetails.get(), reservationDetails.getPassengerName(), reservationDetails.getPassengerDOB(), reservationDetails.getPassengerGender());
         reservationDAO.save(reservation);
