@@ -3,6 +3,7 @@ package AirlinesApp;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,8 @@ import AirlinesApp.AirlinesDAOLayer.flight.FlightDetails;
 import AirlinesApp.AirlinesServiceLayer.admin.AddFlightDetailsService;
 import AirlinesApp.AirlinesServiceLayer.admin.ValidateAdminAccountService;
 import AirlinesApp.AirlinesServiceLayer.flight.FlightDetailsService;
+
+
 
 @RestController 
 public class AirlinesAppAdminLoginController {
@@ -52,33 +55,31 @@ public class AirlinesAppAdminLoginController {
     	return flightDetails;
     }
    
-    
-    @ResponseBody
-    @RequestMapping(value="/add-Flights",method = RequestMethod.GET)
-    public boolean addFlights() {
-    	//insert into flight_details values('001','Air Canada','2019-06-28','11:30 AM','2019-06-25','1:30 PM','Victoria-YYJ','2','430','Vancouver-YVR','120'); 
-
-    	LocalDate departureDateAtSource = LocalDate.of(2019, Month.JUNE, 28);
-    	LocalDate arrivalDateAtDestination = LocalDate.of(2019, Month.JUNE, 29);
-    	
-    	String airlines="Air Canada";
-    	String sourceLocation="Victoria-YYJ"; 
-    	String destinationLocation="Vancouver-YVR"; 
-    	LocalTime departureTimeAtSource= LocalTime.of(11, 30);
-    	LocalTime arrivalTimeAtDestination= LocalTime.of(13,30);
-    	long flightDuration=2;
-    	double pricePerTicket=320;
-    	int totalSeats=90;
-    	
-    	return addFlightDetailsService.addNewFlight(airlines, sourceLocation, destinationLocation, departureDateAtSource, departureTimeAtSource, arrivalDateAtDestination, arrivalTimeAtDestination, flightDuration, pricePerTicket, totalSeats);
-    }
-   
-  
     @ResponseBody
     @RequestMapping(value="/all-Flights",method = RequestMethod.GET)
     public List<FlightDetails> allFlights() {
     	return flightDetailsService.getAllFlights();
     }
+   
+    
+    @ResponseBody
+    @RequestMapping(value="/add-Flights",method = RequestMethod.POST)
+    public boolean addFlights(@RequestParam String flightId,@RequestParam String airlines,@RequestParam String sourceLocation,@RequestParam String destinationLocation,@RequestParam String departureDateAtSource,@RequestParam String departureTimeAtSource,@RequestParam String arrivalDateAtDestination,@RequestParam String arrivalTimeAtDestination,@RequestParam String pricePerTicket,@RequestParam String totalSeats) {
+    
+    	int seat = Integer.parseInt(totalSeats);
+    	double price = Double.parseDouble(pricePerTicket);
+    	long flightDuration = 0;
+    	LocalDate departureDate = LocalDate.parse(departureDateAtSource);
+    	LocalDate arrivalDate= LocalDate.parse(arrivalDateAtDestination);
+    	LocalTime departureTime=LocalTime.parse(departureTimeAtSource,DateTimeFormatter.ISO_LOCAL_TIME);
+    	LocalTime arrivalTime=LocalTime.parse(arrivalTimeAtDestination,DateTimeFormatter.ISO_LOCAL_TIME);
+    	
+    	return addFlightDetailsService.addNewFlight(flightId,airlines, sourceLocation, destinationLocation, departureDate, departureTime, arrivalDate, arrivalTime, flightDuration, price, seat);
+    }
+   
+  
+    
+    
     
 	    
 }
