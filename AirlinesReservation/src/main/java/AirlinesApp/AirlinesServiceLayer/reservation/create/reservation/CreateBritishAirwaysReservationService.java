@@ -23,10 +23,11 @@ public class CreateBritishAirwaysReservationService implements CreateAirlinesRes
 
     public String createReservation(ReservationDetails reservationDetails) {
         Optional<FlightDetails> optionalFlightDetails = flightDetailsDAO.findById(reservationDetails.getFlightId());
-        if(!optionalFlightDetails.isPresent()){
+        if (!optionalFlightDetails.isPresent()) {
             return null;
         }
-        String reservationId = "British" + RandomString.make(10);
+//        String reservationId = "British" + RandomString.make(10);
+        String reservationId = RandomString.make(10);
         Reservation reservation = new Reservation(reservationId, optionalFlightDetails.get(), reservationDetails.getPassengerName(), reservationDetails.getPassengerDOB(), reservationDetails.getPassengerGender());
         reservationDAO.save(reservation);
         return reservationId;
