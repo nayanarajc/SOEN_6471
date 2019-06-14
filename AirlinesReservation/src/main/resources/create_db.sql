@@ -22,10 +22,44 @@ insert into user_logins values ('person@gmail.com', 'person@gmail.com','person')
 
 Flight Data:
 
-insert into flight_details values('001','Air Canada','2019-06-28','11:32','2019-06-25','13:30','Victoria-YYJ','2','430','Vancouver-YVR','120'); 
-insert into flight_details values('002','Air Transat','2019-06-28','11:30','2019-06-25','15:30','Victoria-YYJ','2','500','Edmonton-YEG','80'); 
-insert into flight_details values('003','WestJet','2019-06-29','9:13','2019-06-26','12:30','Ottawa-YOW','2','350','Toronto-YYZ','50'); 
-insert into flight_details values('004','Air Transat','2019-06-28','11:30','2019-06-26','13:30','Montreal-YUL','2','500','Ottawa-YOW','80'); 
-insert into flight_details values('005','WestJet','2019-06-29','9:13','2019-06-26','12:30','Halifax-YHZ','2','350','Toronto-YYZ','50'); 
-insert into flight_details values('006','Air Transat','2019-06-30','9:13','2019-06-29','12:30','Ottawa-YOW','2','350','Montreal-YUL','50'); 
+// Adding the flight details to database
+
+insert into flight_details values('001','Air Transat','2019-06-21','15:30','2019-06-21','12:30','Ottawa-YOW','3','270','Montreal-YUL','110');
+insert into flight_details values('002','Air Transat','2019-06-24','13:30','2019-06-24','10:30','Montreal-YUL','3','270','Ottawa-YOW','110');
+insert into flight_details values('003','Air Canada','2019-06-22','13:30','2019-06-22','09:30','Calgary-YYC','4','410','Edmonton-YEG','90');
+insert into flight_details values('004','Air Canada','2019-06-25','02:30','2019-06-25','22:30','Edmonton-YEG','3','410','Calgary-YYC','90');
+insert into flight_details values('005','WestJet','2019-06-24','14:00','2019-06-24','10:30','Calgary-YYC','2.30','280','Gander-YQX','70');
+insert into flight_details values('006','WestJet','2019-06-26','18:00','2019-06-26','15:30','Gander-YQX','2.30','280','Calgary-YYC','70');
+insert into flight_details values('007','WestJet','2019-06-23','10:00','2019-06-23','6:00','Calgary-YYC','4.00','350','Moncton-YQM','120');
+insert into flight_details values('008','WestJet','2019-06-27','12:00','2019-06-27','8:00','Moncton-YQM','4.00','350','Calgary-YYC','120');
+insert into flight_details values('009','Air Inuit','2019-06-23','10:00','2019-06-23','7:00','Calgary-YYC','3.00','550','Halifax-YHZ','90');
+insert into flight_details values('010','Air Inuit','2019-06-27','11:00','2019-06-27','8:00','Halifax-YHZ','3.00','550','Calgary-YYC','90');
+insert into flight_details values('011','Air Inuit','2019-06-22','15:00','2019-06-22','13:00','Calgary-YYC','2.00','450','Hamilton-YHM','100');
+insert into flight_details values('012','Air Inuit','2019-06-25','18:00','2019-06-25','16:00','Hamilton-YHM','2.00','450','Calgary-YYC','100');
+insert into flight_details values('013','Air North','2019-06-24','19:00','2019-06-24','17:00','Calgary-YYC','2.00','250','London-YXU','120');
+insert into flight_details values('014','Air North','2019-06-27','18:00','2019-06-27','16:00','London-YXU','2.00','250','Calgary-YYC','120');
+insert into flight_details values('015','Air North','2019-06-24','21:30','2019-06-24','18:00','Calgary-YYC','3.30','250','Montreal-YUL','120');
+insert into flight_details values('016','Air North','2019-06-26','19:30','2019-06-26','16:00','Montreal-YUL','3.30','250','Calgary-YYC','120');
+insert into flight_details values('017','Air North','2019-06-25','02:30','2019-06-24','20:00','Calgary-YYC','4.30','450','Ottawa-YOW','70');
+insert into flight_details values('018','Air North','2019-06-27','00:30','2019-06-26','18:00','Ottawa-YOW','4.30','450','Calgary-YYC','70');
+insert into flight_details values('019','Air Tindi','2019-06-24','6:00','2019-06-24','4:00','Calgary-YYC','2.00','200','Quebec City-YQB','60');
+insert into flight_details values('020','Air Tindi','2019-06-26','8:00','2019-06-26','6:00','Quebec City-YQB','2.00','200','Calgary-YYC','60');
+insert into flight_details values('021','Air Tindi','2019-06-25','11:00','2019-06-25','7:00','Calgary-YYC','4.00','350','Regina-YQR','90');
+insert into flight_details values('022','Air Tindi','2019-06-26','14:00','2019-06-26','10:00','Regina-YQR','4.00','350','Calgary-YYC','90');
+insert into flight_details values('023','Air Tindi','2019-06-22','15:00','2019-06-22','10:00','Calgary-YYC','5.00','350','Saskatoon-YXE','110');
+insert into flight_details values('024','Air Tindi','2019-06-26','17:00','2019-06-26','12:00','Saskatoon-YXE','5.00','350','Calgary-YYC','110');
+insert into flight_details values('025','Air Transat','2019-06-23','16:00','2019-06-23','13:00','Calgary-YYC','3.00','280','St. John's-YYT','90');
+insert into flight_details values('026','Air Transat','2019-06-27','18:00','2019-06-27','15:00','St. John's-YYT','3.00','280','Calgary-YYC','90');
+insert into flight_details values('027','WestJet','2019-06-22','14:30','2019-06-22','11:00','Calgary-YYC','3.30','230','Toronto-YYZ','70');
+insert into flight_details values('028','WestJet','2019-06-24','18:30','2019-06-24','15:00','Toronto-YYZ','3.30','230','Calgary-YYC','70');
+insert into flight_details values('029','WestJet','2019-06-22','17:30','2019-06-22','12:00','Calgary-YYC','5.30','450','Vancouver-YVR','96');
+insert into flight_details values('030','WestJet','2019-06-24','1:30','2019-06-23','18:00','Vancouver-YVR','5.30','450','Calgary-YYC','96');
+insert into flight_details values('031','Air Canada','2019-06-22','16:00','2019-06-22','13:00','Calgary-YYC','3.00','260','Victoria-YYJ','96');
+insert into flight_details values('032','WestJet','2019-06-24','18:00','2019-06-23','15:00','Victoria-YYJ','3.00','260','Calgary-YYC','96');
+insert into flight_details values('033','WestJet','2019-06-22','16:00','2019-06-22','13:00','Calgary-YYC','3.00','260','Victoria-YYJ','96');
+insert into flight_details values('034','Air Canada','2019-06-24','18:00','2019-06-23','15:00','Victoria-YYJ','3.00','260','Calgary-YYC','96');
+insert into flight_details values('035','Air Canada','2019-06-22','14:00','2019-06-22','11:00','Calgary-YYC','3.00','290','Winnipeg-YWG','96');
+insert into flight_details values('036','WestJet','2019-06-24','18:00','2019-06-23','15:00','Winnipeg-YWG','3.00','290','Calgary-YYC','96');
+
+
 
