@@ -62,12 +62,16 @@ public class AirlinesAppAdminLoginController {
     	return flightDetailsService.getAllFlights();
     }
    
-    
+   
     @ResponseBody
     @RequestMapping(value="/add-Flights",method = RequestMethod.POST)
-    public boolean addFlights(@RequestParam String flightId,@RequestParam String airlines,@RequestParam String sourceLocation,@RequestParam String destinationLocation,@RequestParam String departureDateAtSource,@RequestParam String departureTimeAtSource,@RequestParam String arrivalDateAtDestination,@RequestParam String arrivalTimeAtDestination,@RequestParam String pricePerTicket,@RequestParam String totalSeats) {
+    public boolean addFlights(@RequestParam String flightId,@RequestParam String airlines,@RequestParam String sourceLocation,
+    		@RequestParam String destinationLocation,@RequestParam String departureDateAtSource,@RequestParam String departureTimeAtSource,
+    		@RequestParam String arrivalDateAtDestination,@RequestParam String arrivalTimeAtDestination,@RequestParam String pricePerTicket,
+    		@RequestParam String totalSeats,@RequestParam String totalBags) {
     
     	int seat = Integer.parseInt(totalSeats);
+    	int Bags = Integer.parseInt(totalBags);
     	double price = Double.parseDouble(pricePerTicket);
     	long flightDuration = 0;
     	LocalDate departureDate = LocalDate.parse(departureDateAtSource);
@@ -75,7 +79,11 @@ public class AirlinesAppAdminLoginController {
     	LocalTime departureTime=LocalTime.parse(departureTimeAtSource,DateTimeFormatter.ISO_LOCAL_TIME);
     	LocalTime arrivalTime=LocalTime.parse(arrivalTimeAtDestination,DateTimeFormatter.ISO_LOCAL_TIME);
     	
-    	return addFlightDetailsService.addNewFlight(flightId,airlines, sourceLocation, destinationLocation, departureDate, departureTime, arrivalDate, arrivalTime, flightDuration, price, seat);
+    	//AC450 Air Canada Regina-YQR Saskatoon-YXE 2019-06-19 00:00 2019-06-11 01:00 0 2.0 2 2
+    System.out.println(flightId+" "+airlines+" "+ sourceLocation+" "+ destinationLocation+" "+ departureDate+" "+ departureTime+" "+ arrivalDate+" "+ arrivalTime+" "+ flightDuration+" "+ price+" "+ seat+" "+Bags);
+    	
+    //	return addFlightDetailsService.addNewFlight("AC450", "Air Canada", "Regina-YQR", "Saskatoon-YXE", 2019-06-19, LocalTime.00:00, 2019-06-11, 01:00, 0, 2.0, 2, 2);
+    	return addFlightDetailsService.addNewFlight(flightId,airlines, sourceLocation, destinationLocation, departureDate, departureTime, arrivalDate, arrivalTime, flightDuration, price, seat,Bags);
     }
 
 
