@@ -14,12 +14,11 @@ public class AddFlightDetailsService {
     @Autowired
     private FlightDetailsDAO flightDetailsDAO;
 
-    public boolean addNewFlight(String flightId,String airlines, String sourceLocation, String destinationLocation, LocalDate departureDateAtSource, LocalTime departureTimeAtSource, LocalDate arrivalDateAtDestination, LocalTime arrivalTimeAtDestination, long flightDuration, double pricePerTicket, int totalSeats) {
-        //String flightId = sourceLocation+"-"+destinationLocation+"-"+airlines+"-"+departureDateAtSource+"-"+departureTimeAtSource;
+    public boolean addNewFlight(String flightId,String airlines, String sourceLocation, String destinationLocation, LocalDate departureDateAtSource, LocalTime departureTimeAtSource, LocalDate arrivalDateAtDestination, LocalTime arrivalTimeAtDestination, long flightDuration, double pricePerTicket, int totalSeats,int totalBags) {
         if(flightDetailsDAO.findById(flightId).isPresent()){
             return false;
         }
-        FlightDetails flightDetails = new FlightDetails(flightId, airlines, sourceLocation, destinationLocation, departureDateAtSource, departureTimeAtSource, arrivalDateAtDestination, arrivalTimeAtDestination,  flightDuration,  pricePerTicket, totalSeats);
+        FlightDetails flightDetails = new FlightDetails(flightId, airlines, sourceLocation, destinationLocation, departureDateAtSource, departureTimeAtSource, arrivalDateAtDestination, arrivalTimeAtDestination,  flightDuration,  pricePerTicket, totalSeats,totalBags);
         flightDetailsDAO.save(flightDetails);
         return true;
     }

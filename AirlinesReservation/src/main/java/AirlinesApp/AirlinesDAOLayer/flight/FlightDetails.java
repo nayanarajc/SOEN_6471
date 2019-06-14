@@ -34,11 +34,14 @@ public class FlightDetails {
     private double pricePerTicket;
 
     private int totalSeats;
+    
+    private int totalBags;
 
-    public  FlightDetails(){
+  
+	public  FlightDetails(){
     }
 
-    public FlightDetails(String flightId, String airlines, String sourceLocation, String destinationLocation, LocalDate departureDateAtSource, LocalTime departureTimeAtSource, LocalDate arrivalDateAtDestination, LocalTime arrivalTimeAtDestination, long flightDuration, double pricePerTicket, int totalSeats){
+    public FlightDetails(String flightId, String airlines, String sourceLocation, String destinationLocation, LocalDate departureDateAtSource, LocalTime departureTimeAtSource, LocalDate arrivalDateAtDestination, LocalTime arrivalTimeAtDestination, long flightDuration, double pricePerTicket, int totalSeats,int totalBags){
         this.flightId = flightId;
         this.airlines = airlines;
         this.sourceLocation = sourceLocation;
@@ -50,8 +53,18 @@ public class FlightDetails {
         this.flightDuration = flightDuration;
         this.pricePerTicket = pricePerTicket;
         this.totalSeats = totalSeats;
+        this.totalBags =totalBags;
     }
 
+  
+    public int getTotalBags() {
+  		return totalBags;
+  	}
+
+  	public void setTotalBags(int totalBags) {
+  		this.totalBags = totalBags;
+  	}
+   
     public String getFlightId() {
         return flightId;
     }
