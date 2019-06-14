@@ -1,4 +1,4 @@
-package AirlinesApp.AirlinesServiceLayer.reservation.cancel.reservation;
+package AirlinesApp.AirlinesServiceLayer.reservation.cancel;
 
 import AirlinesApp.AirlinesDAOLayer.reservation.Reservation;
 import AirlinesApp.AirlinesDAOLayer.reservation.ReservationDAO;

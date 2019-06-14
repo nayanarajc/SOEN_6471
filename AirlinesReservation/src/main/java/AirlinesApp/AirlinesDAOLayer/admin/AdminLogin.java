@@ -1,5 +1,7 @@
 package AirlinesApp.AirlinesDAOLayer.admin;
 
+import AirlinesApp.AirlinesDAOLayer.client.Person;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -8,7 +10,7 @@ import javax.persistence.Table;
 @Table(
         name = "admin_logins"
 )
-public class AdminLogin {
+public class AdminLogin extends Person {
 
     @Id
     private String adminId;

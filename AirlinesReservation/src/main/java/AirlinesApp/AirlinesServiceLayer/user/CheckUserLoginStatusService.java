@@ -1,7 +1,7 @@
 package AirlinesApp.AirlinesServiceLayer.user;
 
-import AirlinesApp.AirlinesDAOLayer.user.UserLogin;
-import AirlinesApp.AirlinesDAOLayer.user.UserLoginDAO;
+import AirlinesApp.AirlinesDAOLayer.client.ClientLogin;
+import AirlinesApp.AirlinesDAOLayer.client.ClientLoginDAO;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 public class CheckUserLoginStatusService {
 
     @Autowired
-    private UserLoginDAO userLoginDAO;
+    private ClientLoginDAO clientLoginDAO;
 
     public boolean isUserLoggedIn(String userEmail) {
-        UserLogin userLogin = userLoginDAO.findById(userEmail)
-                .orElseThrow(() -> new ObjectNotFoundException(UserLogin.class, userEmail));
-        return userLogin.isLoggedIn();
+        ClientLogin clientLogin = clientLoginDAO.findById(userEmail)
+                .orElseThrow(() -> new ObjectNotFoundException(ClientLogin.class, userEmail));
+        return clientLogin.isLoggedIn();
     }
 }

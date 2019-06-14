@@ -1,4 +1,4 @@
-package AirlinesApp.AirlinesServiceLayer.reservation.modify.reservation;
+package AirlinesApp.AirlinesServiceLayer.reservation.modify;
 
 import AirlinesApp.AirlinesDAOLayer.flight.FlightDetails;
 import AirlinesApp.AirlinesDAOLayer.flight.FlightDetailsDAO;

@@ -1,7 +1,7 @@
 package AirlinesApp.AirlinesServiceLayer.user;
 
-import AirlinesApp.AirlinesDAOLayer.user.UserLogin;
-import AirlinesApp.AirlinesDAOLayer.user.UserLoginDAO;
+import AirlinesApp.AirlinesDAOLayer.client.ClientLogin;
+import AirlinesApp.AirlinesDAOLayer.client.ClientLoginDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 public class CreateUserAccountService {
 
     @Autowired
-    private UserLoginDAO userLoginDAO;
+    private ClientLoginDAO clientLoginDAO;
 
     public void createUserAccount(String userEmail, String userPassword, String name, String dob) {
         String userId = name;
-        UserLogin newUser = new UserLogin(userId, userEmail, userPassword, dob, false);
+        ClientLogin newUser = new ClientLogin(userId, userEmail, userPassword, dob, false);
         System.out.println(userId + " " + userEmail + " " + userPassword + " " + dob);
-        userLoginDAO.save(newUser);
+        clientLoginDAO.save(newUser);
     }
 }

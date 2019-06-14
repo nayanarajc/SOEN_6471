@@ -1,4 +1,4 @@
-package AirlinesApp.AirlinesDAOLayer.user;
+package AirlinesApp.AirlinesDAOLayer.client;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Table(
         name = "user_logins"
 )
-public class UserLogin {
+public class ClientLogin extends Person{
 
     private String userId;
 
@@ -21,10 +21,10 @@ public class UserLogin {
 
     private String userPassword;
 
-    public UserLogin() {
+    public ClientLogin() {
     }
 
-    public UserLogin(String userId, String userEmail, String userPassword, String dob, boolean isLoggedIn) {
+    public ClientLogin(String userId, String userEmail, String userPassword, String dob, boolean isLoggedIn) {
         this.userId = userId;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
