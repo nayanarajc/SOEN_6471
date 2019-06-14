@@ -11,22 +11,25 @@ import javax.persistence.Table;
 public class UserLogin {
 
     private String userId;
-    
+
     private String dob;
 
-  	@Id
+    private boolean isLoggedIn;
+
+    @Id
     private String userEmail;
 
     private String userPassword;
 
-    public UserLogin(){
+    public UserLogin() {
     }
 
-    public UserLogin(String userId, String userEmail, String userPassword,String dob) {
+    public UserLogin(String userId, String userEmail, String userPassword, String dob, boolean isLoggedIn) {
         this.userId = userId;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
-        this.dob=dob;
+        this.dob = dob;
+        this.isLoggedIn = isLoggedIn;
     }
 
 
@@ -37,14 +40,14 @@ public class UserLogin {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    
-    public String getDob() {
-  		return dob;
-  	}
 
-  	public void setDob(String dob) {
-  		this.dob = dob;
-  	}
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
 
 
     public String getUserEmail() {
@@ -61,5 +64,13 @@ public class UserLogin {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 }
