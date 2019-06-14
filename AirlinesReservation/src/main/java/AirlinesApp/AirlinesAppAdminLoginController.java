@@ -4,7 +4,7 @@ import AirlinesApp.AirlinesDAOLayer.flight.FlightDetails;
 import AirlinesApp.AirlinesServiceLayer.admin.AddFlightDetailsService;
 import AirlinesApp.AirlinesServiceLayer.admin.ValidateAdminAccountService;
 import AirlinesApp.AirlinesServiceLayer.flight.FlightDetailsService;
-import AirlinesApp.AirlinesServiceLayer.user.SetUserLoginStatusService;
+import AirlinesApp.AirlinesServiceLayer.client.SetUserLoginStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

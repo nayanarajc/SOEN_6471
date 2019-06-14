@@ -1,4 +1,4 @@
-package AirlinesApp.AirlinesServiceLayer.user;
+package AirlinesApp.AirlinesServiceLayer.client;
 
 import AirlinesApp.AirlinesDAOLayer.admin.AdminLogin;
 import AirlinesApp.AirlinesDAOLayer.admin.AdminLoginDAO;
