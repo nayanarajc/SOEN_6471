@@ -6,24 +6,16 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title>Admin Module</title>
-      
-    
-    <!-- Google font -->
-      
-      
+      <title>Admin Page</title>
       <link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-      
+      <script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+      <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
       <script src="https://kit.fontawesome.com/3a05d8f4e4.js"></script>
       <link href="css/landing-page.min.css" rel="stylesheet">
-      <!-- Bootstrap -->
-      <!-- Custom stlylesheet -->
       <link type="text/css" rel="stylesheet" href="css/style.css" />
-      
       <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
       <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    
       <script>
          $(document).ready(function () {
            $.getJSON("/all-Flights", function (data) {
@@ -94,15 +86,7 @@
              $('#btnSave').show();
              //$('#btnSave').removeAttr('disabled');
            }
-           
-       
-         
-           // Append flight to the table
-         
          }
-        /*  $(document).ready( function () {
-        	    $('#flightTable').dataTable();
-        	} );  */
          
          function flightBuildTableRow(id) {
            var ret =
@@ -189,8 +173,8 @@
          
          
          function flightEdit() {
-        	 
-        	 var dep=$('#depDate').val();
+          
+          var dep=$('#depDate').val();
              var arr=$('#arrDate').val();
              var from=$('#sourceT').val();
              var to=$('#destT').val();
@@ -247,20 +231,10 @@
              pricePerTicket:pricePerTicket,totalSeats:totalSeats,totalBags:totalBags}).done(function(data) { //alert(data);
              if(data){
             	 console.log(data);
-             
-        	 
-        	         	 
          }
              });
             
              }
-         
-         
-         
-         
-         
-         
-         
          
          function flightUpdate() {
          
@@ -322,7 +296,7 @@
          if(data){
          var page=document.getElementById('magicS');
          page.style.visibility='visible';
-		 
+         
            $("#flightTable").show();
            if ($("#bt").text() == "Update") {
              flightUpdateInTable();
@@ -334,11 +308,11 @@
            formClear();
            // Focus to flight name field
            $("#flight_id").focus();
-		   
+         
          }else{
          var page1=document.getElementById('magicF');
          page1.style.visibility='visible';
-		 }
+         }
          });
          }
          function flightUpdateInTable() {
@@ -356,13 +330,11 @@
            console.log(event);
          
          var delID = $(event).parents('tr').children('td.flightId').text();
-         $.post("/delete-Flights", {flightId:delID}).done(function(data) { alert(data);
+         $.post("/delete-Flights", {flightId:delID}).done(function(data) { //alert(data);
          if(data){
          console.log(data);
-         
          }
          });
-         
          
            $(event).parents("tr").remove();
            var rowCount = $('#flightTable tbody tr').length;
@@ -478,7 +450,6 @@
                </div>
                <div>
                <button id="btup" class="btn btn-primary" style="margin-left:4px;width: 70px"  onclick="flightEdit()">Edit</button>
-               
                </div>
                <div id="magicF" style="visibility: hidden;" >
                <center><span class="section-heading-lower" ><b><font color="Red">
@@ -511,13 +482,17 @@
                </table>
                </div>
                </div>
-              <button id="btnSave" class="btn btn-primary" style="margin-left:473px;width: 70px"> 
-			   <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#iteeem">
-			   Save</a></button>
-                </div>
+               <button id="btnSave" class="btn btn-primary" style="margin-left:473px;width: 70px"> 
+               <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#iteeem">
+               Save</a></button>
+               </div>
             </div>
          </div>
-         <script></script>
+         <script>
+            $(document).ready( function () {
+                 	    $('#flightTable').dataTable();
+                 	} );
+         </script>
       </section>
    </body>
    <!-- This templates was made by Colorlib (https://colorlib.com) -->
