@@ -58,7 +58,26 @@ insert into flight_details values('WJ033','WestJet','2019-06-22','16:00','2019-0
 insert into flight_details values('AC034','Air Canada','2019-06-24','18:00','2019-06-23','15:00','Victoria-YYJ','3','260','Calgary-YYC','2','96');
 insert into flight_details values('AC035','Air Canada','2019-06-22','14:00','2019-06-22','11:00','Calgary-YYC','3','290','Winnipeg-YWG','2','96');
 insert into flight_details values('WJ036','WestJet','2019-06-24','18:00','2019-06-23','15:00','Winnipeg-YWG','3','290','Calgary-YYC','1','96');
-
+insert into flight_details values('WJ037','WestJet','2019-06-24','18:00','2019-06-23','15:00','Winnipeg-YWG','3','300','Calgary-YYC','1','85');
+insert into flight_details values('WJ038','WestJet','2019-06-24','18:00','2019-06-23','15:00','Winnipeg-YWG','3','250','Calgary-YYC','1','120');
+insert into flight_details values('WJ039','WestJet','2019-06-24','18:00','2019-06-23','15:00','Winnipeg-YWG','3','300','Calgary-YYC','1','68');
+insert into flight_details values('WJ040','WestJet','2019-06-24','18:00','2019-06-23','15:00','Winnipeg-YWG','3','380','Calgary-YYC','1','67');
+insert into flight_details values('AC041','Air Canada','2019-06-22','16:00','2019-06-22','13:00','Calgary-YYC','3','410','Victoria-YYJ','2','98');
+insert into flight_details values('AC042','Air Canada','2019-06-22','16:00','2019-06-22','13:00','Calgary-YYC','3','420','Victoria-YYJ','2','120');
+insert into flight_details values('WJ043','WestJet','2019-06-24','18:00','2019-06-23','15:00','Winnipeg-YWG','3','310','Calgary-YYC','1','89');
+insert into flight_details values('WJ044','WestJet','2019-06-24','18:00','2019-06-23','15:00','Winnipeg-YWG','3','250','Calgary-YYC','1','88');
+insert into flight_details values('ATI045','Air Tindi','2019-06-24','6:00','2019-06-24','4:00','Calgary-YYC','2','210','Quebec City-YQB','2','76');
+insert into flight_details values('ATI046','Air Tindi','2019-06-24','6:00','2019-06-24','4:00','Calgary-YYC','2','200','Quebec City-YQB','2','86');
+insert into flight_details values('AT047','Air Transat','2019-06-21','15:30','2019-06-21','12:30','Ottawa-YOW','3','270','Montreal-YUL','1','100');
+insert into flight_details values('AT048','Air Transat','2019-06-21','15:30','2019-06-21','12:30','Ottawa-YOW','3','210','Montreal-YUL','1','90');
+insert into flight_details values('AI049','Air Inuit','2019-06-23','10:00','2019-06-23','7:00','Calgary-YYC','3','650','Halifax-YHZ','2','120');
+insert into flight_details values('AN050','Air North','2019-06-24','19:00','2019-06-24','17:00','Calgary-YYC','2','340','London-YXU','2','80');
+insert into flight_details values('AN051','Air North','2019-06-24','19:00','2019-06-24','17:00','Calgary-YYC','2','320','London-YXU','2','89');
+insert into flight_details values('AT052','Air Transat','2019-06-21','15:30','2019-06-21','12:30','Ottawa-YOW','3','370','Montreal-YUL','1','180');
+insert into flight_details values('AI053','Air Inuit','2019-06-23','10:00','2019-06-23','7:00','Calgary-YYC','3','250','Halifax-YHZ','2','92');
+insert into flight_details values('AN054','Air North','2019-06-24','19:00','2019-06-24','17:00','Calgary-YYC','2','220','London-YXU','2','78');
+insert into flight_details values('AI055','Air Inuit','2019-06-23','10:00','2019-06-23','7:00','Calgary-YYC','3','380','Halifax-YHZ','2','68');
+insert into flight_details values('AT056','Air Transat','2019-06-21','15:30','2019-06-21','12:30','Ottawa-YOW','3','280','Montreal-YUL','1','79');
 ---------------------- ALTER USER lOGIN AND ADMIN LOGIN TABLE -----------------------------
 
 alter table user_logins
