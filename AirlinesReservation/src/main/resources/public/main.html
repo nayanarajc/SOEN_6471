@@ -249,9 +249,9 @@
            $("#flight_id").focus();
 		   
          }else{
-         var page=document.getElementById('magicF');
-         page.style.visibility='visible';
-         }
+         var page1=document.getElementById('magicF');
+         page1.style.visibility='visible';
+		 }
          });
          }
          function flightUpdateInTable() {
@@ -348,8 +348,8 @@
                   <option value="Winnipeg-YWG">
                </datalist>
                <div class="container">
-               <div class="row">
-               <h2>Admin page</h2>
+               <div id="iteeem" class="row">
+               <h2 >Admin page</h2>
                <h3>Add/ Modify Flights</h3><br />
                <div class="form-group col-4 size pull-left">
                <label id="flight">Flight ID</label>
@@ -383,12 +383,12 @@
                </div>
                </div>
                <button id="bt" class="btn btn-primary" style="margin-left:4px;width: 70px"  onclick="flightUpdate()">Add</button>
-               <div id="magicS" >
-               <center><span class="section-heading-lower" style="visibility: hidden;" ><b><font color="Green">
+               <div id="magicS" style="visibility: hidden;" >
+               <center><span class="section-heading-lower"  ><b><font color="Green">
                <h5><b>Success !</b></h5></font></b></span></center>
                </div>
-               <div id="magicF" >
-               <center><span class="section-heading-lower" style="visibility: hidden;" ><b><font color="Red">
+               <div id="magicF" style="visibility: hidden;" >
+               <center><span class="section-heading-lower" ><b><font color="Red">
                <h5><b>Error! FlightID already Exists</b></h5></font></b></span></center>
                </div>
                <br>
@@ -418,8 +418,10 @@
                </table>
                </div>
                </div>
-               <button id="btnSave" class="btn btn-primary" style="margin-left:473px;width: 70px">Save</button>
-               </div>
+              <button id="btnSave" class="btn btn-primary" style="margin-left:473px;width: 70px"> 
+			   <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#iteeem">
+			   Save</a></button>
+                </div>
             </div>
          </div>
          <script></script>
