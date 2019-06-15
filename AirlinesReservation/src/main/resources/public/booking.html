@@ -128,7 +128,7 @@
                 </div>
               </div>
               <div class="col-md-2">
-                <div class="form-group">
+               <!-- <div class="form-group">
                   <span class="form-label">Children (0-17)</span>
                   <select class="form-control">
                     <option>0</option>
@@ -137,7 +137,7 @@
                   </select>
                   <span class="select-arrow"></span>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="row">
               <div class="col-md-3">
@@ -224,6 +224,19 @@
                     $("#tbDetails").hide();
                     //$("#tbDetails").css("display","block");
                     $("#tbRound td").remove();
+					
+				  var sourceLocation = document.getElementById('from_id').value;
+                  var destinationLocation = document.getElementById('return_id').value;
+                  var departureDateAtSource = document.getElementById('ret_date').value;
+
+                  
+				$.post("/view-Flights", {sourceLocation:destinationLocation,destinationLocation:sourceLocation,departureDateAtSource:departureDateAtSource,}).done(function(data){ 
+				if(data){
+	
+				}
+				});
+				return false;	
+				}
 
                     $.ajax({
                       url: 'data/round.txt',
@@ -273,6 +286,19 @@
                     //                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row1 + button + "</tr> ";
                     //                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button + "</tr> ";
                     //                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button + " </tr> ";
+
+					
+				  var sourceLocation = document.getElementById('from_id').value;
+                  var destinationLocation = document.getElementById('return_id').value;
+                  var departureDateAtSource = document.getElementById('dept_date').value;
+                  
+					$.post("/view-Flights", {sourceLocation:sourceLocation,destinationLocation:destinationLocation,departureDateAtSource:departureDateAtSource,}).done(function(data){ 
+				  if(data){
+	
+							}
+					});
+					return false;	
+					}
 
 
                     $.ajax({

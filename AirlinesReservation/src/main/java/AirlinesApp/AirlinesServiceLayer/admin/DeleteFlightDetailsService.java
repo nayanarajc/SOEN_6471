@@ -15,8 +15,8 @@ public class DeleteFlightDetailsService {
     @Autowired
     private FlightDetailsDAO flightDetailsDAO;
 
-    public boolean deleteFlight(String airlines, String sourceLocation, String destinationLocation, LocalDate departureDateAtSource, LocalTime departureTimeAtSource) {
-        String flightId = sourceLocation+"-"+destinationLocation+"-"+airlines+"-"+departureDateAtSource+"-"+departureTimeAtSource;
+    public boolean deleteFlight(String flightId) {
+       // String flightId = sourceLocation+"-"+destinationLocation+"-"+airlines+"-"+departureDateAtSource+"-"+departureTimeAtSource;
         Optional<FlightDetails> flightDetails = flightDetailsDAO.findById(flightId);
         if(!flightDetails.isPresent()){
             return false;

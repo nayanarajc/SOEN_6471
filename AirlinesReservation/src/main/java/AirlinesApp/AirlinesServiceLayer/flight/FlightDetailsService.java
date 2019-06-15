@@ -16,13 +16,12 @@ public class FlightDetailsService {
     @Autowired
     private FlightDetailsDAO flightDetailsDAO;
 
-    public List<FlightDetails> getAvailableFlights(String sourceLocation, String destinationLocation, List<String> preferredAirlines, LocalDate travelDate) {
+    public List<FlightDetails> getAvailableFlights(String sourceLocation, String destinationLocation,  LocalDate travelDate) {
         List<FlightDetails> flightDetails = new ArrayList<>();
         flightDetailsDAO.findAll().forEach(flightDetails::add);
         return flightDetails.stream()
                 .filter(flight -> flight.getSourceLocation().equalsIgnoreCase(sourceLocation) && flight.getDestinationLocation().equalsIgnoreCase(destinationLocation))
                 .filter(flight -> flight.getDepartureDateAtSource().equals(travelDate))
-                .filter(flight -> preferredAirlines.contains(flight.getAirlines()))
                 .collect(Collectors.toList());
     }
     

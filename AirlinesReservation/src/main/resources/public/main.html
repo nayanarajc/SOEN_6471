@@ -178,7 +178,11 @@
     }
 
     function flightUpdate() {
-      $("#flightTable").show();
+	
+	//Add flights to Db	
+	flightAddToDB();
+
+	$("#flightTable").show();
       if ($("#bt").text() == "Update") {
         flightUpdateInTable();
       }
@@ -190,6 +194,34 @@
       // Focus to flight name field
       $("#flight_id").focus();
     }
+	
+	//Posting to Controller - Adding to DB
+	function flightAddToDB(){
+	var flightId = $('#flight_id').val();
+   	var airlines = $('#flightName').val();
+	var sourceLocation = $('#sourceT').val();
+   	var destinationLocation = $('#destT').val();
+	var departureDateAtSource = $('#depDate').val();
+   	var departureTimeAtSource = $('#depTime').val();
+	var arrivalDateAtDestination = $('#arrDate').val();
+   	var arrivalTimeAtDestination = $('#arrTime').val();
+	var pricePerTicket = $('#priceT').val();
+   	var totalSeats = $('#seatsT').val();
+	var totalBags = $("#bagT").val();
+	
+	$.post("/add-Flights", {flightId:flightId,airlines:airlines,sourceLocation:sourceLocation,destinationLocation:destinationLocation,departureDateAtSource:departureDateAtSource,
+	departureTimeAtSource:departureTimeAtSource,arrivalDateAtDestination:arrivalDateAtDestination,arrivalTimeAtDestination:arrivalTimeAtDestination,pricePerTicket:pricePerTicket,totalSeats:totalSeats,totalBags:totalBags}).done(function(data){ 
+	if(data){
+	    var page=document.getElementById('magic-Success');
+	    page.style.visibility='visible';
+		}else{
+		var page=document.getElementById('magic-Failure');
+		page.style.visibility='visible';
+		}
+	});
+	return false;	
+	}
+
 
     function flightUpdateInTable() {
       // Add changed flight to table
@@ -204,9 +236,12 @@
 
     function flightDelete(event) {
       console.log(event);
+	 	  	  
       $(event).parents("tr").remove();
       var rowCount = $('#flightTable tbody tr').length;
-      if (rowCount < 1) {
+	  var rowCount = $('#flightTable tbody tr td:0');
+	 	
+	 if (rowCount < 1) {
         //$('#btnSave').attr('disabled','disabled');
         $('#btnSave').hide();
       }
@@ -311,13 +346,21 @@
               <input class="form-control" list="List" type="text" id="destT">
               <label id="arrT">Arrival Time</label>
               <input class="form-control" type="time" id="arrTime" />
-            </div>
-          </div>
-
-          <button id="bt" class="btn btn-primary" style="margin-left:4px;width: 70px"
-            onclick="flightUpdate()">Add</button>
-
-          <div class="row">
+			  <br>
+			   <button id="bt" class="btn btn-primary" style="margin-left:4px;width: 70px"   onclick="flightUpdate()">Add</button>
+		 </div>
+		 </div>
+		 <div id="magic-Success" >
+                    <center>
+                        <span class="section-heading-lower" style="visibility: hidden;"><b><font color="Green"><h5><b>Sucess!</b></h5></font></b></span>
+                    </center>
+                </div>
+             <div id="magic-Failure" >
+                    <center>
+                        <span class="section-heading-lower" style="visibility: hidden;"><b><font color="Red"><h5><b>Flight ID already Exists!</b></h5></font></b></span>
+                    </center>
+                </div>
+			<div class="row">
             <h3>List of flights</h3><br />
             <div class="col-md-12">
               <table id="flightTable" class="table table-bordered table-condensed
@@ -341,7 +384,7 @@
                 </thead>
               </table>
             </div>
-          </div>
+			</div>
           <button id="btnSave" class="btn btn-primary" style="margin-left:473px;width: 70px">Save</button>
         </div>
         
