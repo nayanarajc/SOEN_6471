@@ -53,7 +53,7 @@
 
       <div class="row booking-form-container">
         <div class="booking-form">
-          <form id="searchFlight" onsubmit="return AddData()">
+          <form id="searchFlight" onsubmit="AddData()">
             <datalist id="languages">
               <option value="Calgary-YYC">
               <option value="Edmonton-YEG">
@@ -128,7 +128,7 @@
                 </div>
               </div>
               <div class="col-md-2">
-               <div class="form-group">
+                <div class="form-group">
                   <span class="form-label">Children (0-17)</span>
                   <select class="form-control">
                     <option>0</option>
@@ -137,7 +137,7 @@
                   </select>
                   <span class="select-arrow"></span>
                 </div>
-              </div> 
+              </div>
             </div>
             <div class="row">
               <div class="col-md-3">
@@ -220,58 +220,103 @@
                     ra_date.setMonth(ra_date.getMonth() + 1);
 
                     ra_date = ra_date.getFullYear() + "-" + ra_date.getMonth() + "-" + parseInt(ra_date.getDate());
-                    $("#tbRound").show();
+                    
                     $("#tbDetails").hide();
                     //$("#tbDetails").css("display","block");
                     $("#tbRound td").remove();
-					
-				  var sourceLocation = document.getElementById('from_id').value;
-                  var destinationLocation = document.getElementById('return_id').value;
-                  var departureDateAtSource = document.getElementById('ret_date').value;
 
-                  
-				$.post("/view-Flights", {sourceLocation:destinationLocation,destinationLocation:sourceLocation,departureDateAtSource:departureDateAtSource}).done(function(data,status){ 
-				if(data){
-	
-				}
-				});
-                    $.ajax({
-                      url: 'data/round.txt',
-                      type: 'get',
-                      dataType: 'json',
-                      error: function (data) {
-                      },
-                      success: function (data) {
-                        var row$;
-                        var j = 0,k=0;
-                        var columns = addAllColumnHeaders(data);
-                        for (var i = 0; i < data.length; i++) {
-                          j++;k++;
-                          row$ = $('<tr/>');
-                          if (j % 2 != 0)
-                            row$.append("<td>" + k + "</td>"+"<td>" + from + "</td><td>" + to + "</td>" + "<td>" + d_date + "</td><td>" + fad_date + "</td>");
-                          else{
-                            row$.append("<td>" + "" + "</td>"+"<td>" + to + "</td><td>" + from + "</td>" + "<td>" + a_date + "</td><td>" + ra_date + "</td>");
-                            k=j-1;
-                          }
-                          for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-                            var cellValue = data[i][columns[colIndex]];
-                            if (cellValue == null) { cellValue = ""; }
-                            row$.append($('<td/>').html(cellValue));
-                          }
+                    var sourceLocation = document.getElementById('from_id').value;
+                    var destinationLocation = document.getElementById('return_id').value;
 
-                          //rows$= $('<tr/>'); 
-                          if (j % 2 != 0) {
-                            row$.append(buttonRound);
-                          }
-                          $("#tbRound").append(row$);
-                        }
+                    var departureDateAtSource = document.getElementById('dept_date').value;
+                    var book_data = '';
+                    $.post("/view-Flights", { sourceLocation: sourceLocation, destinationLocation: destinationLocation, departureDateAtSource: departureDateAtSource }).done(function (data, status) {
+                      if (data) {
+                        console.log(data);
 
+                        $.each(data, function (key, value) {
+                          book_data += '<tr>';
+                          book_data += '<td>' + value.flightId + '</td>';
+                          book_data += '<td>' + value.airlines + '</td>';
+                          book_data += '<td>' + value.sourceLocation + '</td>';
+                          book_data += '<td>' + value.destinationLocation + '</td>';
+                          book_data += '<td>' + value.departureDateAtSource + '</td>';
+                          book_data += '<td>' + value.arrivalDateAtDestination + '</td>';
+                          book_data += '<td>' + value.departureTimeAtSource + '</td>';
+                          book_data += '<td>' + value.arrivalTimeAtDestination + '</td>';
+                          book_data += '<td>' + value.totalSeats + '</td>';
+                          book_data += '<td>' + value.pricePerTicket + '</td>';
+                          book_data += '<td>' + value.totalBags + '</td>';
+                          book_data += buttonRound;
+                          book_data += '</tr>';
 
+                          departureDateAtSource = document.getElementById('ret_date').value;
+                    $.post("/view-Flights", { sourceLocation: destinationLocation, destinationLocation: sourceLocation, departureDateAtSource: departureDateAtSource }).done(function (data1, status) {
+                      if (data1) {
+                        console.log(data1);
+                        //var book_data = '';
+                        $.each(data1, function (key, value) {
+                          book_data += '<tr>';
+                          book_data += '<td>' + value.flightId + '</td>';
+                          book_data += '<td>' + value.airlines + '</td>';
+                          book_data += '<td>' + value.sourceLocation + '</td>';
+                          book_data += '<td>' + value.destinationLocation + '</td>';
+                          book_data += '<td>' + value.departureDateAtSource + '</td>';
+                          book_data += '<td>' + value.arrivalDateAtDestination + '</td>';
+                          book_data += '<td>' + value.departureTimeAtSource + '</td>';
+                          book_data += '<td>' + value.arrivalTimeAtDestination + '</td>';
+                          book_data += '<td>' + value.totalSeats + '</td>';
+                          book_data += '<td>' + value.pricePerTicket + '</td>';
+                          book_data += '<td>' + value.totalBags + '</td>';
 
-
+                          book_data += '</tr>';
+                        });
+                        $('#tbRound').append(book_data);
+                        $("#tbRound").show();
                       }
                     });
+
+                        });
+                      }
+                    });
+                    
+                    // $.ajax({
+                    //   url: 'data/round.txt',
+                    //   type: 'get',
+                    //   dataType: 'json',
+                    //   error: function (data) {
+                    //   },
+                    //   success: function (data) {
+                    //     var row$;
+                    //     var j = 0,k=0;
+                    //     var columns = addAllColumnHeaders(data);
+                    //     for (var i = 0; i < data.length; i++) {
+                    //       j++;k++;
+                    //       row$ = $('<tr/>');
+                    //       if (j % 2 != 0)
+                    //         row$.append("<td>" + k + "</td>"+"<td>" + from + "</td><td>" + to + "</td>" + "<td>" + d_date + "</td><td>" + fad_date + "</td>");
+                    //       else{
+                    //         row$.append("<td>" + "" + "</td>"+"<td>" + to + "</td><td>" + from + "</td>" + "<td>" + a_date + "</td><td>" + ra_date + "</td>");
+                    //         k=j-1;
+                    //       }
+                    //       for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+                    //         var cellValue = data[i][columns[colIndex]];
+                    //         if (cellValue == null) { cellValue = ""; }
+                    //         row$.append($('<td/>').html(cellValue));
+                    //       }
+
+                    //       //rows$= $('<tr/>'); 
+                    //       if (j % 2 != 0) {
+                    //         row$.append(buttonRound);
+                    //       }
+                    //       $("#tbRound").append(row$);
+                    //     }
+
+
+
+
+                    //   }
+                    // });
 
                     //                    $(rows).appendTo("#tbRound tbody");
                   }
@@ -284,48 +329,66 @@
                     //                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row2 + button + "</tr> ";
                     //                    rows += "<tr><td>" + from + "</td><td>" + to + "</td>" + row3 + button + " </tr> ";
 
-					
-				  var sourceLocation = document.getElementById('from_id').value;
-                  var destinationLocation = document.getElementById('return_id').value;
-                  var departureDateAtSource = document.getElementById('dept_date').value;
-                  
-					$.post("/view-Flights", {sourceLocation:sourceLocation,destinationLocation:destinationLocation,departureDateAtSource:departureDateAtSource}).done(function(data,status){ 
-				  if(data){
-					console.log(data);
-							}
-					});
-					
 
-                    $.ajax({
-                      url: 'data/single.txt',
-                      type: 'get',
-                      dataType: 'json',
-                      error: function (data) {
-                      },
-                      success: function (data) {
-                        var row$;
-                        var columns = addAllColumnHeaders(data);
-                        for (var i = 0; i < data.length; i++) {
-                          row$ = $('<tr/>');
-                          row$.append("<td>" + (i+1) + "</td>"+"<td>" + from + "</td><td>" + to + "</td>" + "<td>" + d_date + "</td><td>" + fad_date + "</td>");
-                          for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-                            var cellValue = data[i][columns[colIndex]];
+                    var sourceLocation = document.getElementById('from_id').value;
+                    var destinationLocation = document.getElementById('return_id').value;
+                    var departureDateAtSource = document.getElementById('dept_date').value;
 
-                            if (cellValue == null) { cellValue = ""; }
-
-                            row$.append($('<td/>').html(cellValue));
-
-                          }
-                          row$.append(button);
-                          $("#tbDetails").append(row$);
-                        }
+                    $.post("/view-Flights", { sourceLocation: sourceLocation, destinationLocation: destinationLocation, departureDateAtSource: departureDateAtSource }).done(function (data, status) {
+                      if (data) {
+                        console.log(data);
+                        var book_data = '';
+                        $.each(data, function (key, value) {
+                          book_data += '<tr>';
+                          book_data += '<td>' + value.flightId + '</td>';
+                          book_data += '<td>' + value.airlines + '</td>';
+                          book_data += '<td>' + value.sourceLocation + '</td>';
+                          book_data += '<td>' + value.destinationLocation + '</td>';
+                          book_data += '<td>' + value.departureDateAtSource + '</td>';
+                          book_data += '<td>' + value.arrivalDateAtDestination + '</td>';
+                          book_data += '<td>' + value.departureTimeAtSource + '</td>';
+                          book_data += '<td>' + value.arrivalTimeAtDestination + '</td>';
+                          book_data += '<td>' + value.totalSeats + '</td>';
+                          book_data += '<td>' + value.pricePerTicket + '</td>';
+                          book_data += '<td>' + value.totalBags + '</td>';
+                          book_data +=
+                            button;
+                          book_data += '</tr>';
+                        });
+                        $('#tbDetails').append(book_data);
                       }
                     });
+
+
+                    // $.ajax({
+                    //   url: 'data/single.txt',
+                    //   type: 'get',
+                    //   dataType: 'json',
+                    //   error: function (data) {
+                    //   },
+                    //   success: function (data) {
+                    //     var row$;
+                    //     var columns = addAllColumnHeaders(data);
+                    //     for (var i = 0; i < data.length; i++) {
+                    //       row$ = $('<tr/>');
+                    //       row$.append("<td>" + (i+1) + "</td>"+"<td>" + from + "</td><td>" + to + "</td>" + "<td>" + d_date + "</td><td>" + fad_date + "</td>");
+                    //       for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+                    //         var cellValue = data[i][columns[colIndex]];
+
+                    //         if (cellValue == null) { cellValue = ""; }
+
+                    //         row$.append($('<td/>').html(cellValue));
+
+                    //       }
+                    //       row$.append(button);
+                    //       $("#tbDetails").append(row$);
+                    //     }
+                    //   }
+                    // });
 
                     //$(rows).appendTo("#tbDetails tbody");
                     //generate data table realted to one-way trip
                   }
-                  return false;
                 }
 
 
@@ -571,12 +634,12 @@
         <table id="tbDetails" class="table table-striped table-dark table-user">
           <thead>
             <tr>
-                <th>#</th>
+              <th>#</th>
+              <th>Operator</th>
               <th>From</th>
               <th>To</th>
               <th>Departure Date</th>
               <th>Arrival Date</th>
-              <th>Airline operator</th>
               <th>Departure time</th>
               <th>Arrival time</th>
               <th>Cost</th>
@@ -592,12 +655,13 @@
         <table id="tbRound" class="table table-striped table-dark table-user">
           <thead>
             <tr>
-                           <th>#</th>
+              <th>#</th>
+              <th>Operator</th>
               <th>From</th>
               <th>To</th>
               <th>Departure Date</th>
               <th>Arrival Date</th>
-              <th>Operator</th>
+
               <th>Departure time</th>
               <th>Arrival time</th>
               <th>Cost</th>
