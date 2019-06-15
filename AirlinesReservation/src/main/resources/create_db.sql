@@ -59,5 +59,11 @@ insert into flight_details values('AC034','Air Canada','2019-06-24','18:00','201
 insert into flight_details values('AC035','Air Canada','2019-06-22','14:00','2019-06-22','11:00','Calgary-YYC','3','290','Winnipeg-YWG','2','96');
 insert into flight_details values('WJ036','WestJet','2019-06-24','18:00','2019-06-23','15:00','Winnipeg-YWG','3','290','Calgary-YYC','1','96');
 
+---------------------- ALTER USER lOGIN AND ADMIN LOGIN TABLE -----------------------------
 
+alter table user_logins
+add column is_logged_in boolean default false;
+
+alter table admin_logins
+add column is_logged_in boolean default false;
 

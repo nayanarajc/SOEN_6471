@@ -1,6 +1,6 @@
 package AirlinesApp;
 
-import AirlinesApp.AirlinesServiceLayer.user.SetUserLoginStatusService;
+import AirlinesApp.AirlinesServiceLayer.client.SetUserLoginStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

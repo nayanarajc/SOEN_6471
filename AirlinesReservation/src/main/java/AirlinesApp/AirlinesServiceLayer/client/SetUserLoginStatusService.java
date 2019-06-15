@@ -1,9 +1,9 @@
-package AirlinesApp.AirlinesServiceLayer.user;
+package AirlinesApp.AirlinesServiceLayer.client;
 
 import AirlinesApp.AirlinesDAOLayer.admin.AdminLogin;
 import AirlinesApp.AirlinesDAOLayer.admin.AdminLoginDAO;
-import AirlinesApp.AirlinesDAOLayer.user.UserLogin;
-import AirlinesApp.AirlinesDAOLayer.user.UserLoginDAO;
+import AirlinesApp.AirlinesDAOLayer.client.ClientLogin;
+import AirlinesApp.AirlinesDAOLayer.client.ClientLoginDAO;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,25 +12,25 @@ import org.springframework.stereotype.Service;
 public class SetUserLoginStatusService {
 
     @Autowired
-    private UserLoginDAO userLoginDAO;
+    private ClientLoginDAO clientLoginDAO;
 
     @Autowired
     private AdminLoginDAO adminLoginDAO;
 
     public boolean setUserLoginStatusTrue(String userEmail) {
-        UserLogin userLogin = userLoginDAO.findById(userEmail)
-                .orElseThrow(() -> new ObjectNotFoundException(UserLogin.class, userEmail));
-        userLogin.setLoggedIn(true);
-        userLoginDAO.save(userLogin);
-        return userLogin.isLoggedIn();
+        ClientLogin clientLogin = clientLoginDAO.findById(userEmail)
+                .orElseThrow(() -> new ObjectNotFoundException(ClientLogin.class, userEmail));
+        clientLogin.setLoggedIn(true);
+        clientLoginDAO.save(clientLogin);
+        return clientLogin.isLoggedIn();
     }
 
     public boolean setUserLoginStatusFalse(String userEmail) {
-        UserLogin userLogin = userLoginDAO.findById(userEmail)
-                .orElseThrow(() -> new ObjectNotFoundException(UserLogin.class, userEmail));
-        userLogin.setLoggedIn(false);
-        userLoginDAO.save(userLogin);
-        return !userLogin.isLoggedIn();
+        ClientLogin clientLogin = clientLoginDAO.findById(userEmail)
+                .orElseThrow(() -> new ObjectNotFoundException(ClientLogin.class, userEmail));
+        clientLogin.setLoggedIn(false);
+        clientLoginDAO.save(clientLogin);
+        return !clientLogin.isLoggedIn();
     }
 
     public boolean setAdminLoginStatusTrue(String adminId) {

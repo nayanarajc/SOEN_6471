@@ -2,7 +2,7 @@ package AirlinesApp;
 
 import AirlinesApp.AirlinesDAOLayer.reservation.Reservation.Gender;
 import AirlinesApp.AirlinesServiceLayer.reservation.ReservationDetails;
-import AirlinesApp.AirlinesServiceLayer.reservation.create.reservation.CreateAirlinesReservationService;
+import AirlinesApp.AirlinesServiceLayer.reservation.book.CreateAirlinesReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
