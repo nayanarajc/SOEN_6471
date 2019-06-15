@@ -7,16 +7,23 @@
       <meta name="author" content="">
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
       <title>Admin Module</title>
-      <!-- Google font -->
+      
+    
+    <!-- Google font -->
+      
+      
       <link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      
       <script src="https://kit.fontawesome.com/3a05d8f4e4.js"></script>
       <link href="css/landing-page.min.css" rel="stylesheet">
       <!-- Bootstrap -->
       <!-- Custom stlylesheet -->
       <link type="text/css" rel="stylesheet" href="css/style.css" />
+      
       <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
       <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    
       <script>
          $(document).ready(function () {
            $.getJSON("/all-Flights", function (data) {
@@ -87,10 +94,15 @@
              $('#btnSave').show();
              //$('#btnSave').removeAttr('disabled');
            }
+           
+       
          
            // Append flight to the table
          
          }
+        /*  $(document).ready( function () {
+        	    $('#flightTable').dataTable();
+        	} );  */
          
          function flightBuildTableRow(id) {
            var ret =
@@ -174,6 +186,81 @@
            $("#bagT").val("");
            $("#seatsT").val("");
          }
+         
+         
+         function flightEdit() {
+        	 
+        	 var dep=$('#depDate').val();
+             var arr=$('#arrDate').val();
+             var from=$('#sourceT').val();
+             var to=$('#destT').val();
+             var fname=$('#flightName').val();
+             var depTime=$('#depTime').val();
+             var arrTime=$('#arrTime').val();
+             var cost=$('#priceT').val();
+             var seats=$('#seatsT').val();
+             var baggage=$('#bagT').val();
+             var id=$('#flight_id').val();
+             var reg_exp=/\b([A-Z]{2}|[0-9]\d|\d[0-9])\s?\d{3,5}\b$/;
+             
+             
+             if (id == "") {alert('Please fill flight id'); }
+             else if(!reg_exp.test(id)){alert('Enter proper flight ID');}
+             else if (fname == "") {alert('Please fill flight name'); }
+             else if (from == ""){alert('Please fill source');}			
+             else if (to == ""){alert('Please fill destination');}
+             else if (dep == ""){alert('Please fill depDate');}
+             else if (arr == "") { alert('Please fill arrDate');}					
+             else if (depTime == "") {alert('Please fill departure time');}		
+             else if(arrTime ==""){alert('Please fill arrival time');}
+             else if (cost == "") {alert('Please fill cost details');}		
+             else if(seats ==""){alert('Please fill seats details');}
+             else if (baggage == "") {alert('Please fill departure time');}		
+             else if (from == to) {alert('Source and destination cannot be same');}
+             else if (cost < 0)  { 	alert('Cost cannot be below zero');}
+             else if (seats < 1)	{alert('Add a minimum of 1 seat');}
+             else if (baggage < 1){alert('A minimum of 1 baggage should be entered');}		
+             else if (new Date(dep) > new Date(arr)) {alert('Departure date cannot be later than return date');  }
+             else{	
+             
+             //Add flights to Db	
+             flightEditInDB();
+             }
+             }
+             
+             //Posting to Controller - Adding to DB
+             function flightEditInDB(){
+             var flightId = $('#flight_id').val();
+             var airlines = $('#flightName').val();
+             var sourceLocation = $('#sourceT').val();
+             var destinationLocation = $('#destT').val();
+             var departureDateAtSource = $('#depDate').val();
+             var departureTimeAtSource = $('#depTime').val();
+             var arrivalDateAtDestination = $('#arrDate').val();
+             var arrivalTimeAtDestination = $('#arrTime').val();
+             var pricePerTicket = $('#priceT').val();
+             var totalSeats = $('#seatsT').val();
+             var totalBags = $("#bagT").val();
+             
+             $.post("/edit-Flights", {flightId:flightId,airlines:airlines,sourceLocation:sourceLocation,destinationLocation:destinationLocation,departureDateAtSource:departureDateAtSource,
+             departureTimeAtSource:departureTimeAtSource,arrivalDateAtDestination:arrivalDateAtDestination,arrivalTimeAtDestination:arrivalTimeAtDestination,
+             pricePerTicket:pricePerTicket,totalSeats:totalSeats,totalBags:totalBags}).done(function(data) { //alert(data);
+             if(data){
+            	 console.log(data);
+             
+        	 
+        	         	 
+         }
+             });
+            
+             }
+         
+         
+         
+         
+         
+         
+         
          
          function flightUpdate() {
          
@@ -308,6 +395,8 @@
            $("#bagT").val($(cols[10]).text());
            // Change Update Button Text
            $("#bt").text("Update");
+           
+           
          }
          
       </script>
@@ -386,6 +475,10 @@
                <div id="magicS" style="visibility: hidden;" >
                <center><span class="section-heading-lower"  ><b><font color="Green">
                <h5><b>Success !</b></h5></font></b></span></center>
+               </div>
+               <div>
+               <button id="btup" class="btn btn-primary" style="margin-left:4px;width: 70px"  onclick="flightEdit()">Edit</button>
+               
                </div>
                <div id="magicF" style="visibility: hidden;" >
                <center><span class="section-heading-lower" ><b><font color="Red">

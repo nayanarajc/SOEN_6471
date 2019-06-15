@@ -15,19 +15,31 @@ public class ModifyFlightDetailsService {
     @Autowired
     private FlightDetailsDAO flightDetailsDAO;
 
-    public boolean modifyFlightPrice(String airlines, String sourceLocation, String destinationLocation, LocalDate departureDateAtSource, LocalTime departureTimeAtSource, double pricePerTicket) {
-        String flightId = sourceLocation+"-"+destinationLocation+"-"+airlines+"-"+departureDateAtSource+"-"+departureTimeAtSource;
+    public boolean modifyFlight(String flightId,String airlines, String sourceLocation, String destinationLocation, LocalDate departureDateAtSource, LocalTime departureTimeAtSource, LocalDate arrivalDateAtDestination, LocalTime arrivalTimeAtDestination, long flightDuration, double pricePerTicket, int totalSeats,int totalBags) {
+        //String flightId = sourceLocation+"-"+destinationLocation+"-"+airlines+"-"+departureDateAtSource+"-"+departureTimeAtSource;
         Optional<FlightDetails> optionalFlightDetails = flightDetailsDAO.findById(flightId);
         if(!optionalFlightDetails.isPresent()){
             return false;
         }
         FlightDetails flightDetails = optionalFlightDetails.get();
+        
+        
+        flightDetails.setSourceLocation(sourceLocation);
+        flightDetails.setDestinationLocation(destinationLocation);
+        flightDetails.setDepartureDateAtSource(departureDateAtSource);
+        flightDetails.setArrivalDateAtDestination(arrivalDateAtDestination);
+        flightDetails.setDepartureTimeAtSource(departureTimeAtSource);
+        flightDetails.setArrivalTimeAtDestination(arrivalTimeAtDestination);
+        flightDetails.setFlightDuration(0);
+        flightDetails.setTotalBags(totalBags);
         flightDetails.setPricePerTicket(pricePerTicket);
+        flightDetails.setTotalSeats(totalSeats);
+        flightDetails.setAirlines(airlines);
         flightDetailsDAO.save(flightDetails);
         return true;
     }
 
-    public boolean modifyFlightSeats(String airlines, String sourceLocation, String destinationLocation, LocalDate departureDateAtSource, LocalTime departureTimeAtSource, int totalSeats) {
+   /* public boolean modifyFlightSeats(String airlines, String sourceLocation, String destinationLocation, LocalDate departureDateAtSource, LocalTime departureTimeAtSource, int totalSeats) {
         String flightId = sourceLocation+"-"+destinationLocation+"-"+airlines+"-"+departureDateAtSource+"-"+departureTimeAtSource;
         Optional<FlightDetails> optionalFlightDetails = flightDetailsDAO.findById(flightId);
         if(!optionalFlightDetails.isPresent()){
@@ -37,6 +49,6 @@ public class ModifyFlightDetailsService {
         flightDetails.setTotalSeats(totalSeats);
         flightDetailsDAO.save(flightDetails);
         return true;
-    }
+    }*/
 
 }
