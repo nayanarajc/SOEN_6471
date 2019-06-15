@@ -53,10 +53,15 @@ public class AirlinesAppAdminLoginController {
    
     @ResponseBody
     @RequestMapping(value="/view-Flights",method = RequestMethod.POST)
-    public List<FlightDetails> viewFlights(@RequestParam String sourceLocation,
-    		@RequestParam String destinationLocation,@RequestParam String departureDateAtSource) {
-    	
+    public List<FlightDetails> viewFlights(@RequestParam String sourceLocation,@RequestParam String destinationLocation,@RequestParam String departureDateAtSource) {
+    //@RequestMapping(value="/view-Flights",method = RequestMethod.GET)
+   // public List<FlightDetails> viewFlights(){
+    //	String sourceLocation="Montreal-YUL";
+    	//String destinationLocation="Ottawa-YOW";
+    	//String departureDateAtSource="2019-06-21";
     	LocalDate departureDate = LocalDate.parse(departureDateAtSource);
+    	
+    	System.out.println(sourceLocation+" "+ destinationLocation+" "+ departureDate);
     	
     	List<FlightDetails> flightDetails = flightDetailsService.getAvailableFlights(sourceLocation, destinationLocation, departureDate);
     	System.out.println(flightDetails);

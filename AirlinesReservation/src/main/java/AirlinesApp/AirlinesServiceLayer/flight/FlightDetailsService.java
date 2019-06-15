@@ -16,7 +16,6 @@ public class FlightDetailsService {
     @Autowired
     private FlightDetailsDAO flightDetailsDAO;
 
-
     public List<FlightDetails> getAvailableFlights(String sourceLocation, String destinationLocation, LocalDate travelDate) {
         List<FlightDetails> flightDetails = new ArrayList<>();
         flightDetailsDAO.findAll().forEach(flightDetails::add);
