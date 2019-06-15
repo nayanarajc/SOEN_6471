@@ -179,10 +179,102 @@
 
     function flightUpdate() {
 	
-	//Add flights to Db	
-	flightAddToDB();
-
-	$("#flightTable").show();
+		var dep=$('#depDate').val();
+		var arr=$('#arrDate').val();
+		var from=$('#sourceT').val();
+		var to=$('#destT').val();
+		var fname=$('#flightName').val();
+		var depTime=$('#depTime').val();
+		var arrTime=$('#arrTime').val();
+		var cost=$('#priceT').val();
+		var seats=$('#seatsT').val();
+		var baggage=$('#bagT').val();
+		var id=$('#flight_id').val();
+		var reg_exp=/\b([A-Z]{2}|[0-9]\d|\d[0-9])\s?\d{3,5}\b$/;
+		
+		
+		if (id == "") {
+                      alert('Please fill flight id');
+                     
+                    }
+					
+		else if(!reg_exp.test(id))
+		{
+		alert('Enter proper flight ID');
+		}
+		else if (fname == "") {
+                      alert('Please fill flight name');
+                     
+                    }
+		else if (from == "") {
+                      alert('Please fill source');
+                     
+                    }			
+		else if (to == "") {
+                      alert('Please fill destination');
+                     
+                    }
+		else if (dep == "") {
+                      alert('Please fill depDate');
+                     
+                    }
+        else if (arr == "") {
+					alert('Please fill arrDate');
+                     
+                    }					
+		else if (depTime == "") {
+                      alert('Please fill departure time');
+                     
+                    }		
+		else if(arrTime ==""){
+                      alert('Please fill arrival time');
+                     
+                    }
+		else if (cost == "") {
+                      alert('Please fill cost details');
+                     
+                    }		
+		else if(seats ==""){
+                      alert('Please fill seats details');
+                     
+                    }
+		else if (baggage == "") {
+                      alert('Please fill departure time');
+                     
+                    }		
+		
+		else if (from == to) {
+                      alert('Source and destination cannot be same');
+                    }
+		else if (cost < 0)
+					{
+					alert('Cost cannot be below zero');
+					}
+		
+		else if (seats < 1)
+					{
+					alert('Add a minimum of 1 seat');
+					}
+		
+		else if (baggage < 1)
+					{
+					alert('A minimum of 1 baggage should be entered');
+					}		
+        
+		
+		else if (new Date(dep) > new Date(arr)) {
+                     alert('Departure date cannot be later than return date');
+                     
+                    }
+					
+		
+	
+	
+	
+	
+	
+	else{	
+      $("#flightTable").show();
       if ($("#bt").text() == "Update") {
         flightUpdateInTable();
       }
@@ -193,35 +285,8 @@
       formClear();
       // Focus to flight name field
       $("#flight_id").focus();
+	  }
     }
-	
-	//Posting to Controller - Adding to DB
-	function flightAddToDB(){
-	var flightId = $('#flight_id').val();
-   	var airlines = $('#flightName').val();
-	var sourceLocation = $('#sourceT').val();
-   	var destinationLocation = $('#destT').val();
-	var departureDateAtSource = $('#depDate').val();
-   	var departureTimeAtSource = $('#depTime').val();
-	var arrivalDateAtDestination = $('#arrDate').val();
-   	var arrivalTimeAtDestination = $('#arrTime').val();
-	var pricePerTicket = $('#priceT').val();
-   	var totalSeats = $('#seatsT').val();
-	var totalBags = $("#bagT").val();
-	
-	$.post("/add-Flights", {flightId:flightId,airlines:airlines,sourceLocation:sourceLocation,destinationLocation:destinationLocation,departureDateAtSource:departureDateAtSource,
-	departureTimeAtSource:departureTimeAtSource,arrivalDateAtDestination:arrivalDateAtDestination,arrivalTimeAtDestination:arrivalTimeAtDestination,pricePerTicket:pricePerTicket,totalSeats:totalSeats,totalBags:totalBags}).done(function(data){ 
-	if(data){
-	    var page=document.getElementById('magic-Success');
-	    page.style.visibility='visible';
-		}else{
-		var page=document.getElementById('magic-Failure');
-		page.style.visibility='visible';
-		}
-	});
-	return false;	
-	}
-
 
     function flightUpdateInTable() {
       // Add changed flight to table
@@ -236,12 +301,9 @@
 
     function flightDelete(event) {
       console.log(event);
-	 	  	  
       $(event).parents("tr").remove();
       var rowCount = $('#flightTable tbody tr').length;
-	  var rowCount = $('#flightTable tbody tr td:0');
-	 	
-	 if (rowCount < 1) {
+      if (rowCount < 1) {
         //$('#btnSave').attr('disabled','disabled');
         $('#btnSave').hide();
       }
@@ -346,21 +408,13 @@
               <input class="form-control" list="List" type="text" id="destT">
               <label id="arrT">Arrival Time</label>
               <input class="form-control" type="time" id="arrTime" />
-			  <br>
-			   <button id="bt" class="btn btn-primary" style="margin-left:4px;width: 70px"   onclick="flightUpdate()">Add</button>
-		 </div>
-		 </div>
-		 <div id="magic-Success" >
-                    <center>
-                        <span class="section-heading-lower" style="visibility: hidden;"><b><font color="Green"><h5><b>Sucess!</b></h5></font></b></span>
-                    </center>
-                </div>
-             <div id="magic-Failure" >
-                    <center>
-                        <span class="section-heading-lower" style="visibility: hidden;"><b><font color="Red"><h5><b>Flight ID already Exists!</b></h5></font></b></span>
-                    </center>
-                </div>
-			<div class="row">
+            </div>
+          </div>
+
+          <button id="bt" class="btn btn-primary" style="margin-left:4px;width: 70px"
+            onclick="flightUpdate()">Add</button>
+
+          <div class="row">
             <h3>List of flights</h3><br />
             <div class="col-md-12">
               <table id="flightTable" class="table table-bordered table-condensed
@@ -384,12 +438,33 @@
                 </thead>
               </table>
             </div>
-			</div>
+          </div>
           <button id="btnSave" class="btn btn-primary" style="margin-left:473px;width: 70px">Save</button>
         </div>
         
       </div>
     </div>
+	
+	<script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</script>
+	
+	
   </section>
  
 </body>
