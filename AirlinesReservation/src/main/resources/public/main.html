@@ -366,7 +366,7 @@
            $("#priceT").val($(cols[9]).text());
            $("#bagT").val($(cols[10]).text());
            // Change Update Button Text
-           $("#bt").text("Update");
+           $("#btup").text("Update");
            
            
          }
@@ -409,8 +409,8 @@
                   <option value="Winnipeg-YWG">
                </datalist>
                <div class="container">
-               <div id="iteeem" class="row">
-               <h2 >Admin page</h2>
+               <div id="iteeem" class="row"><center>
+               <h2><font face="verdana">Welcome Admin </font></h2></center>
                <h3>Add/ Modify Flights</h3><br />
                <div class="form-group col-4 size pull-left">
                <label id="flight">Flight ID</label>
@@ -443,13 +443,21 @@
                <input class="form-control" type="time" id="arrTime" />
                </div>
                </div>
+			   <div class="row">
+			   <div class="col-2 size pull-left">
                <button id="bt" class="btn btn-primary" style="margin-left:4px;width: 70px"  onclick="flightUpdate()">Add</button>
-               <div id="magicS" style="visibility: hidden;" >
+			   </div>
+			   <div class="col-2 size pull-left">
+                <button id="btup" class="btn btn-primary" style="margin-left:4px;width: 70px"  onclick="flightEdit()">Edit</button>
+               </div>
+			    <center><a class="txt1" href="main.html">
+                        <br><br>
+                        <b>Save</b>
+                    </a>
+               </div>
+			   <div id="magicS" style="visibility: hidden;" >
                <center><span class="section-heading-lower"  ><b><font color="Green">
                <h5><b>Success !</b></h5></font></b></span></center>
-               </div>
-               <div>
-               <button id="btup" class="btn btn-primary" style="margin-left:4px;width: 70px"  onclick="flightEdit()">Edit</button>
                </div>
                <div id="magicF" style="visibility: hidden;" >
                <center><span class="section-heading-lower" ><b><font color="Red">
@@ -458,7 +466,7 @@
                <br>
                <br>
                <div class="row">
-               <h3>List of flights</h3><br />
+               <h3><font face="verdana">List of flights</font></h3><br />
                <div class="col-md-12">
                <table id="flightTable" class="table table-bordered table-condensed
                   table-striped">
@@ -482,10 +490,10 @@
                </table>
                </div>
                </div>
-               <button id="btnSave" class="btn btn-primary" style="margin-left:473px;width: 70px"> 
-               <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#iteeem">
-               Save</a></button>
-               </div>
+               <center><a class="txt1" href="main.html">
+                        <br><br>
+                        <b>Save</b>
+                    </a></center><br><br>
             </div>
          </div>
          <script>
