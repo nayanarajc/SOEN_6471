@@ -15,9 +15,7 @@
       <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
       <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
          type="text/css">
-		  <script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
-      <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
       <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
       <!-- Custom styles for this template -->
@@ -312,6 +310,8 @@
                                      book_data += '<td>' + value.totalSeats + '</td>';
                                      book_data += '<td>' + value.pricePerTicket + '</td>';
                                      book_data += '<td>' + value.totalBags + '</td>';
+									 var bokID= value.flightId
+									 document.getElementById('myField').value = value.flightId;
                                      book_data +=
                                        button;
                                      book_data += '</tr>';
@@ -421,8 +421,11 @@
                                var postal = $('#post').val();
                                var city = $('#city').val();
                                var country = $('#country').val();
+							   var dbo = $('#dob').val();
+							   var gender = $('#Gender').val();
+							   var bookID = $('#myField').val();
                            
-                           
+						                             
                                if (first_name.length < 1) {
                                  $(".error1").show();
                                }
@@ -475,6 +478,15 @@
                                  $(".error6").show();
                                }
                                else {
+							   
+							    $.post("/create-reservation", {passengerName : first_name, passengerDOB : dbo, passengerGender :gender, flightId : bookID}).done(function(data) { //alert(data);
+								 if(data){
+									 console.log(data);
+									 
+									}
+								 });
+								
+							   
                                  $('html, body').animate({
                                    scrollTop: $("#payment").offset().top
                                  }, 1000);
@@ -552,7 +564,12 @@
                                    $(".error12").hide();
                                  }
                                }
-                             });
+                             
+							  var page=document.getElementById('magicS');
+							  page.style.visibility='visible';
+        
+							 
+							 });
                            
                            });
                         </script>
@@ -607,17 +624,26 @@
       </section>
       <section id="booking" class="bg-light" style="background-image: url('images/bg-03.jpg');">
          <div class="bg">
+		 <datalist id="genders">
+                        <option value="MALE">
+                        <option value="FEMALE">
+                        <option value="OTHER">
+                     </datalist>
             <br /><br />
             <div class="container wh">
-               <h3>Booking confirmation</h3>
-               <form id="form1">
+			<center><h3>Resrvation Confirmation</h3></center>
+			 <form id="form1">
+			 <div class="form-group">
+             <input type="hidden" id="myField" value="" />
+             </div>
+			 <div id="row">
                   <div class="form-group">
                      <br />
                      <label><b>Full Name</b></label>
                      <input id="name" type="text" class="form-control" formControlName="name">
                      <div class="error1 alert alert-danger">Please enter the name</div>
                   </div>
-                  <div class="form-group">
+				      <div class="form-group">
                      <label><b>Email</b></label>
                      <input id="email" type="text" class="form-control" formControlName="email">
                      <div class="error2 alert alert-danger">Please enter a valid email</div>
@@ -627,6 +653,15 @@
                      <input id="contact" type="text" class="form-control" formControlName="contact">
                      <div class="error3 alert alert-danger">Please enter the contact number</div>
                   </div>
+                  <div class="form-group">
+                   <label><b>Gender</b></label>
+                  <input id="Gender" list="genders" class="form-control" type="text" >
+                 </div>
+				<div class="form-group">
+                   <label><b>DOB</b></label>
+                  <input id="dob" class="form-control" type="date" required>
+                 </div><br>
+				<center><h3>Billing Details</h3></center>
                   <div class="form-group">
                      <label><b>Billing Address</b></label>
                      <input id="addr" type="text" class="form-control" formControlName="addr">
@@ -646,7 +681,7 @@
                      <label><b>Postal Code</b></label>
                      <input id="post" type="text" class="form-control" formControlName="post">
                      <div class="error7 alert alert-danger">Please enter the postal code</div>
-                  </div>
+                  </div><br>
                   <button type="submit" id="btnNext" class="btn btn-primary">Continue</button><br /><br />
                </form>
             </div>
@@ -682,15 +717,30 @@
                   </div>
                   <div class="form-group">
                      <label><b>CVV</b></label>
-                     <input id="cvv" type="text" class="form-control" formControlName="cvv">
+                     <input id="cvv" type="password" class="form-control" formControlName="cvv">
                      <div class="error12 alert alert-danger">Please enter a valid CVV</div>
                   </div>
-                  <button type="submit" class="btn btn-primary">Confirm Booking</button><br /><br />
+                  <button type="submit" class="btn btn-primary"><a href="#Success">Confirm Booking</a></button><br /><br />
                </form>
             </div>
             <br /><br />
          </div>
       </section>
+	   <section id="Success" class="bg-light">
+            <br /><br />
+        	<div id="magicS" style="visibility: hidden;" >
+               <center><img src="img/booked.png" alt="Smiley face"></center>
+               
+            <br /><br />
+			
+               <center><span class="section-heading-lower" ><b><font color="Green">
+               <h3><b>Booking SuccessFull ! You will Receive a mail shortly with your Booking Details! </b></h3></font></b></span>
+			   <br>
+			    <span class="section-heading-lower" ><b><font color="Blue"><h4><b>Thank You For Using Student Flights </b></h4></font></b></span></center>
+			  </div>
+        
+      </section>
+     
       <!-- Footer -->
       <footer class="footer bg-light">
          <div class="container">
@@ -724,10 +774,6 @@
       <script src="vendor/jquery/jquery.min.js"></script>
       <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	    <script>
-            $(document).ready( function () {
-                 	    $('#tbDetails').dataTable();
-						$('#tbRound').dataTable();
-                 	} );
          </script>
       </body>
 </html>

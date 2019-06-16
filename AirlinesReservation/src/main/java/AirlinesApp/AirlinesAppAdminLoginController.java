@@ -123,17 +123,6 @@ public class AirlinesAppAdminLoginController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	@ResponseBody
 	@RequestMapping(value = "/all-Flights", method = RequestMethod.GET)
 	public List<FlightDetails> allFlights() {
