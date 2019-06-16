@@ -13,6 +13,7 @@ import AirlinesApp.AirlinesDAOLayer.reservation.Reservation;
 import AirlinesApp.AirlinesDAOLayer.reservation.Reservation.Gender;
 import AirlinesApp.AirlinesServiceLayer.reservation.ReservationDetails;
 import AirlinesApp.AirlinesServiceLayer.reservation.book.CreateAirlinesReservationService;
+import AirlinesApp.AirlinesServiceLayer.reservation.cancel.CancelAirlinesReservationServiceImpl;
 
 
 
@@ -21,6 +22,9 @@ public class AirlinesAppCreateReservationController {
 
     @Autowired
     private CreateAirlinesReservationService createAirlinesReservation;
+    
+    @Autowired
+    private CancelAirlinesReservationServiceImpl cancelAirlinesReservationServiceImpl;
 
     @ResponseBody
     @RequestMapping(value ="/create-reservation",method = RequestMethod.POST)
@@ -41,6 +45,14 @@ public class AirlinesAppCreateReservationController {
         ReservationDetails reservationDetails = new ReservationDetails(passengerName, passenger_DOB, gender, flightId);
         
         return createAirlinesReservation.createReservation(reservationDetails);
+    }
+    
+    @ResponseBody
+    @RequestMapping(value ="/cancel-reservation",method = RequestMethod.POST)
+    public boolean CancelReservation (@RequestParam String reservationId) {
+    	
+    	
+		return 	cancelAirlinesReservationServiceImpl.cancelReservation(reservationId);
     }
 
 }
