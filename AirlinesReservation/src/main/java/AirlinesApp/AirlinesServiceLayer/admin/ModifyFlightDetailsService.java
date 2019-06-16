@@ -16,8 +16,8 @@ public class ModifyFlightDetailsService {
     private FlightDetailsDAO flightDetailsDAO;
 
     public boolean modifyFlight(String flightId,String airlines, String sourceLocation, String destinationLocation, LocalDate departureDateAtSource, LocalTime departureTimeAtSource, LocalDate arrivalDateAtDestination, LocalTime arrivalTimeAtDestination, long flightDuration, double pricePerTicket, int totalSeats,int totalBags) {
-        //String flightId = sourceLocation+"-"+destinationLocation+"-"+airlines+"-"+departureDateAtSource+"-"+departureTimeAtSource;
-        Optional<FlightDetails> optionalFlightDetails = flightDetailsDAO.findById(flightId);
+      
+    	Optional<FlightDetails> optionalFlightDetails = flightDetailsDAO.findById(flightId);
         if(!optionalFlightDetails.isPresent()){
             return false;
         }

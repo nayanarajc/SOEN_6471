@@ -34,7 +34,13 @@
       <!-- Icons Grid -->
       <section class="features-icons bg-light text-center">
          <h1 class="mb-5"><font color="Black" face="verdana"><b>Student Flights</b></font></h1>
-         <div class="container">
+		<center>
+	  <div class="col-4 size pull-center">
+       <button id="logout" class="btn btn-primary" style="margin-left:4px;width: 70px"  onclick="Logout()">Logout</button>
+       <button id="logout" class="btn btn-primary" style="margin-left:4px;width: 100px"  onclick="#">My Bookings</button>
+       </div>
+		<br><br></center>
+		<div class="container">
             <div class="row booking-form-container">
                <div class="booking-form">
                   <form id="searchFlight" onsubmit="AddData()">
@@ -790,7 +796,9 @@
       <script src="vendor/jquery/jquery.min.js"></script>
       <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
       <script>
-                
+                function Logout(){
+				window.location.href = 'index.html';
+				}
       </script>
    </body>
 </html>

@@ -9,8 +9,8 @@
       <title>Admin Page</title>
       <link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-      <script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
-      <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+      <!--<script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+      <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
       <script src="https://kit.fontawesome.com/3a05d8f4e4.js"></script>
       <link href="css/landing-page.min.css" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="css/style.css" />
@@ -207,7 +207,7 @@
              else if (new Date(dep) > new Date(arr)) {alert('Departure date cannot be later than return date');  }
              else{	
              
-             //Add flights to Db	
+             //Edit flights to Db	
              flightEditInDB();
              }
              }
@@ -253,7 +253,7 @@
          
          
          if (id == "") {alert('Please fill flight id'); }
-         else if(!reg_exp.test(id)){alert('Enter proper flight ID');}
+         //else if(!reg_exp.test(id)){alert('Enter proper flight ID');}
          else if (fname == "") {alert('Please fill flight name'); }
          else if (from == ""){alert('Please fill source');}			
          else if (to == ""){alert('Please fill destination');}
@@ -366,7 +366,7 @@
            $("#priceT").val($(cols[9]).text());
            $("#bagT").val($(cols[10]).text());
            // Change Update Button Text
-           $("#btup").text("Update");
+           //$("#btup").text("Update");
            
            
          }
@@ -411,6 +411,10 @@
                <div class="container">
                <div id="iteeem" class="row"><center>
                <h2><font face="verdana">Welcome Admin </font></h2></center>
+			   <div class="col-2 size pull-right">
+                <button id="logout" class="btn btn-primary" style="margin-left:4px;width: 70px"  onclick="Logout()">Logout</button>
+               </div>
+			   
                <h3>Add/ Modify Flights</h3><br />
                <div class="form-group col-4 size pull-left">
                <label id="flight">Flight ID</label>
@@ -497,9 +501,13 @@
             </div>
          </div>
          <script>
-            $(document).ready( function () {
-                 	    $('#flightTable').dataTable();
-                 	} );
+           // $(document).ready( function () {
+             //    	    $('#flightTable').dataTable();
+               //  	} );
+					
+					  function Logout(){
+				window.location.href = 'admin.html';
+				}
          </script>
       </section>
    </body>
