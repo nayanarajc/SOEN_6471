@@ -14,6 +14,7 @@ import AirlinesApp.AirlinesDAOLayer.reservation.Reservation.Gender;
 import AirlinesApp.AirlinesServiceLayer.reservation.ReservationDetails;
 import AirlinesApp.AirlinesServiceLayer.reservation.book.CreateAirlinesReservationService;
 import AirlinesApp.AirlinesServiceLayer.reservation.cancel.CancelAirlinesReservationServiceImpl;
+import AirlinesApp.AirlinesServiceLayer.reservation.modify.ModifyAirlinesReservationServiceImpl;
 
 
 
@@ -25,6 +26,9 @@ public class AirlinesAppCreateReservationController {
     
     @Autowired
     private CancelAirlinesReservationServiceImpl cancelAirlinesReservationServiceImpl;
+    
+    @Autowired
+    private ModifyAirlinesReservationServiceImpl modifyAirlinesReservationServiceImpl;
 
     @ResponseBody
     @RequestMapping(value ="/create-reservation",method = RequestMethod.POST)
@@ -53,6 +57,13 @@ public class AirlinesAppCreateReservationController {
     	
     	
 		return 	cancelAirlinesReservationServiceImpl.cancelReservation(reservationId);
+    }
+    
+    @ResponseBody
+    @RequestMapping(value ="/modifyPassenger-reservation",method = RequestMethod.POST)
+    public boolean modifyPassengerNames (@RequestParam String reservationId, @RequestParam String firstName) {
+    	String lastname="";
+    	return 	modifyAirlinesReservationServiceImpl.modifyPassengerNames(reservationId,firstName,lastname);
     }
 
 }
