@@ -232,6 +232,7 @@
                            
                                var departureDateAtSource = document.getElementById('dept_date').value;
                                var book_data = '';
+                               var page = document.getElementById('magicTwo');
                                $.post("/view-Flights", { sourceLocation: sourceLocation, destinationLocation: destinationLocation, departureDateAtSource: departureDateAtSource }).done(function (data, status) {
                                  if (data != '' && data !== null) {
                                    console.log(data);
@@ -277,10 +278,14 @@
                                    });
                                    $('#tbRound').append(book_data);
                                    $("#tbRound").show();
+                                   $('html, body').animate({
+                                       scrollTop: $("#flightsT").offset().top
+                                     }, 1000);
+                                   page.style.visibility = 'hidden';
                                  }else{
                            console.log("Sorry no flights avaliable at this time - Roundtrip-return");
-                           var page = document.getElementById('magicTwo');
-                           // page.style.visibility = 'visible';
+                           
+                            page.style.visibility = 'visible';
                            }
                                });
                            
@@ -288,19 +293,19 @@
                                  }else{
                            console.log("Sorry no flights avaliable at this time - Roundtrip");
                            var page = document.getElementById('magicOne');
-                           // page.style.visibility = 'visible';
+                            page.style.visibility = 'visible';
                                  }
                                });
                              }
                              else {
-                               $("#tbDetails").show();
+                               
                                $("#tbRound").hide();
                                //$("#tbDetails").css("display","block");
                                $("#tbDetails td").remove();
                                var sourceLocation = document.getElementById('from_id').value;
                                var destinationLocation = document.getElementById('return_id').value;
                                var departureDateAtSource = document.getElementById('dept_date').value;
-                           
+                               var page = document.getElementById('magicOne');
                                $.post("/view-Flights", { sourceLocation: sourceLocation, destinationLocation: destinationLocation, departureDateAtSource: departureDateAtSource }).done(function (data, status) {
                                  if (data != '' && data !== null) {
                                    console.log(data);
@@ -325,17 +330,20 @@
                                      book_data += '</tr>';
                                    });
                                    $('#tbDetails').append(book_data);
+                                   $("#tbDetails").show();
+                                   $('html, body').animate({
+                                       scrollTop: $("#flightsT").offset().top
+                                     }, 1000);
+                                   page.style.visibility = 'hidden';
                                  }else{
                            console.log("Sorry no flights avaliable at this time - OneWay");
-                           var page = document.getElementById('magicOne');
-                           // page.style.visibility = 'visible';
+                           
+                            page.style.visibility = 'visible';
                                  }
                                });
                              }
 							 
-							  $('html, body').animate({
-                               scrollTop: $("#flightsT").offset().top
-                             }, 1000);
+							  
                            
 							 
                            }
@@ -381,6 +389,7 @@
                              $(".error12").hide();
                            
                              $("h2").addClass("blue");
+                             
                            
                              $('#searchFlight').submit(function (e) {
                                e.preventDefault();
@@ -427,6 +436,7 @@
                              });
                            
                              $('#form1').submit(function (e) {
+                            	 var f1=0;
                                $("#payment").show();
                                e.preventDefault();
                                var first_name = $('#name').val();
@@ -443,72 +453,85 @@
                                    
                                if (first_name.length < 1) {
                                  $(".error1").show();
+                                 f1=1;
                                }
                                else {
                                  $(".error1").hide();
+                                 
+                                 
                                }
-                           
                                if (email.length < 1) {
-                                 $('.error2').show();
-                               } else if (email.length >= 1) {
-                                 var regEx = /^[a-zA-Z0-9][a-zA-Z0-9._%+-]{0,63}@(?:[a-zA-Z0-9-]{1,63}\.){1,125}[a-zA-Z]{2,63}$/;
-                                 var validEmail = regEx.test(email);
-                                 if (!validEmail) {
                                    $('.error2').show();
+                                   f1=1;
+                                 } else if (email.length >= 1) {
+                                   var regEx = /^[a-zA-Z0-9][a-zA-Z0-9._%+-]{0,63}@(?:[a-zA-Z0-9-]{1,63}\.){1,125}[a-zA-Z]{2,63}$/;
+                                   var validEmail = regEx.test(email);
+                                   if (!validEmail) {
+                                     $('.error2').show();
+                                   }
+                                   else {
+                                     $(".error2").hide();
+                                     
+                             }
                                  }
-                                 else {
-                                   $(".error2").hide();
-                                 }
+                                   if (contact.length >= 1&&contact.length <= 10) {
+                                	   $(".error3").hide();
+                                     }
+                                     else {
+                                       
+                                       $(".error3").show();
+                                       f1=1;
+                                       
                                }
-                           
-                               if (contact.length < 1) {
-                                 $(".error3").show();
-                               }
-                               else {
-                                 $(".error3").hide();
-                               }
-                           
-                               if (addr.length < 1) {
-                                 $(".error4").show();
-                               }
-                               else {
-                                 $(".error4").hide();
-                               }
-                           
-                               if (postal.length < 1) {
-                                 $(".error7").show();
-                               }
-                               else {
-                                 $(".error7").hide();
-                               }
-                           
-                               if (city.length < 1) {
-                                 $(".error5").show();
-                               }
-                               else {
-                                 $(".error5").hide();
-                               }
-                           
-                               if (country.length < 1) {
-                                 $(".error6").show();
-                               }
-                               else {
-                           
-                           $.post("/create-reservation", {passengerName : first_name, passengerDOB : dbo, passengerGender :gender, flightId : bookID}).done(function(data) { //alert(data);
-                           if(data){
-                           console.log(data);
-                           
-                           }
-                           });
-                           
-                           
-                                 $('html, body').animate({
-                                   scrollTop: $("#payment").offset().top
-                                 }, 1000);
-                                 $(".error6").hide();
-                               }
+                                   if (addr.length < 1) {
+                                       $(".error4").show();
+                                       f1=1;
+                                     }
+                                     else {
+                                       $(".error4").hide();
+                                       
+                             }
+                                   if (postal.length < 1) {
+                                       $(".error7").show();
+                                       f1=1;
+                                     }
+                                     else {
+                                       $(".error7").hide();
+                                       
+                             }
+                                   if (city.length < 1) {
+                                       $(".error5").show();
+                                       f1=1;
+                                     }
+                                     else {
+                                       $(".error5").hide();
+                                       
+                             }
+                                   if (country.length < 1) {
+                                       $(".error6").show();
+                                       f1=1;
+                                     }
+                                     else {
+                                    	 
+                                    	 
+                                           $(".error6").hide();
+                                 
+                                 
+                             }
+                                   if(f1==0){
+                                	   $.post("/create-reservation", {passengerName : first_name, passengerDOB : dbo, passengerGender :gender, flightId : bookID}).done(function(data) { //alert(data);
+                                           if(data){
+                                           console.log(data);
+                                           
+                                           }
+                                           });
+                                	   $('html, body').animate({
+                                           scrollTop: $("#payment").offset().top
+                                         }, 1000);
+                                   }
                              });
                              $('#form_payment').submit(function (e) {
+                            	 var f2=0;
                                e.preventDefault();
                                var name_card = $('#name_c').val();
                                var card_num = $('#card').val();
@@ -517,76 +540,91 @@
                                var cvv = $('#cvv').val();
                                if (name_card.length < 1) {
                                  $('.error8').show();
+                                 f2=1;
                                }
                            
                                else {
                                  $(".error8").hide();
+                                 
                                }
-                           
-                           
+                               
                                if (card_num.length < 1) {
-                                 $(".error9").show();
-                               }
+                                   $(".error9").show();
+                                   f2=1;
+                                 }
+                             
+                                 else if (card_num.length >= 1) {
+                                   var regEx = /^[0-9]{16}$/;
+                                   var validCard = regEx.test(card_num);
+                                   if (!validCard) {
+                                     $('.error9').show();
+                                     f2=1;
+                                   }
+                                   else {
+                                     $(".error9").hide();
+                                     
+                                   }
+                                 }
                            
-                               else if (card_num.length >= 1) {
-                                 var regEx = /^[0-9]{16}$/;
-                                 var validCard = regEx.test(card_num);
-                                 if (!validCard) {
-                                   $('.error9').show();
-                                 }
-                                 else {
-                                   $(".error9").hide();
-                                 }
-                               }
                            
                                if (e_month.length < 1 || (e_month < 1 || e_month > 12)) {
-                                 $(".error10").show();
-                               }
-                               else if (e_month.length >= 1) {
-                                 var regEx = /^[0-9]{2}$/;
-                                 var validMonth = regEx.test(e_month);
-                                 if (!validMonth) {
-                                   $('.error10').show();
+                                   $(".error10").show();
+                                   f2=1;
                                  }
-                                 else {
-                                   $(".error10").hide();
+                                 else if (e_month.length >= 1) {
+                                   var regEx = /^[0-9]{2}$/;
+                                   var validMonth = regEx.test(e_month);
+                                   if (!validMonth) {
+                                     $('.error10').show();
+                                     f2=1;
+                                   }
+                                   else {
+                                     $(".error10").hide();
+                                     
+                                   }
                                  }
-                               }
                                if (e_year.length < 1 || (e_year < 2019 || e_year > 2100)) {
-                                 $(".error11").show();
-                               }
-                               else if (e_year.length >= 1) {
-                                 var regEx = /^[0-9]{4}$/;
-                                 var validYear = regEx.test(e_year);
-                                 if (!validYear) {
-                                   $('.error11').show();
+                                   $(".error11").show();
+                                   f2=1;
                                  }
-                                 else {
-                                   $(".error11").hide();
+                                 else if (e_year.length >= 1) {
+                                   var regEx = /^[0-9]{4}$/;
+                                   var validYear = regEx.test(e_year);
+                                   if (!validYear) {
+                                     $('.error11').show();
+                                     f2=1;
+                                   }
+                                   else {
+                                     $(".error11").hide();
+                                     
+                                   }
                                  }
-                               }
-                           
+                               
                                if (cvv.length < 1) {
-                                 $(".error12").show();
-                               }
-                               else if (cvv.length >= 1) {
-                                 var regEx = /^[0-9]{3}$/;
-                                 var validCVV = regEx.test(cvv);
-                                 if (!validCVV) {
-                                   $('.error12').show();
+                                   $(".error12").show();
+                                   f2=1;
                                  }
-                                 else {
-                                   $(".error12").hide();
+                                 else if (cvv.length >= 1) {
+                                   var regEx = /^[0-9]{3}$/;
+                                   var validCVV = regEx.test(cvv);
+                                   if (!validCVV) {
+                                     $('.error12').show();
+                                     f2=1;
+                                   }
+                                   else {
+                                     $(".error12").hide();
+                                   }
                                  }
-                               }
-                             
+                           
+                               
+                             if(f2==0){
                            $("#Success").show();
                            var page=document.getElementById('magicS');
                            page.style.visibility='visible';
                             $('html, body').animate({
                                scrollTop: $("#Success").offset().top
                              }, 1000);
-                           
+                             }
                            
                            });
                            
@@ -650,7 +688,7 @@
          </datalist>
          <br /><br />
          <div class="container wh">
-         <center><h3>Resrvation Confirmation</h3></center>
+         <center><h3>Reservation Confirmation</h3></center>
          <form id="form1">
          <div class="form-group">
          <input type="hidden" id="myField" value="" />
@@ -674,7 +712,7 @@
          </div>
          <div class="form-group">
          <label><b>Gender</b></label>
-         <input id="Gender" list="genders" class="form-control" type="text" >
+         <input id="Gender" list="genders" class="form-control" type="text" required >
          </div>
          <div class="form-group">
          <label><b>DOB</b></label>
